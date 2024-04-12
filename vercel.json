@@ -1,0 +1,8 @@
+{
+    "crons": [
+        {
+            "path": "/api/updateClub",
+            "schedule": "0 * * * *"
+        }
+    ]
+}
