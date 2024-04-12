@@ -1,0 +1,1 @@
+export const CURRENT_CLUB_FILE_PATH = 'tmp/currentClub.json'

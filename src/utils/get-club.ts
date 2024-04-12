@@ -4,8 +4,10 @@ import path from 'path';
 
 import { clubs } from '@/data/clubs';
 import { ClubData, CurrentClub } from '@/data/clubs';
+import { CURRENT_CLUB_FILE_PATH } from '@/config';
 
-const currentClubPath = 'src/data/currentClub.json';
+const currentClubFilePath = path.join(process.cwd(), CURRENT_CLUB_FILE_PATH);
+
 
 /** Retorna os dados de um único clube pelo Id do clube*/
 export async function getClubById(id: number): Promise<ClubData> {
@@ -20,10 +22,8 @@ export async function getRandomClub(): Promise<ClubData> {
 
 /** Retorna os dados do clube atual */
 export async function getCurrentClubData(): Promise<ClubData | null> {
-    const currentClubPath = path.join(process.cwd(), '/src/data/currentClub.json');
-
     try {
-        const currentClubJSON = fs.readFileSync(currentClubPath, 'utf-8');
+        const currentClubJSON = fs.readFileSync(currentClubFilePath, 'utf-8');
         const currentClubData: CurrentClub = JSON.parse(currentClubJSON);
         if (currentClubData.id !== null && currentClubData.id.length > 0) {
             const currentClubId = currentClubData.id[currentClubData.id.length-1];

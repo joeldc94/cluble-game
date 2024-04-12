@@ -4,8 +4,9 @@ import path from 'path';
 import { getRandomClub } from '@/utils/get-club';
 import { ClubData, clubs, CurrentClub } from '@/data/clubs';
 import { revalidatePath } from 'next/cache';
+import { CURRENT_CLUB_FILE_PATH } from '@/config';
 
-const currentClubFilePath = path.join(process.cwd(), 'src/data/currentClub.json');
+const currentClubFilePath = path.join(process.cwd(), CURRENT_CLUB_FILE_PATH);
 
 interface UpdateCurrentClubResult {
     success: boolean;
