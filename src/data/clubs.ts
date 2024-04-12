@@ -357,7 +357,7 @@ export const clubs: ClubData[] = [
     {
         id: 35,
         name: 'Guarani',
-        colors: ['red', 'white'],
+        colors: ['green', 'white'],
         state: 'SP',
         city: 'Campinas',
         stadium: 'Brinco de Ouro',

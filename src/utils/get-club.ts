@@ -1,3 +1,4 @@
+"use server"
 import fs from 'fs';
 import path from 'path'; 
 
@@ -7,18 +8,18 @@ import { ClubData, CurrentClub } from '@/data/clubs';
 const currentClubPath = 'src/data/currentClub.json';
 
 /** Retorna os dados de um único clube pelo Id do clube*/
-export function getClubById(id: number): ClubData {
+export async function getClubById(id: number): Promise<ClubData> {
     return clubs[id];
 }
 
 /** Retorna os dados de um clube aleatório */
-export function getRandomClub(): ClubData {
+export async function getRandomClub(): Promise<ClubData> {
     const randomIndex = Math.floor(Math.random() * clubs.length);
     return clubs[randomIndex];
 }
 
 /** Retorna os dados do clube atual */
-export function getCurrentClubData(): ClubData | null {
+export async function getCurrentClubData(): Promise<ClubData | null> {
     const currentClubPath = path.join(process.cwd(), '/src/data/currentClub.json');
 
     try {

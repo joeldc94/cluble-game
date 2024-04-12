@@ -1,3 +1,4 @@
+"use server"
 import fs from 'fs';
 import path from 'path';
 import { getRandomClub } from '@/utils/get-club';
@@ -8,7 +9,7 @@ const currentClubFilePath = path.join(process.cwd(), 'src/data/currentClub.json'
 
 interface UpdateCurrentClubResult {
     success: boolean;
-    club?: number;
+    club?: ClubData;
     message?: string;
 }
 /**  */
@@ -46,29 +47,10 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
         // Revalidar o caminho após a atualização
         //revalidatePath('/');
 
-        return { success: true, club: randomClub.id, ...(message && { message }) };
+        return { success: true, club: randomClub, ...(message && { message }) };
     } catch (error) {
         console.error('Erro ao atualizar o clube atual:', error);
         return { success: false };
     }
-
-
-
-    /* try {
-        const randomClub = await getRandomClub();
-
-        const currentClubData: CurrentClub = {
-            id: randomClub.id
-        };
-
-        const currentClubJSON = JSON.stringify(currentClubData);
-
-        await fs.writeFileSync(currentClubFilePath, currentClubJSON);
-        revalidatePath('/')
-        return { success: true, club: randomClub.id };
-    } catch (error) {
-        console.error('Erro ao atualizar o clube atual:', error);
-        return { success: false };
-    } */
 
 }

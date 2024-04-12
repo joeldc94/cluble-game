@@ -3,8 +3,8 @@ import { getCurrentClubData } from "@/utils/get-club";
 import { Box, Card, CardContent, CardHeader, Container, Divider, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 
-export default function Home() {
-    const club = getCurrentClubData();
+export default async function Home() {
+    const club = await getCurrentClubData();
     //console.log(club);
     if (!club) {
         return (
