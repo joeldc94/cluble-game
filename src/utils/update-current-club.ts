@@ -44,7 +44,7 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
         // Escrever o arquivo atualizado
         fs.writeFileSync(currentClubFilePath, JSON.stringify({ id: currentClubIds }));
         // Revalidar o caminho após a atualização
-        revalidatePath('/');
+        //revalidatePath('/');
 
         return { success: true, club: randomClub.id, ...(message && { message }) };
     } catch (error) {
