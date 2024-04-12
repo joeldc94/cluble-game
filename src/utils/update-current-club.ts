@@ -14,6 +14,7 @@ interface UpdateCurrentClubResult {
 }
 /**  */
 export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
+    console.log("Atualizar currentClub...");
     let message: string = '';
     try {
         // Ler o arquivo currentClub
@@ -23,6 +24,7 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
         //console.log({ currentClubData }, { currentClubIdsObj })
         // Extrair a matriz de IDs do objeto
         const currentClubIds = currentClubIdsObj.id;
+        console.log({currentClubIds});
 
         if (currentClubIds.length >= clubs.length) {
             currentClubIds.length = 0; // Reiniciar currentClub
@@ -41,6 +43,8 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
 
         // Adicionar o novo ID a currentClub
         currentClubIds.push(randomClub.id);
+        console.log({randomClub});
+
 
         // Escrever o arquivo atualizado
         fs.writeFileSync(currentClubFilePath, JSON.stringify({ id: currentClubIds }));
