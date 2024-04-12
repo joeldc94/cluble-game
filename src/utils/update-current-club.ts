@@ -6,8 +6,6 @@ import { ClubData, clubs, CurrentClub } from '@/data/clubs';
 import { revalidatePath } from 'next/cache';
 import { CURRENT_CLUB_FILE_PATH } from '@/config';
 
-const currentClubFilePath = path.join(process.cwd(), CURRENT_CLUB_FILE_PATH);
-
 interface UpdateCurrentClubResult {
     success: boolean;
     club?: ClubData;
@@ -15,12 +13,12 @@ interface UpdateCurrentClubResult {
 }
 /**  */
 export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
-    console.log("Atualizar currentClub...");
+    console.log("Atualizar currentClub...", {CURRENT_CLUB_FILE_PATH});
     let message: string = '';
     try {
         // Ler o arquivo currentClub
         // Ler o arquivo currentClub
-        const currentClubData = fs.readFileSync(currentClubFilePath, 'utf-8');
+        const currentClubData = fs.readFileSync(CURRENT_CLUB_FILE_PATH, 'utf-8');
         const currentClubIdsObj: { id: number[] } = JSON.parse(currentClubData);
         //console.log({ currentClubData }, { currentClubIdsObj })
         // Extrair a matriz de IDs do objeto
@@ -48,7 +46,7 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
 
 
         // Escrever o arquivo atualizado
-        fs.writeFileSync(currentClubFilePath, JSON.stringify({ id: currentClubIds }));
+        fs.writeFileSync(CURRENT_CLUB_FILE_PATH, JSON.stringify({ id: currentClubIds }));
         // Revalidar o caminho após a atualização
         //revalidatePath('/');
 
