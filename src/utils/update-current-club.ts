@@ -5,28 +5,24 @@ import { getRandomClub } from '@/utils/get-club';
 import { ClubData, clubs, CurrentClub } from '@/data/clubs';
 import { revalidatePath } from 'next/cache';
 import { CURRENT_CLUB_FILE_PATH } from '@/config';
+import { AddClubId, deleteClubIdList, getAllClubIds } from './kv-club';
 
 interface UpdateCurrentClubResult {
     success: boolean;
     club?: ClubData;
     message?: string;
 }
-/**  */
+/** Escreve um novo Id de clube na lista de clubes */
 export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
-    console.log("Atualizar currentClub...", {CURRENT_CLUB_FILE_PATH});
     let message: string = '';
     try {
-        // Ler o arquivo currentClub
-        // Ler o arquivo currentClub
-        const currentClubData = fs.readFileSync(CURRENT_CLUB_FILE_PATH, 'utf-8');
-        const currentClubIdsObj: { id: number[] } = JSON.parse(currentClubData);
-        //console.log({ currentClubData }, { currentClubIdsObj })
-        // Extrair a matriz de IDs do objeto
-        const currentClubIds = currentClubIdsObj.id;
-        console.log({currentClubIds});
-
-        if (currentClubIds.length >= clubs.length) {
-            currentClubIds.length = 0; // Reiniciar currentClub
+        // Ler a lista  de clues utilizados
+        const clubIdsListSaved = await getAllClubIds();
+        let usedClubIds = clubIdsListSaved;
+        // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
+        if (clubIdsListSaved && clubIdsListSaved.length >= clubs.length) {
+            await deleteClubIdList(); // Reiniciar currentClub
+            usedClubIds = [];
             message = 'Lista reiniciada';
         }
 
@@ -35,22 +31,18 @@ export async function updateCurrentClub(): Promise<UpdateCurrentClubResult> {
         // Selecionar um clube aleatório cujo ID ainda não foi selecionado
         while (!randomClub) {
             const tempRandomClub = await getRandomClub(); // Supondo que essa função retorne um clube aleatório
-            if (!currentClubIds.includes(tempRandomClub.id)) {
+            if (!usedClubIds || !usedClubIds.includes(tempRandomClub.id.toString())) {
                 randomClub = tempRandomClub;
             }
         }
 
         // Adicionar o novo ID a currentClub
-        currentClubIds.push(randomClub.id);
-        console.log({randomClub});
-
-
-        // Escrever o arquivo atualizado
-        fs.writeFileSync(CURRENT_CLUB_FILE_PATH, JSON.stringify({ id: currentClubIds }));
-        // Revalidar o caminho após a atualização
-        //revalidatePath('/');
-
-        return { success: true, club: randomClub, ...(message && { message }) };
+        await AddClubId(randomClub.id);
+        return { 
+            success: true, 
+            club: randomClub, 
+            ...(message && { message }) 
+        };
     } catch (error) {
         console.error('Erro ao atualizar o clube atual:', error);
         return { success: false };

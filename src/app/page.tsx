@@ -15,7 +15,7 @@ export default async function Home() {
                 <Card sx={{ mx: 4, my: 2 }}>
                     <CardContent>
                         <Typography variant="h4" textAlign="center">
-                            Erro ao carregar clube atual
+                            Aguarde o próximo clube!
                         </Typography>
                     </CardContent>
                 </Card>
@@ -76,20 +76,6 @@ export default async function Home() {
 
             </Card>
             <Divider />
-            {/* <List>
-                    {
-                        clubs.map((club) => {
-                            return (
-                                <ListItem key={club.name}>
-                                    <ListItemText
-                                        primary={club.name}
-                                        secondary={`${club.city} / ${club.state?.toUpperCase()}`}
-                                    />
-                                </ListItem>
-                            )
-                        })
-                    }
-                </List> */}
         </Container>
     );
 }
