@@ -5,5 +5,4 @@ export async function GET() {
 	const result = await updateCurrentClub();
 	revalidatePath('/');
 	return Response.json(result)
-
 }
