@@ -1,8 +1,7 @@
 "use server"
 
 import { clubs } from '@/data/clubs';
-import { ClubData, CurrentClub } from '@/data/clubs';
-import { CURRENT_CLUB_FILE_PATH } from '@/config';
+import { ClubData } from '@/data/clubs';
 import { getLastClubId } from './kv-club';
 
 /** Retorna os dados de um único clube pelo Id do clube*/

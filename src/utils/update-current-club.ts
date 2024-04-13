@@ -1,10 +1,6 @@
 "use server"
-import fs from 'fs';
-import path from 'path';
 import { getRandomClub } from '@/utils/get-club';
-import { ClubData, clubs, CurrentClub } from '@/data/clubs';
-import { revalidatePath } from 'next/cache';
-import { CURRENT_CLUB_FILE_PATH } from '@/config';
+import { ClubData, clubs } from '@/data/clubs';
 import { AddClubId, deleteClubIdList, getAllClubIds } from './kv-club';
 
 interface UpdateCurrentClubResult {
