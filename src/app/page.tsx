@@ -24,60 +24,59 @@ export default async function Home() {
     }
 
     return (
-        <main>
-            <Container maxWidth="sm">
-                <Typography variant="h1" textAlign="center">
-                    CLUBLE
-                </Typography>
-                <Divider />
-                <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2 }}>
-                    <CardContent>
-                        <Typography variant="h4" textAlign="center">
-                            {club.name}
-                        </Typography>
+        <Container maxWidth="sm">
+            <Typography variant="h1" textAlign="center">
+                CLUBLE
+            </Typography>
+            <Divider />
+            <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2 }}>
+                <CardContent>
+                    <Typography variant="h4" textAlign="center">
+                        {club.name}
+                    </Typography>
 
-                        <Card
-                            component={Paper}
-                            elevation={2}
-                            sx={{
-                                py:1, px:3,
-                                backgroundColor: '#EEE',
-                                width: 'fit-content',
-                                height: 'fit-content',
-                                margin: 'auto',
-                                border: '1px solid #DDD',
-                                display: 'flex',
-                            }}>
-                            {
-                                club.colors.map((color: string, index: number) => (
-                                    <SportsBaseballIcon key={index} fontSize="small"
-                                        sx={{
-                                            color,
-                                            m: 0,
-                                            p:0,
-                                            //textShadow: '1px 1px 4px red)'
-                                        }} />
-                                ))
-                            }
-                        </Card>
+                    <Card
+                        component={Paper}
+                        elevation={2}
+                        sx={{
+                            py: 1, px: 3,
+                            backgroundColor: '#EEE',
+                            width: 'fit-content',
+                            height: 'fit-content',
+                            margin: 'auto',
+                            border: '1px solid #DDD',
+                            display: 'flex',
+                        }}>
+                        {
+                            club.colors.map((color: string, index: number) => (
+                                <SportsBaseballIcon key={index} fontSize="small"
+                                    sx={{
+                                        color,
+                                        m: 0,
+                                        p: 0,
+                                        //textShadow: '1px 1px 4px red)'
+                                    }} />
+                            ))
+                        }
+                    </Card>
 
-                        <Typography variant="body1" textAlign="center">
-                            Cidade: {club.city} / {club.state}
-                        </Typography>
-                        <Typography variant="body1" textAlign="center">
-                            Estádio: {club.stadium}
-                        </Typography>
-                        <Typography variant="body1" textAlign="center">
-                            Ano de fundação: {club.foundationYear}
-                        </Typography>
-                        <Typography variant="body1" textAlign="center">
-                            Ídolo: {club.idol}
-                        </Typography>
-                    </CardContent>
+                    <Typography variant="body1" textAlign="center">
+                        Cidade: {club.city} / {club.state}
+                    </Typography>
+                    <Typography variant="body1" textAlign="center">
+                        Estádio: {club.stadium}
+                    </Typography>
+                    <Typography variant="body1" textAlign="center">
+                        Ano de fundação: {club.foundationYear}
+                    </Typography>
+                    <Typography variant="body1" textAlign="center">
+                        Ídolo: {club.idol}
+                    </Typography>
+                </CardContent>
 
-                </Card>
-                <Divider />
-                {/* <List>
+            </Card>
+            <Divider />
+            {/* <List>
                     {
                         clubs.map((club) => {
                             return (
@@ -91,7 +90,6 @@ export default async function Home() {
                         })
                     }
                 </List> */}
-            </Container>
-        </main>
+        </Container>
     );
 }
