@@ -17,7 +17,7 @@ export const clubs: ClubData[] = [
     {
         id: 1,
         name: 'Flamengo',
-        colors: ['red', 'black'],
+        colors: ['#C52613', '#000000'],
         state: 'RJ',
         city: 'Rio de Janeiro',
         stadium: 'Maracanã',
@@ -27,7 +27,7 @@ export const clubs: ClubData[] = [
     {
         id: 2,
         name: 'São Paulo',
-        colors: ['red', 'white', 'black'],
+        colors: ['#C40008', '#FFFFFF', '#000000'],
         state: 'SP',
         city: 'São Paulo',
         stadium: 'Morumbi',
@@ -37,7 +37,7 @@ export const clubs: ClubData[] = [
     {
         id: 3,
         name: 'Corinthians',
-        colors: ['black', 'white'],
+        colors: ['#231f20', '#FFFFFF'],
         state: 'SP',
         city: 'São Paulo',
         stadium: 'Arena Corinthians',
@@ -47,7 +47,7 @@ export const clubs: ClubData[] = [
     {
         id: 4,
         name: 'Cruzeiro',
-        colors: ['blue', 'white'],
+        colors: ['#2F529E', '#FFFFFF'],
         state: 'MG',
         city: 'Belo Horizonte',
         stadium: 'Mineirão',
@@ -57,7 +57,7 @@ export const clubs: ClubData[] = [
     {
         id: 5,
         name: 'Grêmio',
-        colors: ['blue', 'black', 'white'],
+        colors: ['#0D80BF', '#000000', '#FFFFFF'],
         state: 'RS',
         city: 'Porto Alegre',
         stadium: 'Arena do Grêmio',
@@ -67,7 +67,7 @@ export const clubs: ClubData[] = [
     {
         id: 6,
         name: 'Palmeiras',
-        colors: ['green', 'white'],
+        colors: ['#006437', '#FFFFFF'],
         state: 'SP',
         city: 'São Paulo',
         stadium: 'Allianz Parque',
@@ -77,7 +77,7 @@ export const clubs: ClubData[] = [
     {
         id: 7,
         name: 'Internacional',
-        colors: ['red', 'white'],
+        colors: ['#E2231A', '#FFFFFF'],
         state: 'RS',
         city: 'Porto Alegre',
         stadium: 'Beira-Rio',
@@ -87,7 +87,7 @@ export const clubs: ClubData[] = [
     {
         id: 8,
         name: 'Vasco da Gama',
-        colors: ['black', 'white'],
+        colors: ['#E2231A', '#000000', '#FFFFFF'],
         state: 'RJ',
         city: 'Rio de Janeiro',
         stadium: 'São Januário',
@@ -97,7 +97,7 @@ export const clubs: ClubData[] = [
     {
         id: 9,
         name: 'Athletico Paranaense',
-        colors: ['black', 'red'],
+        colors: ['#B0000B', '#000000', '#FFFFFF'],
         state: 'PR',
         city: 'Curitiba',
         stadium: 'Arena da Baixada',
@@ -107,7 +107,7 @@ export const clubs: ClubData[] = [
     {
         id: 10,
         name: 'Fluminense',
-        colors: ['green', 'white'],
+        colors: ['#00613C', '#870A28', '#FFFFFF'],
         state: 'RJ',
         city: 'Rio de Janeiro',
         stadium: 'Maracanã',
@@ -117,7 +117,7 @@ export const clubs: ClubData[] = [
     {
         id: 11,
         name: 'Botafogo',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'RJ',
         city: 'Rio de Janeiro',
         stadium: 'Nilton Santos',
@@ -127,7 +127,7 @@ export const clubs: ClubData[] = [
     {
         id: 12,
         name: 'Santos',
-        colors: ['white', 'black'],
+        colors: ['#FFFFFF', '#000000'],
         state: 'SP',
         city: 'Santos',
         stadium: 'Vila Belmiro',
@@ -137,7 +137,7 @@ export const clubs: ClubData[] = [
     {
         id: 13,
         name: 'Fortaleza',
-        colors: ['blue', 'red'],
+        colors: ['#0000FF', '#FF0000'],
         state: 'CE',
         city: 'Fortaleza',
         stadium: 'Castelão',
@@ -147,7 +147,7 @@ export const clubs: ClubData[] = [
     {
         id: 14,
         name: 'Bahia',
-        colors: ['blue', 'red', 'white'],
+        colors: ['#0000FF', '#FF0000', '#FFFFFF'],
         state: 'BA',
         city: 'Salvador',
         stadium: 'Fonte Nova',
@@ -157,7 +157,7 @@ export const clubs: ClubData[] = [
     {
         id: 15,
         name: 'Goiás',
-        colors: ['green', 'white'],
+        colors: ['#008000', '#FFFFFF'],
         state: 'GO',
         city: 'Goiânia',
         stadium: 'Serra Dourada',
@@ -167,7 +167,7 @@ export const clubs: ClubData[] = [
     {
         id: 16,
         name: 'Atlético Mineiro',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'MG',
         city: 'Belo Horizonte',
         stadium: 'Mineirão',
@@ -177,7 +177,7 @@ export const clubs: ClubData[] = [
     {
         id: 17,
         name: 'Ceará',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'CE',
         city: 'Fortaleza',
         stadium: 'Castelão',
@@ -187,7 +187,7 @@ export const clubs: ClubData[] = [
     {
         id: 18,
         name: 'Sport Recife',
-        colors: ['red', 'black'],
+        colors: ['#CC001A', '#000000'],
         state: 'PE',
         city: 'Recife',
         stadium: 'Ilha do Retiro',
@@ -197,7 +197,7 @@ export const clubs: ClubData[] = [
     {
         id: 19,
         name: 'Vitória',
-        colors: ['red', 'black'],
+        colors: ['#FF0000', '#000000'],
         state: 'BA',
         city: 'Salvador',
         stadium: 'Barradão',
@@ -207,7 +207,7 @@ export const clubs: ClubData[] = [
     {
         id: 20,
         name: 'Atlético Goianiense',
-        colors: ['black', 'red'],
+        colors: ['#000000', '#ED3237'],
         state: 'GO',
         city: 'Goiânia',
         stadium: 'Antônio Accioly',
@@ -217,7 +217,7 @@ export const clubs: ClubData[] = [
     {
         id: 21,
         name: 'Coritiba',
-        colors: ['green', 'white'],
+        colors: ['#00544D', '#FFFFFF'],
         state: 'PR',
         city: 'Curitiba',
         stadium: 'Couto Pereira',
@@ -227,7 +227,7 @@ export const clubs: ClubData[] = [
     {
         id: 22,
         name: 'Santa Cruz',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'PE',
         city: 'Recife',
         stadium: 'Arruda',
@@ -237,7 +237,7 @@ export const clubs: ClubData[] = [
     {
         id: 23,
         name: 'Paraná',
-        colors: ['red', 'blue', 'white'],
+        colors: ['#FF1035', '#00428E', '#FFFFFF'],
         state: 'PR',
         city: 'Curitiba',
         stadium: 'Durival Britto',
@@ -247,7 +247,7 @@ export const clubs: ClubData[] = [
     {
         id: 24,
         name: 'Paysandu',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'PA',
         city: 'Belém',
         stadium: 'Curuzu',
@@ -257,7 +257,7 @@ export const clubs: ClubData[] = [
     {
         id: 25,
         name: 'Remo',
-        colors: ['blue', 'white'],
+        colors: ['#0000FF', '#FFFFFF'],
         state: 'PA',
         city: 'Belém',
         stadium: 'Baenão',
@@ -267,7 +267,7 @@ export const clubs: ClubData[] = [
     {
         id: 26,
         name: 'Joinville',
-        colors: ['white', 'black'],
+        colors: ['#FFFFFF', '#000000'],
         state: 'SC',
         city: 'Joinville',
         stadium: 'Arena Joinville',
@@ -277,7 +277,7 @@ export const clubs: ClubData[] = [
     {
         id: 27,
         name: 'CRB',
-        colors: ['red', 'white'],
+        colors: ['#FF0000', '#FFFFFF'],
         state: 'AL',
         city: 'Maceió',
         stadium: 'Rei Pelé',
@@ -287,7 +287,7 @@ export const clubs: ClubData[] = [
     {
         id: 28,
         name: 'CSA',
-        colors: ['blue', 'white'],
+        colors: ['#0000FF', '#FFFFFF'],
         state: 'AL',
         city: 'Maceió',
         stadium: 'Rei Pelé',
@@ -297,7 +297,7 @@ export const clubs: ClubData[] = [
     {
         id: 29,
         name: 'Sampaio Corrêa',
-        colors: ['yellow', 'green'],
+        colors: ['#FFFF00', '#008000'],
         state: 'MA',
         city: 'São Luís',
         stadium: 'Castelão',
@@ -307,7 +307,7 @@ export const clubs: ClubData[] = [
     {
         id: 30,
         name: 'América Mineiro',
-        colors: ['green', 'white'],
+        colors: ['#008000', '#FFFFFF'],
         state: 'MG',
         city: 'Belo Horizonte',
         stadium: 'Independência',
@@ -317,7 +317,7 @@ export const clubs: ClubData[] = [
     {
         id: 31,
         name: 'Figueirense',
-        colors: ['black', 'white'],
+        colors: ['#000000', '#FFFFFF'],
         state: 'SC',
         city: 'Florianópolis',
         stadium: 'Orlando Scarpelli',
@@ -327,7 +327,7 @@ export const clubs: ClubData[] = [
     {
         id: 32,
         name: 'Brasil de Pelotas',
-        colors: ['yellow', 'black'],
+        colors: ['#FFFF00', '#000000'],
         state: 'RS',
         city: 'Pelotas',
         stadium: 'Bento Freitas',
@@ -335,183 +335,183 @@ export const clubs: ClubData[] = [
         idol: 'Itamar'
     },
     {
-        id: 33,
-        name: 'Chapecoense',
-        colors: ['green', 'white'],
-        state: 'SC',
-        city: 'Chapecó',
-        stadium: 'Arena Condá',
-        foundationYear: 1973,
-        idol: 'Cleber Santana'
+        "id": 33,
+        "name": "Chapecoense",
+        "colors": ["#1B552A", "#FFFFFF"],
+        "state": "SC",
+        "city": "Chapecó",
+        "stadium": "Arena Condá",
+        "foundationYear": 1973,
+        "idol": "Cleber Santana"
     },
     {
-        id: 34,
-        name: 'Avaí',
-        colors: ['blue', 'white'],
-        state: 'SC',
-        city: 'Florianópolis',
-        stadium: 'Ressacada',
-        foundationYear: 1923,
-        idol: 'Milton Cruz'
+        "id": 34,
+        "name": "Avaí",
+        "colors": ["#006EB6", "#FFFFFF"],
+        "state": "SC",
+        "city": "Florianópolis",
+        "stadium": "Ressacada",
+        "foundationYear": 1923,
+        "idol": "Milton Cruz"
     },
     {
-        id: 35,
-        name: 'Guarani',
-        colors: ['green', 'white'],
-        state: 'SP',
-        city: 'Campinas',
-        stadium: 'Brinco de Ouro',
-        foundationYear: 1911,
-        idol: 'Careca'
+        "id": 35,
+        "name": "Guarani",
+        "colors": ["#006C51", "#FFFFFF"],
+        "state": "SP",
+        "city": "Campinas",
+        "stadium": "Brinco de Ouro",
+        "foundationYear": 1911,
+        "idol": "Careca"
     },
     {
-        id: 36,
-        name: 'Ponte Preta',
-        colors: ['black', 'white'],
-        state: 'SP',
-        city: 'Campinas',
-        stadium: 'Moisés Lucarelli',
-        foundationYear: 1900,
-        idol: 'Dicá'
+        "id": 36,
+        "name": "Ponte Preta",
+        "colors": ["#000000", "#FFFFFF"],
+        "state": "SP",
+        "city": "Campinas",
+        "stadium": "Moisés Lucarelli",
+        "foundationYear": 1900,
+        "idol": "Dicá"
     },
     {
-        id: 37,
-        name: 'CRAC',
-        colors: ['yellow', 'blue'],
-        state: 'GO',
-        city: 'Catalão',
-        stadium: 'Genervino da Fonseca',
-        foundationYear: 1954,
-        idol: 'Tulio'
+        "id": 37,
+        "name": "CRAC",
+        "colors": ["#FFFF00", "#0000FF"],
+        "state": "GO",
+        "city": "Catalão",
+        "stadium": "Genervino da Fonseca",
+        "foundationYear": 1954,
+        "idol": "Tulio"
     },
     {
-        id: 38,
-        name: 'Londrina',
-        colors: ['blue', 'white'],
-        state: 'PR',
-        city: 'Londrina',
-        stadium: 'Estádio do Café',
-        foundationYear: 1956,
-        idol: 'Paulinho'
+        "id": 38,
+        "name": "Londrina",
+        "colors": ["#0000FF", "#FFFFFF"],
+        "state": "PR",
+        "city": "Londrina",
+        "stadium": "Estádio do Café",
+        "foundationYear": 1956,
+        "idol": "Paulinho"
     },
     {
-        id: 39,
-        name: 'Náutico',
-        colors: ['red', 'white'],
-        state: 'PE',
-        city: 'Recife',
-        stadium: 'Aflitos',
-        foundationYear: 1901,
-        idol: 'Kuki'
+        "id": 39,
+        "name": "Náutico",
+        "colors": ["#ED1C24", "#FFFFFF"],
+        "state": "PE",
+        "city": "Recife",
+        "stadium": "Aflitos",
+        "foundationYear": 1901,
+        "idol": "Kuki"
     },
     {
-        id: 40,
-        name: 'ABC',
-        colors: ['black', 'white'],
-        state: 'RN',
-        city: 'Natal',
-        stadium: 'Frasqueirão',
-        foundationYear: 1915,
-        idol: 'Marinho Chagas'
+        "id": 40,
+        "name": "ABC",
+        "colors": ["#000000", "#FFFFFF"],
+        "state": "RN",
+        "city": "Natal",
+        "stadium": "Frasqueirão",
+        "foundationYear": 1915,
+        "idol": "Marinho Chagas"
     },
     {
-        id: 41,
-        name: 'Luverdense',
-        colors: ['green', 'white'],
-        state: 'MT',
-        city: 'Lucas do Rio Verde',
-        stadium: 'Passo das Emas',
-        foundationYear: 2004,
-        idol: 'Maurílio'
+        "id": 41,
+        "name": "Luverdense",
+        "colors": ["#008000", "#FFFFFF"],
+        "state": "MT",
+        "city": "Lucas do Rio Verde",
+        "stadium": "Passo das Emas",
+        "foundationYear": 2004,
+        "idol": "Maurílio"
     },
     {
-        id: 42,
-        name: 'Juventude',
-        colors: ['green', 'white'],
-        state: 'RS',
-        city: 'Caxias do Sul',
-        stadium: 'Alfredo Jaconi',
-        foundationYear: 1913,
-        idol: 'Valdomiro'
+        "id": 42,
+        "name": "Juventude",
+        "colors": ["#008000", "#FFFFFF"],
+        "state": "RS",
+        "city": "Caxias do Sul",
+        "stadium": "Alfredo Jaconi",
+        "foundationYear": 1913,
+        "idol": "Valdomiro"
     },
     {
-        id: 43,
-        name: 'Atlético Goianiense',
-        colors: ['black', 'red'],
-        state: 'GO',
-        city: 'Goiânia',
-        stadium: 'Antônio Accioly',
-        foundationYear: 1937,
-        idol: 'Zé Carlos'
+        "id": 43,
+        "name": "Atlético Goianiense",
+        "colors": ["#000000", "#FF0000"],
+        "state": "GO",
+        "city": "Goiânia",
+        "stadium": "Antônio Accioly",
+        "foundationYear": 1937,
+        "idol": "Zé Carlos"
     },
     {
-        id: 44,
-        name: 'Operário Ferroviário',
-        colors: ['black', 'white'],
-        state: 'PR',
-        city: 'Ponta Grossa',
-        stadium: 'Germano Krüger',
-        foundationYear: 1912,
-        idol: 'Fernandes'
+        "id": 44,
+        "name": "Operário Ferroviário",
+        "colors": ["#000000", "#FFFFFF"],
+        "state": "PR",
+        "city": "Ponta Grossa",
+        "stadium": "Germano Krüger",
+        "foundationYear": 1912,
+        "idol": "Fernandes"
     },
     {
-        id: 45,
-        name: 'Brusque',
-        colors: ['red', 'white'],
-        state: 'SC',
-        city: 'Brusque',
-        stadium: 'Augusto Bauer',
-        foundationYear: 1987,
-        idol: 'Careca'
+        "id": 45,
+        "name": "Brusque",
+        "colors": ["#FF0000", "#FFFFFF"],
+        "state": "SC",
+        "city": "Brusque",
+        "stadium": "Augusto Bauer",
+        "foundationYear": 1987,
+        "idol": "Careca"
     },
     {
-        id: 46,
-        name: 'Tombense',
-        colors: ['green', 'white'],
-        state: 'MG',
-        city: 'Tombos',
-        stadium: 'Almeidão',
-        foundationYear: 1914,
-        idol: 'Edmar'
+        "id": 46,
+        "name": "Tombense",
+        "colors": ["#008000", "#FFFFFF"],
+        "state": "MG",
+        "city": "Tombos",
+        "stadium": "Almeidão",
+        "foundationYear": 1914,
+        "idol": "Edmar"
     },
     {
-        id: 47,
-        name: 'Mirassol',
-        colors: ['yellow', 'black'],
-        state: 'SP',
-        city: 'Mirassol',
-        stadium: 'José Maria de Campos Maia',
-        foundationYear: 1925,
-        idol: 'Fábio'
+        "id": 47,
+        "name": "Mirassol",
+        "colors": ["#FFFF00", "#000000"],
+        "state": "SP",
+        "city": "Mirassol",
+        "stadium": "José Maria de Campos Maia",
+        "foundationYear": 1925,
+        "idol": "Fábio"
     },
     {
-        id: 48,
-        name: 'Volta Redonda',
-        colors: ['yellow', 'black'],
-        state: 'RJ',
-        city: 'Volta Redonda',
-        stadium: 'Raulino de Oliveira',
-        foundationYear: 1976,
-        idol: 'Ademir'
+        "id": 48,
+        "name": "Volta Redonda",
+        "colors": ["#FFFF00", "#000000"],
+        "state": "RJ",
+        "city": "Volta Redonda",
+        "stadium": "Raulino de Oliveira",
+        "foundationYear": 1976,
+        "idol": "Ademir"
     },
     {
-        id: 49,
-        name: 'Criciúma',
-        colors: ['yellow', 'black'],
-        state: 'SC',
-        city: 'Criciúma',
-        stadium: 'Heriberto Hulse',
-        foundationYear: 1947,
-        idol: 'Zé Carlos'
+        "id": 49,
+        "name": "Criciúma",
+        "colors": ["#FFFF00", "#000000"],
+        "state": "SC",
+        "city": "Criciúma",
+        "stadium": "Heriberto Hulse",
+        "foundationYear": 1947,
+        "idol": "Zé Carlos"
     },
     {
-        id: 50,
-        name: 'Marília',
-        colors: ['green', 'white'],
-        state: 'SP',
-        city: 'Marília',
-        stadium: 'Bento de Abreu',
-        foundationYear: 1942,
-        idol: 'Birigui'
-    },
+        "id": 50,
+        "name": "Marília",
+        "colors": ["#006C51", "#FFFFFF"], // As cores oficiais do Marília são verde e branco[^1^][2].
+        "state": "SP",
+        "city": "Marília",
+        "stadium": "Bento de Abreu",
+        "foundationYear": 1942,
+        "idol": "Birigui"
+    }
 ];

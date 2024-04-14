@@ -1,0 +1,130 @@
+"use client"
+import { ClubData, clubs } from "@/data/clubs";
+import { getClubById } from "@/utils/get-club";
+import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
+import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
+import SendIcon from '@mui/icons-material/Send';
+import { FormEvent, useState } from "react";
+
+interface TipsProps {
+    club: ClubData;
+    initialState: number;
+}
+
+export default function Tips({ club, initialState }: TipsProps) {
+    const storedClubs = clubs;
+    const [state, setState] = useState<number>(initialState);
+    const [answer, setAnswer] = useState<string>('');
+
+    const rightAnswer = false;
+
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setAnswer('');
+        setState((prev) => prev + 1)
+        console.log({ state })
+    }
+    return (
+        <>
+            <List>
+                {state >= 0 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            1 - <strong>Estado: </strong> {club.state}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 1 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            2 - <strong>Ano de fundação: </strong>{club.foundationYear}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 2 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            3 - <strong>Cores: </strong>
+                            {
+                                club.colors.map((color: string, index: number) => (
+                                    <SportsBaseballIcon key={index} fontSize="small"
+                                        sx={{
+                                            color,
+                                            m: 0,
+                                            p: 0,
+                                            //textShadow: '1px 1px 4px red)'
+                                        }} />
+                                ))
+                            }
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 3 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            4 - <strong>Estádio: </strong>{club.stadium}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 4 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            5 - <strong>Ídolo: </strong>{club.idol}
+                        </Typography>
+                    </ListItem>
+                )}
+                {(state >= 5 || rightAnswer) && (
+                    <ListItem>
+                        <Typography variant="h4" textAlign="center">
+                            Resposta: <strong>{club.name}</strong>
+                        </Typography>
+                    </ListItem>
+                )}
+
+            </List>
+            <form
+                onSubmit={(e) => onSubmit(e)}
+            >
+                {state < 5 && !rightAnswer &&
+                    <Grid container>
+                        {/* <Grid item xs={12}>
+                            <Autocomplete
+                                value={answer}
+                                onChange={(event: any, newValue: string | null) => {
+                                    setAnswer(newValue);
+                                }}
+                                inputValue={inputValue}
+                                onInputChange={(event, newInputValue) => {
+                                    setInputValue(newInputValue);
+                                }}
+                                id="controllable-states-demo"
+                                options={storedClubs}
+                                //sx={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Controllable" />}
+                            />
+                        </Grid> */}
+                        <Grid item xs>
+                            <TextField
+                                id="answer"
+                                variant="outlined"
+                                fullWidth
+                                value={answer}
+                                onChange={(e) => setAnswer(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs='auto'>
+                            <IconButton
+                                type="submit"
+                                disabled={!answer || answer.length <= 0}
+                            >
+                                <SendIcon color="primary" />
+                            </IconButton>
+                        </Grid>
+
+                    </Grid>
+                }
+            </form>
+        </>
+    )
+
+}
