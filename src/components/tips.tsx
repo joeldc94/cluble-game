@@ -4,7 +4,9 @@ import { getClubById } from "@/utils/get-club";
 import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import SendIcon from '@mui/icons-material/Send';
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import AnswerForm from "./answer-form";
+
 
 interface TipsProps {
     club: ClubData;
@@ -12,18 +14,11 @@ interface TipsProps {
 }
 
 export default function Tips({ club, initialState }: TipsProps) {
-    const storedClubs = clubs;
+
     const [state, setState] = useState<number>(initialState);
-    const [answer, setAnswer] = useState<string>('');
 
     const rightAnswer = false;
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setAnswer('');
-        setState((prev) => prev + 1)
-        console.log({ state })
-    }
     return (
         <>
             <List>
@@ -82,48 +77,12 @@ export default function Tips({ club, initialState }: TipsProps) {
                 )}
 
             </List>
-            <form
-                onSubmit={(e) => onSubmit(e)}
-            >
-                {state < 5 && !rightAnswer &&
-                    <Grid container>
-                        {/* <Grid item xs={12}>
-                            <Autocomplete
-                                value={answer}
-                                onChange={(event: any, newValue: string | null) => {
-                                    setAnswer(newValue);
-                                }}
-                                inputValue={inputValue}
-                                onInputChange={(event, newInputValue) => {
-                                    setInputValue(newInputValue);
-                                }}
-                                id="controllable-states-demo"
-                                options={storedClubs}
-                                //sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Controllable" />}
-                            />
-                        </Grid> */}
-                        <Grid item xs>
-                            <TextField
-                                id="answer"
-                                variant="outlined"
-                                fullWidth
-                                value={answer}
-                                onChange={(e) => setAnswer(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid item xs='auto'>
-                            <IconButton
-                                type="submit"
-                                disabled={!answer || answer.length <= 0}
-                            >
-                                <SendIcon color="primary" />
-                            </IconButton>
-                        </Grid>
-
-                    </Grid>
-                }
-            </form>
+            
+            <AnswerForm 
+                club={club} 
+                state={state} 
+                setState={setState}
+            />
         </>
     )
 

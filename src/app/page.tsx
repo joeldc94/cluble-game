@@ -1,11 +1,10 @@
-import { clubs } from "@/data/clubs";
 import { getCurrentClubData } from "@/utils/get-club";
 import { Box, Card, CardContent, CardHeader, Container, Divider, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
-import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import Tips from "@/components/tips";
-import ClubAnswerForm from "@/components/club-answer-form";
+import { getCurrentDateFormatted } from "@/utils/get-date";
 
 export const revalidate = 60 * 60 * 1;
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
     const club = await getCurrentClubData();
@@ -32,11 +31,15 @@ export default async function Home() {
             <Typography variant="h1" textAlign="center">
                 CLUBLE
             </Typography>
+            <Typography variant="subtitle1" textAlign="center">
+                {getCurrentDateFormatted()}
+            </Typography>
             <Divider />
-            <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2, p:2 }}>
-                <Tips club={club} initialState={0}/>
+            <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2, p: 2 }}>
+                <Tips club={club} initialState={0} />
             </Card>
             <Divider />
+            {/* 
             <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2 }}>
                 <CardContent>
                     <Typography variant="h4" textAlign="center">
@@ -84,6 +87,7 @@ export default async function Home() {
 
             </Card>
             <Divider />
+             */}
         </>
     );
 }

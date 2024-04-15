@@ -435,14 +435,14 @@ export const clubs: ClubData[] = [
         "idol": "Valdomiro"
     },
     {
-        "id": 43,
-        "name": "Atlético Goianiense",
-        "colors": ["#000000", "#FF0000"],
-        "state": "GO",
-        "city": "Goiânia",
-        "stadium": "Antônio Accioly",
-        "foundationYear": 1937,
-        "idol": "Zé Carlos"
+        id: 43,
+        name: 'Red Bull Bragantino',
+        colors: ['#EF1B33', '#000000'],
+        state: 'SP',
+        city: 'Bragança Paulista',
+        stadium: 'Nabi Abi Chedid',
+        foundationYear: 1928,
+        idol: 'Mauro Silva'
     },
     {
         "id": 44,
