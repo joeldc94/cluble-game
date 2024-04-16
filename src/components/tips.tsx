@@ -1,9 +1,8 @@
 "use client"
+import { useEffect, useState } from "react";
 import { Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
-import { useEffect, useState } from "react";
 import AnswerForm from "./answer-form";
-
 
 interface TipsProps {
     club: ClubData;
