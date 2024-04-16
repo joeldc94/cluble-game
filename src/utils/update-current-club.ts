@@ -1,6 +1,6 @@
 "use server"
 import { getRandomClub } from '@/utils/get-club';
-import { ClubData, clubs } from '@/data/clubs';
+import { clubs } from '@/data/clubs';
 import { AddClubId, deleteClubIdList, getAllClubIds } from './kv-club';
 
 interface UpdateCurrentClubResult {
