@@ -1,7 +1,7 @@
 "use client"
 import { Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnswerForm from "./answer-form";
 
 
@@ -15,6 +15,14 @@ export default function Tips({ club, initialState, clubsNamesList }: TipsProps) 
 
     const [state, setState] = useState<number>(initialState);
     const [rightAnswer, setRightAnswer] = useState<boolean>(false);
+
+    useEffect(()=>{
+        const localStorageKey = "answeredClubs";
+        const answeredClubs: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+        setState(answeredClubs.length)
+        const answered = JSON.parse(localStorage.getItem("rightAnswer") || "null") as boolean;
+        setRightAnswer(answered)
+    },[])
 
     return (
         <>

@@ -48,10 +48,19 @@ export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, s
         console.log("submit")
         if (isValidAnswer) {
             const response = await checkAnswer({ clubName: answer });
-            
+
+            const localStorageKey = "answeredClubs"; // Chave para armazenar no localStorage
+            // Obtenha o array de clubes respondidos do localStorage ou inicialize um novo array vazio
+            const answeredClubs: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+            // Adicione a resposta atual ao array
+            answeredClubs.push(answer);
+
+            localStorage.setItem(localStorageKey, JSON.stringify(answeredClubs));
+
             setAnswer('');
             if (response.rightAnswer) {
                 setRightAnswer(response.rightAnswer);
+                localStorage.setItem("rightAnswer", JSON.stringify(true));
             }
             else{
                 setState(state + 1)
