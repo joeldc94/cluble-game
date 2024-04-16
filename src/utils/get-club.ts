@@ -1,8 +1,15 @@
 "use server"
-
+import "server-only";
 import { clubs } from '@/data/clubs';
-import { ClubData } from '@/data/clubs';
 import { getLastClubId } from './kv-club';
+
+/** Retorna lista de nomes dos clubes */
+/** Retorna os dados de um único clube pelo Id do clube*/
+export async function getClubsNamesList(): Promise<string[]> {
+    let clubsList: string[] = []
+    clubs.forEach((club) => clubsList.push(club.name));
+    return clubsList;
+}
 
 /** Retorna os dados de um único clube pelo Id do clube*/
 export async function getClubById(id: number): Promise<ClubData> {

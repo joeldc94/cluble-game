@@ -1,23 +1,20 @@
 "use client"
-import { ClubData, clubs } from "@/data/clubs";
-import { getClubById } from "@/utils/get-club";
-import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
+import { Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
-import SendIcon from '@mui/icons-material/Send';
-import { FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import AnswerForm from "./answer-form";
 
 
 interface TipsProps {
     club: ClubData;
     initialState: number;
+    clubsNamesList: string[];
 }
 
-export default function Tips({ club, initialState }: TipsProps) {
+export default function Tips({ club, initialState, clubsNamesList }: TipsProps) {
 
     const [state, setState] = useState<number>(initialState);
-
-    const rightAnswer = false;
+    const [rightAnswer, setRightAnswer] = useState<boolean>(false);
 
     return (
         <>
@@ -77,11 +74,14 @@ export default function Tips({ club, initialState }: TipsProps) {
                 )}
 
             </List>
-            
-            <AnswerForm 
-                club={club} 
-                state={state} 
+
+            <AnswerForm
+                club={club}
+                state={state}
                 setState={setState}
+                rightAnswer={rightAnswer}
+                setRightAnswer={setRightAnswer}
+                clubsNamesList={clubsNamesList}
             />
         </>
     )

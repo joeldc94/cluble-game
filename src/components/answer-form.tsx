@@ -1,30 +1,30 @@
 "use client"
-import { ClubData, clubs } from "@/data/clubs";
-import { getClubById } from "@/utils/get-club";
 import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
-import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import SendIcon from '@mui/icons-material/Send';
 import { FormEvent, useEffect, useState } from "react";
+import { checkAnswer } from "@/actions/check-answer";
 
 
 interface TipsProps {
     club: ClubData;
+    clubsNamesList: string[];
     state: number;
     setState: (prevState: number) => void;
+    rightAnswer: boolean;
+    setRightAnswer: (prevState: boolean) => void;
 }
 
-export default function AnswerForm({ club, state, setState }: TipsProps) {
+export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, setRightAnswer,  setState }: TipsProps) {
 
     const [answer, setAnswer] = useState<string>('');
+    //const [rightAnswer, setRightAnswer] = useState<boolean>(false);
     // Estado para controlar as sugestões do Autocomplete
     const [clubSuggestions, setClubSuggestions] = useState<string[]>([]);
     const [isValidAnswer, setIsValidAnswer] = useState<boolean>(false); // Novo estado para rastrear se a resposta é válida
-    const [selectedClub, setSelectedClub] = useState<ClubData | null>(null); // Estado para armazenar o clube selecionado
+    const [selectedClub, setSelectedClub] = useState<string>(''); // Estado para armazenar o clube selecionado
 
-    const rightAnswer = false;
-
-    const handleClubSelect = (club: ClubData | null) => {
-        console.log({club})
+    const handleClubSelect = (club: string) => {
+        console.log({ club })
         setSelectedClub(club); // Atualiza o estado com o clube selecionado
     };
 
@@ -39,23 +39,29 @@ export default function AnswerForm({ club, state, setState }: TipsProps) {
             return []; // Retorna uma lista vazia se o valor de entrada for menor que 2 caracteres
         }
         const inputValueWithoutAccents = removeAccents(inputValue.toLowerCase()); // Remover acentos e converter para minúsculas
-        return clubs
-            .filter(club => removeAccents(club.name.toLowerCase()).startsWith(inputValueWithoutAccents))
-            .map(club => club.name); // Retorna apenas o nome do clube
+        return clubsNamesList
+            .filter(club => removeAccents(club.toLowerCase()).startsWith(inputValueWithoutAccents))
     };
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("submit")
         if (isValidAnswer) {
-            //console.log(selectedClub?.id)
+            const response = await checkAnswer({ clubName: answer });
+            
             setAnswer('');
-            setState(state + 1)
+            if (response.rightAnswer) {
+                setRightAnswer(response.rightAnswer);
+            }
+            else{
+                setState(state + 1)
+            }
         }
     }
 
     useEffect(() => {
         // Verificar se a resposta é válida sempre que o valor de 'answer' mudar
-        setIsValidAnswer(clubs.some(club => club.name.toLowerCase() === answer.toLowerCase()));
+        setIsValidAnswer(clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
     }, [answer]);
 
     return (

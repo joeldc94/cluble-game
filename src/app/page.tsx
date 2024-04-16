@@ -1,4 +1,4 @@
-import { getCurrentClubData } from "@/utils/get-club";
+import { getClubsNamesList, getCurrentClubData } from "@/utils/get-club";
 import { Box, Card, CardContent, CardHeader, Container, Divider, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
     const club = await getCurrentClubData();
+    const clubsList = await getClubsNamesList();
     //console.log(club);
     if (!club) {
         return (
@@ -36,7 +37,7 @@ export default async function Home() {
             </Typography>
             <Divider />
             <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2, p: 2 }}>
-                <Tips club={club} initialState={0} />
+                <Tips club={club} initialState={0} clubsNamesList={clubsList}/>
             </Card>
             <Divider />
             {/* 
