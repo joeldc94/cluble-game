@@ -1,7 +1,7 @@
 "use server"
 import "server-only";
 import { clubs } from '@/data/clubs';
-import { getLastGameClubId } from "./kv-games";
+import { getLastGame, getLastGameClubId } from "./kv-games";
 
 /** Retorna lista de nomes dos clubes */
 /** Retorna os dados de um único clube pelo Id do clube*/
@@ -20,6 +20,32 @@ export async function getClubById(id: number): Promise<ClubData> {
 export async function getRandomClub(): Promise<ClubData> {
     const randomIndex = Math.floor(Math.random() * clubs.length);
     return clubs[randomIndex];
+}
+
+type CurrentGameDataResponse = {
+    game: GameData | undefined | null;
+    club: ClubData | undefined | null;
+};
+/** Retorna os dados da partida corrente */
+export async function getCurrentGameData(): Promise<CurrentGameDataResponse> {
+    try {
+        const currentGame = await getLastGame();
+        const currentClubId = currentGame?.gameId;
+        let club: ClubData | undefined;
+        if (currentClubId) {
+            club = clubs.find(club => club.id === currentClubId);
+        }
+        return {
+            game: currentGame,
+            club
+        };
+    } catch (error) {
+        console.error('Erro ao obter o clube atual', error);
+        return {
+            game: null,
+            club: null
+        };
+    }
 }
 
 /** Retorna os dados do clube atual */

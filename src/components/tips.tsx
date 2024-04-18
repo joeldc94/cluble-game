@@ -1,31 +1,56 @@
 "use client"
 import { useEffect, useState } from "react";
-import { Input, List, ListItem, TextField, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import AnswerForm from "./answer-form";
-import { getUserGamesHistory } from "@/utils/localStorage";
+import { getGameAnswers, getLocalStorageRightAnswer, getUserGamesHistory } from "@/utils/localStorage";
 
 interface TipsProps {
     club: ClubData;
-    initialState: number;
+    gameId: number;
+    //initialState: number;
     clubsNamesList: string[];
 }
 
-export default function Tips({ club, initialState, clubsNamesList }: TipsProps) {
+export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
 
-    const [state, setState] = useState<number>(initialState);
+    const isMobileDevice = typeof navigator !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    const [state, setState] = useState<number>(0);
+    const [answeredClubs, setAnsweredClubs] = useState<string[]>([]);
     const [rightAnswer, setRightAnswer] = useState<boolean>(false);
 
-    useEffect(()=>{
-        const gh = getUserGamesHistory();
-        console.log({gh})
 
-        const localStorageKey = "answeredClubs";
-        const answeredClubs: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
-        setState(answeredClubs.length)
-        const answered = JSON.parse(localStorage.getItem("rightAnswer") || "null") as boolean;
-        setRightAnswer(answered)
-    },[])
+    useEffect(() => {
+        const rightAnswered = getLocalStorageRightAnswer(gameId);
+        const answersList = getGameAnswers(gameId);
+        setState(answersList.length);
+        setAnsweredClubs(answersList)
+        setRightAnswer(rightAnswered);
+    }, [])
+    useEffect(() => {
+        //const gh = getUserGamesHistory();
+        console.log("Obter rigth answer")
+        //const answered = getLocalStorageRightAnswer(gameId)
+        //setRightAnswer(answered)
+        if (rightAnswer) {
+            setState(5);
+        }
+        else {
+            const answersList = getGameAnswers(gameId);
+            setAnsweredClubs(answersList)
+            //setState(getGameAnswers(gameId).length)
+        }
+    }, [state])
+
+    // Função para gerar o link de compartilhamento
+    const handleCompartilharWhatsApp = () => {
+        if(!isMobileDevice) return
+        const mensagemCodificada = encodeURIComponent(rightAnswer ? `Veja o clube de hoje no CLUBLE! Eu acertei com ${getGameAnswers(gameId).length} palpites!` : `Não acertei o clube de hoje no CLUBLE. Você consegue?`);
+        const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
+        window.location.href = linkWhatsApp;
+    };
+
 
     return (
         <>
@@ -86,14 +111,38 @@ export default function Tips({ club, initialState, clubsNamesList }: TipsProps) 
 
             </List>
 
-            <AnswerForm
-                club={club}
-                state={state}
-                setState={setState}
-                rightAnswer={rightAnswer}
-                setRightAnswer={setRightAnswer}
-                clubsNamesList={clubsNamesList}
-            />
+            {(state < 5 && !rightAnswer) ? (
+                <AnswerForm
+                    club={club}
+                    gameId={gameId}
+                    state={state}
+                    setState={setState}
+                    rightAnswer={rightAnswer}
+                    setRightAnswer={setRightAnswer}
+                    clubsNamesList={clubsNamesList}
+                />
+            ) : (
+                <Card>
+                    <CardActionArea onClick={handleCompartilharWhatsApp}>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {rightAnswer ?
+                                    (`Acertei com ${getGameAnswers(gameId).length} palpites!!`)
+                                    :
+                                    (`Não consegui acertar`)
+                                }
+                            </Typography>
+                            {isMobileDevice &&
+                                <Typography variant="body2" color="text.secondary">
+                                    Compartilhar via WhatsApp
+                                </Typography>
+                            }
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+
+            )
+            }
         </>
     )
 
