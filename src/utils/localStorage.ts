@@ -42,12 +42,16 @@ export const getGameAnswers = (gameId: number) => {
     const historyString = localStorage.getItem(DEFAULT_GAMES_HISTORY_KEY) || '';
     //console.log({ historyString })
     let history = [];
+    let game;
     let answers = [];
     if (historyString.length > 0) {
         history = JSON.parse(historyString);
+        game = history.find((game: GameHistoryLocalStorage) => game.gameId = gameId)
         answers = history.find((game: GameHistoryLocalStorage) => game.gameId = gameId).answers
+        console.log({gameId},{game},{answers})
+
     }
-    //console.log({ answers })
+    console.log({ answers })
     return answers
 }
 

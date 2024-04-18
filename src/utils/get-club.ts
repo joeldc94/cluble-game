@@ -30,7 +30,7 @@ type CurrentGameDataResponse = {
 export async function getCurrentGameData(): Promise<CurrentGameDataResponse> {
     try {
         const currentGame = await getLastGame();
-        const currentClubId = currentGame?.gameId;
+        const currentClubId = currentGame?.clubId;
         let club: ClubData | undefined;
         if (currentClubId) {
             club = clubs.find(club => club.id === currentClubId);

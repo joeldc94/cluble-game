@@ -23,7 +23,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
 
         if (gamesListSaved && gamesListSaved.length > 0) {
             const lastGame = gamesListSaved[gamesListSaved.length - 1];
-            const lastGameId = lastGame.gameId;
+            lastGameId = lastGame.gameId;
             //console.log({ lastGameId });
 
             usedClubIds = gamesListSaved?.map((game) => game.clubId);

@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
     const { game, club } = await getCurrentGameData();
+    console.log({game},{club})
     const clubsList = await getClubsNamesList();
     if (!club || !game) {
         return (
