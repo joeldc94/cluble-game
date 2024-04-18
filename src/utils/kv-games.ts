@@ -17,6 +17,34 @@ export async function getLastGame(): Promise<GameData | undefined> {
     return
 }
 
+/** Retorna o id da última partida */
+export async function getLastGameId(): Promise<number | undefined> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const lastGame = await getLastGame();
+        //console.log({ lastGame });
+        return lastGame?.gameId
+    }
+    catch (error) {
+        console.log({ error })
+    }
+    return
+}
+
+/** Retorna o club id da última partida */
+export async function getLastGameClubId(): Promise<number | undefined> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const lastGame = await getLastGame();
+        //console.log({ lastGame });
+        return lastGame?.clubId
+    }
+    catch (error) {
+        console.log({ error })
+    }
+    return
+}
+
 /** Retorna o tamanho da lista de partidas */
 export async function getGamesListLenght(): Promise<number | undefined> {
     try {
@@ -30,10 +58,10 @@ export async function getGamesListLenght(): Promise<number | undefined> {
 }
 
 /** Retorna todas partidas publicadas */
-export async function getAllGameHistory(): Promise<ClubData[] | undefined> {
+export async function getAllGameHistory(): Promise<GameData[] | undefined> {
     try {
-        const gamesList = await kv.lrange<ClubData>(KEY_NAME, 0, -1);
-        console.log({ gamesList })
+        const gamesList = await kv.lrange<GameData>(KEY_NAME, 0, -1);
+        //console.log("function", { gamesList })
         return gamesList;
     } catch (error) {
         console.log({ error })

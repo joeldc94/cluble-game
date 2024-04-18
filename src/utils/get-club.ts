@@ -1,7 +1,7 @@
 "use server"
 import "server-only";
 import { clubs } from '@/data/clubs';
-import { getLastClubId } from './kv-club';
+import { getLastGameClubId } from "./kv-games";
 
 /** Retorna lista de nomes dos clubes */
 /** Retorna os dados de um único clube pelo Id do clube*/
@@ -25,14 +25,14 @@ export async function getRandomClub(): Promise<ClubData> {
 /** Retorna os dados do clube atual */
 export async function getCurrentClubData(): Promise<ClubData | null> {
     try {
-        const currentClubId = await getLastClubId();
+        const currentClubId = await getLastGameClubId();
         if (currentClubId) {
             const club = clubs.find(club => club.id === currentClubId);
             return club || null;
         }
         return null;
     } catch (error) {
-        console.error('Erro ao ler o arquivo currentClub.json:', error);
+        console.error('Erro ao obter o clube atual', error);
         return null;
     }
 }

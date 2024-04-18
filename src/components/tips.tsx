@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import AnswerForm from "./answer-form";
+import { getUserGamesHistory } from "@/utils/localStorage";
 
 interface TipsProps {
     club: ClubData;
@@ -16,6 +17,9 @@ export default function Tips({ club, initialState, clubsNamesList }: TipsProps) 
     const [rightAnswer, setRightAnswer] = useState<boolean>(false);
 
     useEffect(()=>{
+        const gh = getUserGamesHistory();
+        console.log({gh})
+
         const localStorageKey = "answeredClubs";
         const answeredClubs: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
         setState(answeredClubs.length)

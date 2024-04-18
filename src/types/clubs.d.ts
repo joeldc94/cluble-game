@@ -16,3 +16,11 @@ type GameData = {
     clubId: number;
     date: Date;
 }
+
+/** Dados das partidas salvos no localStorage */
+type GameHistoryLocalStorage = {
+    gameId: number;
+    answers: string[];
+    rightAnswer: boolean;
+    date: Date;
+}

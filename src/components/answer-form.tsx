@@ -3,7 +3,9 @@ import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextFiel
 import SendIcon from '@mui/icons-material/Send';
 import { FormEvent, useEffect, useState } from "react";
 import { checkAnswer } from "@/actions/check-answer";
+import { getGameAnswers, setNewAnswer } from "@/utils/localStorage";
 
+const DEFAULT_GAMES_HISTORY_KEY = 'cluble_games';
 
 interface TipsProps {
     club: ClubData;
@@ -47,15 +49,31 @@ export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, s
         e.preventDefault();
         console.log("submit")
         if (isValidAnswer) {
+            setNewAnswer(2, answer);
             const response = await checkAnswer({ clubName: answer });
 
             const localStorageKey = "answeredClubs"; // Chave para armazenar no localStorage
             // Obtenha o array de clubes respondidos do localStorage ou inicialize um novo array vazio
-            const answeredClubs: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
-            // Adicione a resposta atual ao array
-            answeredClubs.push(answer);
+            const answeredClubs = getGameAnswers(2)
+            /* const answeredClubsString: string[] = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+            let answeredClubs = [];
+            if(answeredClubsString.length > 0){
+                answeredClubs = JSON.parse(answeredClubsString);
+                console.log({answeredClubs})
+            } */
 
+            // Adicione a resposta atual ao array
+            answeredClubs.push({answer: answer});
             localStorage.setItem(localStorageKey, JSON.stringify(answeredClubs));
+
+
+            const localStorageGamesHistoryString: string[] = JSON.parse(localStorage.getItem(DEFAULT_GAMES_HISTORY_KEY) || "[]");
+
+            if(localStorageGamesHistoryString.length > 0){
+                const localStorageGamesHistory = JSON.parse(localStorageGamesHistoryString[localStorageGamesHistoryString.length-1]);
+                console.log({localStorageGamesHistory})
+            }
+
 
             setAnswer('');
             if (response.rightAnswer) {
