@@ -1,8 +1,7 @@
 "use server"
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
-import { AddClubId, deleteClubIdList, getAllClubIds } from './kv-club';
-import { addNewGame, deleteGamesList, getAllGameHistory, getLastGameId } from './kv-games';
+import { addNewGame, deleteGamesList, getAllGameHistory } from './kv-games';
 
 interface UpdateCurrentGameResult {
     success: boolean;

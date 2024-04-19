@@ -1,4 +1,3 @@
-import { deleteClubIdList } from "@/utils/kv-club";
 import { deleteGamesList } from "@/utils/kv-games";
 import { updateCurrentGame } from "@/utils/update-current-club";
 import { revalidatePath } from "next/cache";
