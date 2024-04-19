@@ -1,5 +1,5 @@
 import { getClubsNamesList, getCurrentGameData } from "@/utils/get-club";
-import { Card, CardContent, Divider, Paper, Stack, Typography } from "@mui/material";
+import { Card, CardContent, Divider, Grid, Paper, Stack, Typography } from "@mui/material";
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
 
@@ -32,16 +32,25 @@ export default async function Home() {
             <Typography variant="h1" textAlign="center">
                 CLUBLE
             </Typography>
-            <Typography variant="subtitle1" textAlign="center">
-                <Stack spacing={3} >
-                    {game.gameId}
-                    {getCurrentDateFormatted()}
-                    {}
-                </Stack>
-            </Typography>
+            <Divider/>
+            <Grid container alignItems="center" justifyContent="center" spacing={2}>
+                <Grid item xs={1}>
+                    <Typography variant="subtitle1" textAlign="left">
+                        #{String(game.gameId).padStart(3, '0')}
+                    </Typography>
+                </Grid>
+                <Grid item xs>
+                    <Typography variant="subtitle1" textAlign="center">
+                        {getCurrentDateFormatted()}
+                    </Typography>
+                </Grid>
+                <Grid item xs={1} />
+
+
+            </Grid>
             <Divider />
             <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2, p: 2 }}>
-                <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList}/>
+                <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} />
             </Card>
             <Divider />
         </>
