@@ -1,3 +1,4 @@
+/** Dados de cada clube */
 type ClubData = {
     id: number;
     name: string;
@@ -7,4 +8,19 @@ type ClubData = {
     stadium: string | null;
     foundationYear: number | null;
     idol: string | null;
+}
+
+/** Dados da partida no kv */
+type GameData = {
+    gameId: number;
+    clubId: number;
+    date: Date;
+}
+
+/** Dados das partidas salvos no localStorage */
+type GameHistoryLocalStorage = {
+    gameId: number;
+    answers: string[];
+    rightAnswer: boolean;
+    date: Date;
 }

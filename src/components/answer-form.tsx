@@ -3,9 +3,10 @@ import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextFiel
 import SendIcon from '@mui/icons-material/Send';
 import { FormEvent, useEffect, useState } from "react";
 import { checkAnswer } from "@/actions/check-answer";
-
+import { getGameAnswers, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
 
 interface TipsProps {
+    gameId: number;
     club: ClubData;
     clubsNamesList: string[];
     state: number;
@@ -14,19 +15,19 @@ interface TipsProps {
     setRightAnswer: (prevState: boolean) => void;
 }
 
-export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, setRightAnswer,  setState }: TipsProps) {
+export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer, setRightAnswer,  setState }: TipsProps) {
 
     const [answer, setAnswer] = useState<string>('');
     //const [rightAnswer, setRightAnswer] = useState<boolean>(false);
     // Estado para controlar as sugestões do Autocomplete
     const [clubSuggestions, setClubSuggestions] = useState<string[]>([]);
     const [isValidAnswer, setIsValidAnswer] = useState<boolean>(false); // Novo estado para rastrear se a resposta é válida
-    const [selectedClub, setSelectedClub] = useState<string>(''); // Estado para armazenar o clube selecionado
+    //const [selectedClub, setSelectedClub] = useState<string>(''); // Estado para armazenar o clube selecionado
 
-    const handleClubSelect = (club: string) => {
+    /* const handleClubSelect = (club: string) => {
         console.log({ club })
         setSelectedClub(club); // Atualiza o estado com o clube selecionado
-    };
+    }; */
 
     // Função para remover acentos de uma string
     const removeAccents = (str: string) => {
@@ -45,15 +46,20 @@ export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, s
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("submit")
+        //console.log("submit")
         if (isValidAnswer) {
+            setNewAnswer(gameId, answer);
+
             const response = await checkAnswer({ clubName: answer });
-            
+
             setAnswer('');
             if (response.rightAnswer) {
-                setRightAnswer(response.rightAnswer);
+                //console.log("RESPOSTA CERTA")
+                setRightAnswer(true);
+                setLocalStorageRightAnswer(gameId, true);
+                setState(5);
             }
-            else{
+            else {
                 setState(state + 1)
             }
         }
@@ -69,38 +75,36 @@ export default function AnswerForm({ club, clubsNamesList, state, rightAnswer, s
             <form
                 onSubmit={(e) => onSubmit(e)}
             >
-                {state < 5 && !rightAnswer &&
-                    <Grid container>
-                        <Grid item xs>
-                            <Autocomplete
-                                freeSolo
-                                options={clubSuggestions} // Usar clubSuggestions em vez de clubs.map(club => club.name)
-                                inputValue={answer}
-                                onInputChange={(event, newInputValue) => {
-                                    setAnswer(newInputValue);
-                                    if (newInputValue.length >= 2) { // Verificar se há pelo menos dois caracteres
-                                        const suggestions = filterClubs(newInputValue); // Filtrar sugestões com base nos caracteres digitados
-                                        setClubSuggestions(suggestions); // Atualizar as sugestões do Autocomplete
-                                    } else {
-                                        setClubSuggestions([]); // Limpar sugestões se o comprimento da entrada for menor que 2
-                                    }
-                                }}
-                                renderInput={(params) => (
-                                    <TextField {...params} label="Palpite" variant="standard" />
-                                )}
-                            />
-                        </Grid>
-
-                        <Grid item xs='auto'>
-                            <IconButton
-                                type="submit"
-                                disabled={!isValidAnswer || answer.length === 0}
-                            >
-                                <SendIcon color="primary" />
-                            </IconButton>
-                        </Grid>
+                <Grid container>
+                    <Grid item xs>
+                        <Autocomplete
+                            freeSolo
+                            options={clubSuggestions} // Usar clubSuggestions em vez de clubs.map(club => club.name)
+                            inputValue={answer}
+                            onInputChange={(event, newInputValue) => {
+                                setAnswer(newInputValue);
+                                if (newInputValue.length >= 2) { // Verificar se há pelo menos dois caracteres
+                                    const suggestions = filterClubs(newInputValue); // Filtrar sugestões com base nos caracteres digitados
+                                    setClubSuggestions(suggestions); // Atualizar as sugestões do Autocomplete
+                                } else {
+                                    setClubSuggestions([]); // Limpar sugestões se o comprimento da entrada for menor que 2
+                                }
+                            }}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Palpite" variant="standard" />
+                            )}
+                        />
                     </Grid>
-                }
+
+                    <Grid item xs='auto'>
+                        <IconButton
+                            type="submit"
+                            disabled={!isValidAnswer || answer.length === 0}
+                        >
+                            <SendIcon color="primary" />
+                        </IconButton>
+                    </Grid>
+                </Grid>
             </form>
         </>
     )
