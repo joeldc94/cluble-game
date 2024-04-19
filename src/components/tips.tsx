@@ -29,17 +29,12 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
         setRightAnswer(rightAnswered);
     }, [])
     useEffect(() => {
-        //const gh = getUserGamesHistory();
-        console.log("Obter rigth answer")
-        //const answered = getLocalStorageRightAnswer(gameId)
-        //setRightAnswer(answered)
         if (rightAnswer) {
             setState(5);
         }
         else {
             const answersList = getGameAnswers(gameId);
             setAnsweredClubs(answersList)
-            //setState(getGameAnswers(gameId).length)
         }
     }, [state])
 

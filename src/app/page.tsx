@@ -1,5 +1,5 @@
-import { getClubsNamesList, getCurrentClubData, getCurrentGameData } from "@/utils/get-club";
-import { Box, Card, CardContent, CardHeader, Container, Divider, List, ListItem, ListItemText, Paper, Stack, Typography } from "@mui/material";
+import { getClubsNamesList, getCurrentGameData } from "@/utils/get-club";
+import { Card, CardContent, Divider, Paper, Stack, Typography } from "@mui/material";
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
 
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
     const { game, club } = await getCurrentGameData();
-    console.log({game},{club})
+    //console.log({game},{club})
     const clubsList = await getClubsNamesList();
     if (!club || !game) {
         return (
@@ -33,7 +33,7 @@ export default async function Home() {
                 CLUBLE
             </Typography>
             <Typography variant="subtitle1" textAlign="center">
-                <Stack >
+                <Stack spacing={3} >
                     {game.gameId}
                     {getCurrentDateFormatted()}
                     {}

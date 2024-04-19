@@ -12,7 +12,7 @@ export async function getLastGame(): Promise<GameData | undefined> {
         return lastGame
     }
     catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return
 }
@@ -26,7 +26,7 @@ export async function getLastGameId(): Promise<number | undefined> {
         return lastGame?.gameId
     }
     catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return
 }
@@ -40,7 +40,7 @@ export async function getLastGameClubId(): Promise<number | undefined> {
         return lastGame?.clubId
     }
     catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return
 }
@@ -52,7 +52,7 @@ export async function getGamesListLenght(): Promise<number | undefined> {
         //console.log({listLength})
         return listLength
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
@@ -64,7 +64,7 @@ export async function getAllGameHistory(): Promise<GameData[] | undefined> {
         //console.log("function", { gamesList })
         return gamesList;
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
@@ -75,7 +75,7 @@ export async function addNewGame(gameData: GameData): Promise<number | undefined
         const idIndex = await kv.rpush<GameData>(KEY_NAME, gameData);
         return idIndex
     } catch (error) {
-        console.log({ error });
+        console.error({ error });
     }
     return;
 }
@@ -86,7 +86,7 @@ export async function deleteGamesList(): Promise<number | undefined> {
         const deleted = await kv.del(KEY_NAME);
         return deleted
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }

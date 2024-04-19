@@ -54,7 +54,7 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
 
             setAnswer('');
             if (response.rightAnswer) {
-                console.log("RESPOSTA CERTA")
+                //console.log("RESPOSTA CERTA")
                 setRightAnswer(true);
                 setLocalStorageRightAnswer(gameId, true);
                 setState(5);

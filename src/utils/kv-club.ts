@@ -10,7 +10,7 @@ export async function getLastClubId(): Promise<number | undefined> {
         return lastId
     }
     catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return
 }
@@ -22,7 +22,7 @@ export async function getClubIdListLenght(): Promise<number | undefined> {
         //console.log({listLength})
         return listLength
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
@@ -33,7 +33,7 @@ export async function getAllClubIds(): Promise<string[] | undefined> {
         const idsList = await kv.lrange('currentClubId', 0, -1);
         return idsList
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
@@ -44,7 +44,7 @@ export async function AddClubId(id: number): Promise<number | undefined> {
         const idIndex = await kv.rpush('currentClubId', id);
         return idIndex
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
@@ -55,7 +55,7 @@ export async function deleteClubIdList(): Promise<number | undefined> {
         const deleted = await kv.del('currentClubId');
         return deleted
     } catch (error) {
-        console.log({ error })
+        console.error({ error })
     }
     return;
 }
