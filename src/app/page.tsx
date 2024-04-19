@@ -36,7 +36,7 @@ export default async function Home() {
             <Grid container alignItems="center" justifyContent="center" spacing={2}>
                 <Grid item xs={1}>
                     <Typography variant="subtitle1" textAlign="left">
-                        #{String(game.gameId).padStart(3, '0')}
+                        #{String(game.gameCounter).padStart(3, '0')}
                     </Typography>
                 </Grid>
                 <Grid item xs>

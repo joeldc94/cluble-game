@@ -18,7 +18,7 @@ export async function getLastGame(): Promise<GameData | undefined> {
 }
 
 /** Retorna o id da última partida */
-export async function getLastGameId(): Promise<number | undefined> {
+export async function getLastGameId(): Promise<string | undefined> {
     //console.log("Coletar último id adicionado")
     try {
         const lastGame = await getLastGame();

@@ -6,7 +6,7 @@ import { checkAnswer } from "@/actions/check-answer";
 import { getGameAnswers, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
 
 interface TipsProps {
-    gameId: number;
+    gameId: string;
     club: ClubData;
     clubsNamesList: string[];
     state: number;

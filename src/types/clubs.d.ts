@@ -12,14 +12,16 @@ type ClubData = {
 
 /** Dados da partida no kv */
 type GameData = {
-    gameId: number;
+    gameId: string;
+    gameCounter: number;
     clubId: number;
     date: Date;
 }
 
 /** Dados das partidas salvos no localStorage */
 type GameHistoryLocalStorage = {
-    gameId: number;
+    gameId: string;
+    //gameCounter: number;
     answers: string[];
     rightAnswer: boolean;
     date: Date;

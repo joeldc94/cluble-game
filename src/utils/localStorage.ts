@@ -19,7 +19,7 @@ export const getUserGamesHistory = () => {
 /** Cadastra nova resposta no local storage. 
  * Caso ainda não tena registro do jogo, inicializa o registro
 */
-export const setNewAnswer = (gameId: number, answer: string) => {
+export const setNewAnswer = (gameId: string, answer: string) => {
     const history = getUserGamesHistory();
     if (history) {
         const gameIndex = history.findIndex((game: GameHistoryLocalStorage) => game.gameId === gameId);
@@ -38,7 +38,7 @@ export const setNewAnswer = (gameId: number, answer: string) => {
 }
 
 /** Obtém as respostas de um jogo pelo gameId */
-export const getGameAnswers = (gameId: number) => {
+export const getGameAnswers = (gameId: string) => {
     const history = getUserGamesHistory();
     let answers: string[] = [];
     if (history) {
@@ -51,7 +51,7 @@ export const getGameAnswers = (gameId: number) => {
 }
 
 /** Cadastra resposta correta */
-export const setLocalStorageRightAnswer = (gameId: number, answer: boolean) => {
+export const setLocalStorageRightAnswer = (gameId: string, answer: boolean) => {
     const history = getUserGamesHistory();
     if (history) {
         const gameIndex = history.findIndex((game: GameHistoryLocalStorage) => game.gameId === gameId);
@@ -63,7 +63,7 @@ export const setLocalStorageRightAnswer = (gameId: number, answer: boolean) => {
 }
 
 /** Obtém resposta correta de um jogo pelo gameId */
-export const getLocalStorageRightAnswer = (gameId: number) => {
+export const getLocalStorageRightAnswer = (gameId: string) => {
     const history = getUserGamesHistory();
     let rightAnswer: boolean = false;
     if (history) {

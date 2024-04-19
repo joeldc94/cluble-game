@@ -1,4 +1,5 @@
 "use server"
+import { v4 as uuidv4 } from 'uuid';
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
 import { addNewGame, deleteGamesList, getAllGameHistory } from './kv-games';
@@ -6,6 +7,7 @@ import { addNewGame, deleteGamesList, getAllGameHistory } from './kv-games';
 interface UpdateCurrentGameResult {
     success: boolean;
     club?: ClubData;
+    game?: GameData;
     message?: string;
 }
 /** Escreve um novo Id de clube na lista de clubes */
@@ -17,17 +19,16 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         //console.log("update", { gamesListSaved })
 
         let lastGame: GameData;
-        let lastGameId: number = 0;
+        let lastGameCounter: number = 0;
         let usedClubIds: number[] = [];
 
         if (gamesListSaved && gamesListSaved.length > 0) {
             const lastGame = gamesListSaved[gamesListSaved.length - 1];
-            lastGameId = lastGame.gameId;
-            //console.log({ lastGameId });
+            lastGameCounter = lastGame.gameCounter || 0;
+            //console.log({ lastGameCounter });
 
             usedClubIds = gamesListSaved?.map((game) => game.clubId);
             //console.log({ usedClubIds })
-
         }
 
         // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
@@ -41,23 +42,24 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
 
         // Selecionar um clube aleatório cujo ID ainda não foi selecionado
         while (!randomClub) {
-            const tempRandomClub = await getRandomClub(); // Supondo que essa função retorne um clube aleatório
+            const tempRandomClub = await getRandomClub();
             if (!usedClubIds || !usedClubIds.includes(tempRandomClub.id)) {
                 randomClub = tempRandomClub;
             }
         }
         const date = new Date();
-
-
-        // Adicionar o novo ID a currentClub
-        await addNewGame({
-            gameId: lastGameId + 1,
+        const newGame = {
+            gameId: uuidv4(),
+            gameCounter: lastGameCounter + 1,
             clubId: randomClub.id,
             date
-        });
+        }
+        // Adicionar o nova partida
+        await addNewGame(newGame);
         return {
             success: true,
             club: randomClub,
+            game: newGame,
             ...(message && { message })
         };
     } catch (error) {

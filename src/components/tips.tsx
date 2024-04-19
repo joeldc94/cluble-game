@@ -7,7 +7,7 @@ import { getGameAnswers, getLocalStorageRightAnswer, getUserGamesHistory } from 
 
 interface TipsProps {
     club: ClubData;
-    gameId: number;
+    gameId: string;
     //initialState: number;
     clubsNamesList: string[];
 }
