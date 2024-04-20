@@ -1,6 +1,7 @@
 "use client"
 import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { FormEvent, useEffect, useState } from "react";
 import { checkAnswer } from "@/actions/check-answer";
 import { getGameAnswers, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
@@ -44,6 +45,15 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
             .filter(club => removeAccents(club.toLowerCase()).startsWith(inputValueWithoutAccents))
     };
 
+    const onSubmitNextTip = async () => {
+        //e.preventDefault();
+        //console.log("submit")
+        setNewAnswer(gameId, '');
+        await checkAnswer({ clubName: '' });
+        setAnswer('');
+        setState(state + 1)
+    }
+
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         //console.log("submit")
@@ -76,6 +86,13 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
                 onSubmit={(e) => onSubmit(e)}
             >
                 <Grid container>
+                <Grid item xs='auto'>
+                        <IconButton
+                            onClick={(e)=>onSubmitNextTip()}
+                        >
+                            <ModelTrainingIcon color="secondary" />
+                        </IconButton>
+                    </Grid>
                     <Grid item xs>
                         <Autocomplete
                             freeSolo
@@ -91,7 +108,7 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
                                 }
                             }}
                             renderInput={(params) => (
-                                <TextField {...params} label="Palpite" variant="standard" />
+                                <TextField {...params} label="Palpite" variant="standard" size="small" />
                             )}
                         />
                     </Grid>

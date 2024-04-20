@@ -41,7 +41,7 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
     // Função para gerar o link de compartilhamento
     const handleCompartilharWhatsApp = () => {
         if (!isMobileDevice) return;
-        const mensagemCodificada = encodeURIComponent(rightAnswer ? `Veja o clube de hoje no CLUBLE! Eu acertei com ${getGameAnswers(gameId).length} palpites!` : `Não acertei o clube de hoje no CLUBLE. Você consegue?`);
+        const mensagemCodificada = encodeURIComponent(rightAnswer ? `Veja o clube de hoje no CLUBLE! Eu acertei em ${getGameAnswers(gameId).length} tentativas!` : `Não acertei o clube de hoje no CLUBLE. Você consegue?`);
         const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
         const siteLink = "https://cluble-game.vercel.app";
         const linkWithBreak = `${mensagemCodificada}%0A${siteLink}`;
