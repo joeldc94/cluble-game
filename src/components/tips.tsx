@@ -1,7 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
-import { Card, CardActionArea, CardContent, Input, List, ListItem, TextField, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, Input, List, ListItem, Paper, Stack, TextField, Typography } from "@mui/material";
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
+import SportsSoccerTwoToneIcon from '@mui/icons-material/SportsSoccerTwoTone';
 import AnswerForm from "./answer-form";
 import { getGameAnswers, getLocalStorageRightAnswer, getUserGamesHistory } from "@/utils/localStorage";
 
@@ -70,18 +71,29 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
                     <ListItem>
                         <Typography variant="body1" textAlign="center">
                             3 - <strong>Cores: </strong>
-                            {
-                                club.colors.map((color: string, index: number) => (
-                                    <SportsBaseballIcon key={index} fontSize="small"
-                                        sx={{
-                                            color,
-                                            m: 0,
-                                            p: 0,
-                                            //textShadow: '1px 1px 4px red)'
-                                        }} />
-                                ))
-                            }
                         </Typography>
+                        <Card
+                            component={Paper}
+                            elevation={2}
+                            sx={{
+                                mx: 1,
+                                backgroundColor: club.colors.includes('#FFFFFF') ? '#DDD' : '#FFF',
+                                border: "1px solid black",
+                            }}
+                        >
+                            <Stack direction="row" spacing={0}>
+                                {club.colors.map((color: string, index: number) => (
+                                    <div
+                                        key={index}
+                                        style={{
+                                            backgroundColor: color,
+                                            width: "20px",
+                                            height: "20px",
+                                        }}
+                                    />
+                                ))}
+                            </Stack>
+                        </Card>
                     </ListItem>
                 )}
                 {state >= 3 && (

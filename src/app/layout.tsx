@@ -22,7 +22,7 @@ export default function RootLayout({
                 <SpeedInsights />
                 <CssBaseline />
                 <AppRouterCacheProvider>
-                    <Container maxWidth="sm">
+                    <Container maxWidth="sm" >
                         <Suspense fallback={
                             <Skeleton />
                         }>
