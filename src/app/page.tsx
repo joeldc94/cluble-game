@@ -3,10 +3,11 @@ import { Card, CardContent, Divider, Grid, Paper, Stack, Typography } from "@mui
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
 
-export const revalidate = 60 * 60 * 1;
-export const dynamic = 'force-dynamic';
+//export const revalidate = 60 * 60 * 1;
+//export const dynamic = 'force-dynamic';
 
 export default async function Home() {
+    console.log("Criando página inicial");
     const { game, club } = await getCurrentGameData();
     //console.log({game},{club})
     const clubsList = await getClubsNamesList();
