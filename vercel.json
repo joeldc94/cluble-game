@@ -1,6 +1,6 @@
 {
     "crons": [{
-      "path": "/api/updateClub",
+      "path": "/api/updateGame",
       "schedule": "0 3 * * *"
     }]
   }
