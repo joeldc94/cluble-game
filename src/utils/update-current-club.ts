@@ -31,8 +31,8 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             usedClubIds = gamesListSaved?.map((game) => game.clubId);
             //console.log({ usedClubIds })
         }
-        const gC = await getGameCounter()
-        lastGameCounter = gC || 0;
+        //const gC = await getGameCounter()
+        //lastGameCounter = gC || 0;
 
         // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
         if (gamesListSaved && gamesListSaved.length >= clubs.length) {
