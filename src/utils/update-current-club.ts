@@ -50,6 +50,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             }
         }
         const gameCounter = lastGameCounter + 1;
+        console.log({gameCounter})
         const date = new Date();
 
         const newGame = {

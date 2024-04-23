@@ -2,10 +2,14 @@
 type ClubData = {
     id: number;
     name: string;
-    colors: string[];
-    state: string | null;
+    fullName: string;
     city: string;
+    state: string | null;    
+    country: string;
     stadium: string | null;
+    stadiumFullName: string;
+    division: string;
+    colors: string[];
     foundationYear: number | null;
     idol: string | null;
 }
