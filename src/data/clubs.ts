@@ -843,7 +843,7 @@ export const clubs: ClubData[] = [
       "division": "Série C",
       "colors": ['yellow','green'],
       "foundationYear": 1928,
-      "idol": "Rubens Minelli"
+      "idol": "Paulo Gaúcho"
     },
     {
       "id": 61,
