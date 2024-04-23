@@ -3,7 +3,7 @@ import "server-only";
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
-import { addNewGame, deleteGamesList, getAllGameHistory } from './kv-games';
+import { addNewGame, deleteGamesList, getAllGameHistory, getGameCounter, setGameCounter } from './kv-games';
 
 interface UpdateCurrentGameResult {
     success: boolean;
@@ -31,6 +31,8 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             usedClubIds = gamesListSaved?.map((game) => game.clubId);
             //console.log({ usedClubIds })
         }
+        const gC = await getGameCounter()
+        lastGameCounter = gC || 0;
 
         // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
         if (gamesListSaved && gamesListSaved.length >= clubs.length) {
@@ -61,6 +63,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         }
         // Adicionar o nova partida
         const index = await addNewGame(newGame);
+        await setGameCounter(gameCounter);
         //console.log("Update index:", index)
         return {
             success: true,

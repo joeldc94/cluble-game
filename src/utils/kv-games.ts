@@ -90,3 +90,24 @@ export async function deleteGamesList(): Promise<number | undefined> {
     }
     return;
 }
+
+/** Define o contador */
+export async function setGameCounter(value: number): Promise<number | "OK" | null> {
+    try {
+        const res = await kv.set('gameCounter', value);
+        return res
+    } catch (error) {
+        console.error({ error })
+    }
+    return null;
+}
+/** Define o contador */
+export async function getGameCounter(): Promise<number | null> {
+    try {
+        const counter = await kv.get<number>('gameCounter');
+        return counter
+    } catch (error) {
+        console.error({ error })
+    }
+    return null;
+}
