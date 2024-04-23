@@ -1,3 +1,4 @@
+import "server-only";
 import { NextRequest } from "next/server";
 import { revalidatePath } from "next/cache";
 import { updateCurrentGame } from "@/utils/update-current-club";

@@ -428,7 +428,7 @@ export const clubs: ClubData[] = [
     {
         id: 43,
         name: 'Red Bull Bragantino',
-        colors: ['#EF1B33', '#000000'],
+        colors: ['#EF1B33', '#FFFFFF'],
         state: 'SP',
         city: 'Bragança Paulista',
         stadium: 'Nabi Abi Chedid',

@@ -1,5 +1,5 @@
 import { getClubsNamesList, getCurrentGameData } from "@/utils/get-club";
-import { Card, CardContent, Divider, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Card, CardContent, Divider, Grid, Paper, Stack, Typography } from "@mui/material";
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
 
@@ -50,9 +50,9 @@ export default async function Home() {
 
             </Grid>
             <Divider />
-            <Card component={Paper} elevation={4} sx={{ mx: 4, my: 2, p: 2 }}>
+            <Box sx={{ my: 2, p: 2 }}>
                 <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} />
-            </Card>
+            </Box>
             <Divider />
         </>
     );

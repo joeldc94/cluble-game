@@ -1,4 +1,5 @@
 "use server"
+import "server-only";
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
@@ -34,6 +35,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
         if (gamesListSaved && gamesListSaved.length >= clubs.length) {
             await deleteGamesList(); // Reiniciar currentClub
+            //lastGameCounter = 0;
             usedClubIds = [];
             message = 'Lista reiniciada';
         }
@@ -47,15 +49,18 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
                 randomClub = tempRandomClub;
             }
         }
+        const gameCounter = lastGameCounter + 1;
         const date = new Date();
+
         const newGame = {
             gameId: uuidv4(),
-            gameCounter: lastGameCounter + 1,
+            gameCounter: gameCounter,
             clubId: randomClub.id,
             date
         }
         // Adicionar o nova partida
-        await addNewGame(newGame);
+        const index = await addNewGame(newGame);
+        //console.log("Update index:", index)
         return {
             success: true,
             club: randomClub,
