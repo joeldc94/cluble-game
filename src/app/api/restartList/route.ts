@@ -1,5 +1,5 @@
 import "server-only";
-import { deleteGamesList } from "@/utils/kv-games";
+import { deleteGamesList } from "@/utils/sql-games";
 import { updateCurrentGame } from "@/utils/update-current-club";
 import { revalidatePath } from "next/cache";
 import { NextRequest } from "next/server";

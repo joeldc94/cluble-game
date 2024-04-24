@@ -1,7 +1,7 @@
 "use server"
 import "server-only";
 import { clubs } from '@/data/clubs';
-import { getLastGame, getLastGameClubId } from "./kv-games";
+import { getLastGame, getLastGameClubId } from "./sql-games";
 
 /** Retorna lista de nomes dos clubes */
 /** Retorna os dados de um único clube pelo Id do clube*/

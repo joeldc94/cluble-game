@@ -3,7 +3,8 @@ import "server-only";
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
-import { addNewGame, deleteGamesList, getAllGameHistory, getGameCounter, setGameCounter } from './kv-games';
+import { addNewGame, deleteGamesList, getAllGameHistory } from "./sql-games";
+
 
 interface UpdateCurrentGameResult {
     success: boolean;
@@ -25,7 +26,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
 
         if (gamesListSaved && gamesListSaved.length > 0) {
             const lastGame = gamesListSaved[gamesListSaved.length - 1];
-            lastGameCounter = lastGame.gameCounter || 0;
+            lastGameCounter = lastGame.id || 0;
             //console.log({ lastGameCounter });
 
             usedClubIds = gamesListSaved?.map((game) => game.clubId);
@@ -51,24 +52,22 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
                 randomClub = tempRandomClub;
             }
         }
-        const gameCounter = lastGameCounter + 1;
-        console.log({gameCounter})
-        const date = new Date();
 
+        //const date = new Date();
         const newGame = {
             gameId: uuidv4(),
-            gameCounter: gameCounter,
+            //gameCounter: gameCounter,
             clubId: randomClub.id,
-            date
+            //date
         }
         // Adicionar o nova partida
-        const index = await addNewGame(newGame);
-        await setGameCounter(gameCounter);
+        const gameSet = await addNewGame(newGame);
+        //await setGameCounter(gameCounter);
         //console.log("Update index:", index)
         return {
             success: true,
             club: randomClub,
-            game: newGame,
+            game: gameSet,
             ...(message && { message })
         };
     } catch (error) {

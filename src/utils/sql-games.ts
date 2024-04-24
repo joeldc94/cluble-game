@@ -1,20 +1,20 @@
 "use server"
-import { kv } from "@vercel/kv";
-
-const KEY_NAME = 'gamesHistory';
+import prisma from "./prisma";
 
 /** Retorna a ultima partida adicionada*/
-export async function getLastGame(): Promise<GameData | undefined> {
+export async function getLastGame(): Promise<GameData | null> {
     //console.log("Coletar último id adicionado")
     try {
-        const lastGame = await kv.lindex(KEY_NAME, -1);
-        //console.log({ lastGame });
-        return lastGame
+        const lastGame = await prisma.gamesHistory.findMany()
+        const size = lastGame.length;
+        if (size > 0)
+            return lastGame[size-1]
+        return null
     }
     catch (error) {
         console.error({ error })
     }
-    return
+    return null
 }
 
 /** Retorna o id da última partida */
@@ -48,7 +48,7 @@ export async function getLastGameClubId(): Promise<number | undefined> {
 /** Retorna o tamanho da lista de partidas */
 export async function getGamesListLenght(): Promise<number | undefined> {
     try {
-        const listLength = await kv.llen(KEY_NAME);
+        const listLength = await prisma.gamesHistory.count()
         //console.log({listLength})
         return listLength
     } catch (error) {
@@ -60,7 +60,7 @@ export async function getGamesListLenght(): Promise<number | undefined> {
 /** Retorna todas partidas publicadas */
 export async function getAllGameHistory(): Promise<GameData[] | undefined> {
     try {
-        const gamesList = await kv.lrange<GameData>(KEY_NAME, 0, -1);
+        const gamesList = await prisma.gamesHistory.findMany();
         //console.log("function", { gamesList })
         return gamesList;
     } catch (error) {
@@ -69,10 +69,15 @@ export async function getAllGameHistory(): Promise<GameData[] | undefined> {
     return;
 }
 
-/** Adiciona uma nova partida no final da lista */
-export async function addNewGame(gameData: GameData): Promise<number | undefined> {
+/** Adiciona uma nova partida no final da tabela */
+export async function addNewGame(gameData: any): Promise<any | undefined> {
     try {
-        const idIndex = await kv.rpush<GameData>(KEY_NAME, gameData);
+        const idIndex = await prisma.gamesHistory.create({
+            data: {
+                gameId: gameData.gameId,
+                clubId: gameData.clubId
+            }
+        })
         return idIndex
     } catch (error) {
         console.error({ error });
@@ -81,33 +86,12 @@ export async function addNewGame(gameData: GameData): Promise<number | undefined
 }
 
 /** Deleta lista de partidas */
-export async function deleteGamesList(): Promise<number | undefined> {
+export async function deleteGamesList(): Promise<any | undefined> {
     try {
-        const deleted = await kv.del(KEY_NAME);
+        const deleted = await prisma.gamesHistory.deleteMany()
         return deleted
     } catch (error) {
         console.error({ error })
     }
     return;
-}
-
-/** Define o contador */
-export async function setGameCounter(value: number): Promise<number | "OK" | null> {
-    try {
-        const res = await kv.set('gameCounter', value);
-        return res
-    } catch (error) {
-        console.error({ error })
-    }
-    return null;
-}
-/** Define o contador */
-export async function getGameCounter(): Promise<number | null> {
-    try {
-        const counter = await kv.get<number>('gameCounter');
-        return counter
-    } catch (error) {
-        console.error({ error })
-    }
-    return null;
 }
