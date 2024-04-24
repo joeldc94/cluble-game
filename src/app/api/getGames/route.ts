@@ -1,4 +1,4 @@
-import { getAllGameHistory } from "@/utils/kv-games"
+import { getAllGameHistory } from "@/utils/sql-games"
 
 export const dynamic = 'force-dynamic'
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
 
     if (list && list.length > 0) {
         const lastGame = list[list.length - 1];
-        lastGameCounter = lastGame.gameCounter || 0;
+        lastGameCounter = lastGame.id || 0;
         usedClubIds = list?.map((game) => game.clubId);
     }
     //console.log({ lastGameCounter });

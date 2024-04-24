@@ -15,11 +15,19 @@ type ClubData = {
 }
 
 /** Dados da partida no kv */
-type GameData = {
+/* type GameData = {
     gameId: string;
     gameCounter: number;
     clubId: number;
     date: Date;
+} */
+
+/** Dados da partida no kv */
+type GameData = {
+    id: number;
+    gameId: string;
+    clubId: number;
+    createdAt: Date;
 }
 
 /** Dados das partidas salvos no localStorage */
