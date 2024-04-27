@@ -8,7 +8,7 @@ import { getLastGame, getLastGameClubId } from "./sql-games";
 export async function getClubsNamesList(): Promise<string[]> {
     let clubsList: string[] = []
     clubs.forEach((club) => clubsList.push(club.name));
-    return clubsList;
+    return [...clubsList].sort()
 }
 
 /** Retorna os dados de um único clube pelo Id do clube*/

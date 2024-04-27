@@ -12,6 +12,7 @@ type ClubData = {
     colors: string[];
     foundationYear: number | null;
     idol: string | null;
+    mascot: string;
 }
 
 /** Dados da partida no kv */

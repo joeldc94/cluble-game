@@ -70,7 +70,21 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
                 {state >= 2 && (
                     <ListItem>
                         <Typography variant="body1" textAlign="center">
-                            3 - <strong>Cores: </strong>
+                            3 - <strong>Mascote: </strong>{club.mascot}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 3 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            4 - <strong>Estádio: </strong>{club.stadium}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 4 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            5 - <strong>Cores: </strong>
                         </Typography>
                         <Card
                             component={Paper}
@@ -94,20 +108,6 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
                                 ))}
                             </Stack>
                         </Card>
-                    </ListItem>
-                )}
-                {state >= 3 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            4 - <strong>Estádio: </strong>{club.stadium}
-                        </Typography>
-                    </ListItem>
-                )}
-                {state >= 4 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            5 - <strong>Ídolo: </strong>{club.idol}
-                        </Typography>
                     </ListItem>
                 )}
                 {(state >= 5 || rightAnswer) && (
