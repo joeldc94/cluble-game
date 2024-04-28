@@ -37,5 +37,5 @@ type GameHistoryLocalStorage = {
     //gameCounter: number;
     answers: string[];
     rightAnswer: boolean;
-    date: Date;
+    date: string;
 }
