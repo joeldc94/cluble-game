@@ -2,7 +2,7 @@
 import { Autocomplete, Button, Grid, IconButton, Input, List, ListItem, TextField, Typography } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, useTransition } from "react";
 import { checkAnswer } from "@/actions/check-answer";
 import { getGameAnswers, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
 
@@ -16,13 +16,16 @@ interface TipsProps {
     setRightAnswer: (prevState: boolean) => void;
 }
 
-export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer, setRightAnswer,  setState }: TipsProps) {
+export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer, setRightAnswer, setState }: TipsProps) {
 
     const [answer, setAnswer] = useState<string>('');
     //const [rightAnswer, setRightAnswer] = useState<boolean>(false);
     // Estado para controlar as sugestões do Autocomplete
     const [clubSuggestions, setClubSuggestions] = useState<string[]>([]);
     const [isValidAnswer, setIsValidAnswer] = useState<boolean>(false); // Novo estado para rastrear se a resposta é válida
+    const [pendingNextTip, startTransitionNextTip] = useTransition();
+    const [pendingAnswer, startTransitionAnswer] = useTransition();
+
     //const [selectedClub, setSelectedClub] = useState<string>(''); // Estado para armazenar o clube selecionado
 
     /* const handleClubSelect = (club: string) => {
@@ -45,23 +48,24 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
             .filter(club => removeAccents(club.toLowerCase()).startsWith(inputValueWithoutAccents))
     };
 
-    const onSubmitNextTip = async () => {
-        //e.preventDefault();
-        //console.log("submit")
-        setNewAnswer(gameId, '');
-        await checkAnswer({ clubName: '' });
-        setAnswer('');
-        setState(state + 1)
+    const onSubmitNextTip = () => {
+        startTransitionNextTip(async () => {
+            //e.preventDefault();
+            //console.log("submit")
+            setNewAnswer(gameId, '');
+            await checkAnswer({ clubName: '' });
+            setAnswer('');
+            setState(state + 1)
+        })
     }
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //console.log("submit")
-        if (isValidAnswer) {
+        if (!isValidAnswer)
+            return
+        startTransitionAnswer(async () => {
             setNewAnswer(gameId, answer);
-
             const response = await checkAnswer({ clubName: answer });
-
             setAnswer('');
             if (response.rightAnswer) {
                 //console.log("RESPOSTA CERTA")
@@ -72,7 +76,9 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
             else {
                 setState(state + 1)
             }
-        }
+        })
+
+
     }
 
     useEffect(() => {
@@ -86,11 +92,13 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
                 onSubmit={(e) => onSubmit(e)}
             >
                 <Grid container>
-                <Grid item xs='auto'>
+                    <Grid item xs='auto'>
                         <IconButton
-                            onClick={(e)=>onSubmitNextTip()}
+                            onClick={(e) => onSubmitNextTip()}
+                            disabled={pendingNextTip}
                         >
-                            <ModelTrainingIcon color="secondary" />
+                            <ModelTrainingIcon color={
+                                (pendingNextTip) ? "disabled" : "secondary"} />
                         </IconButton>
                     </Grid>
                     <Grid item xs>
@@ -108,7 +116,13 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
                                 }
                             }}
                             renderInput={(params) => (
-                                <TextField {...params} label="Palpite" variant="standard" size="small" />
+                                <TextField
+                                    {...params}
+                                    disabled={pendingNextTip || pendingAnswer}
+                                    label="Palpite"
+                                    variant="outlined"
+                                    size="small"
+                                />
                             )}
                         />
                     </Grid>
@@ -116,9 +130,11 @@ export default function AnswerForm({ gameId, clubsNamesList, state, rightAnswer,
                     <Grid item xs='auto'>
                         <IconButton
                             type="submit"
-                            disabled={!isValidAnswer || answer.length === 0}
+                            disabled={!isValidAnswer || answer.length === 0 || pendingAnswer}
                         >
-                            <SendIcon color="primary" />
+                            <SendIcon color={
+                                (!isValidAnswer || answer.length === 0 || pendingAnswer) ? "disabled" : "primary"} 
+                            />
                         </IconButton>
                     </Grid>
                 </Grid>
