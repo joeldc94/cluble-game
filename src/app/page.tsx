@@ -2,6 +2,7 @@ import { getClubsNamesList, getCurrentGameData } from "@/utils/get-club";
 import { Box, Card, CardContent, Divider, Grid, Paper, Stack, Typography } from "@mui/material";
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
+import { Stats } from "@/components/stats";
 
 //export const revalidate = 60 * 60 * 1;
 //export const dynamic = 'force-dynamic';
@@ -33,7 +34,7 @@ export default async function Home() {
             <Typography variant="h1" textAlign="center">
                 CLUBLE
             </Typography>
-            <Divider/>
+            <Divider />
             <Grid container alignItems="center" justifyContent="center" spacing={2}>
                 <Grid item xs={1}>
                     <Typography variant="subtitle1" textAlign="left">
@@ -50,6 +51,10 @@ export default async function Home() {
 
             </Grid>
             <Divider />
+
+
+            <Stats />
+
             <Box sx={{ my: 2, p: 2 }}>
                 <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} />
             </Box>
