@@ -1,27 +1,28 @@
 "use client"
 import { getUserGamesHistory } from "@/utils/localStorage"
-import { Card, Modal } from "@mui/material"
+import { Card, CardActions, CardContent, CardHeader, IconButton, Modal, Paper, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
+import CloseIcon from '@mui/icons-material/Close';
 
 
-
-export const Stats = () => {
-
-    const [open, setOpen] = useState(true);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
+interface StatsProps {
+    open: boolean;
+    handleClose: () => void;
+}
+export const Stats = ({ open, handleClose }: StatsProps) => {
+    const [totalGames, setTotalGames] = useState(0)
     const [consecutiveDays, setConsecutiveDays] = useState(0)
     const [totalAccuracy, setTotalAccuracy] = useState(0)
-    const [accuracyByAnswers, setAccuracyByAnswers] = useState({
+    const [accuracyByAnswers, setAccuracyByAnswers] = useState<{ incorrectGamesPercentage: number; correctGamesPercentage: number[] }>({
         incorrectGamesPercentage: 0,
-        correctGamesPercentage: []
-    })
+        correctGamesPercentage: [0, 0, 0, 0, 0, 0] // Inicialize com o número correto de elementos
+    });
+
 
     useEffect(() => {
 
         const userHistory = getUserGamesHistory()
+        setTotalGames(userHistory.length)
         setConsecutiveDays(countConsecutiveDaysPlayed(userHistory));
         setTotalAccuracy(calculateAccuracyPercentage(userHistory));
 
@@ -32,29 +33,42 @@ export const Stats = () => {
     useEffect(() => {
         setTotalAccuracy(Number(accuracyByAnswers.correctGamesPercentage.reduce((accumulator, currentValue) => accumulator + currentValue, 0).toFixed(1)))
 
-        console.log({ history })
-        console.log({ consecutiveDays })
-        console.log({ totalAccuracy })
-        console.log({ accuracyByAnswers })
+        //console.log({ history })
+        //console.log({ consecutiveDays })
+        //console.log({ totalAccuracy })
+        //console.log({ accuracyByAnswers })
     }, [accuracyByAnswers])
 
     return (
         <Modal
             open={open}
             onClose={handleClose}
+            aria-labelledby="confirmation-modal"
+            aria-describedby="confirmation-modal-description"
         >
-            <Card>
-                <p><strong>Dias seguidos: </strong>{consecutiveDays}</p>
-                <p><strong>Acertos:</strong></p>
-                {
-                    accuracyByAnswers.correctGamesPercentage.map((accuracy, index) => {
-                        return (
-                            <p><strong>{index} dicas: </strong>{accuracy}%</p>
-                        )
-                    })
-                }
-                <p><strong>% Total de acertos: </strong>{totalAccuracy}%</p>
-                <p><strong>% de erros: </strong>{accuracyByAnswers.incorrectGamesPercentage}%</p>
+            <Card
+                sx={{ position: 'absolute', top: '50%', left: '50%', minWidth: 250, transform: 'translate(-50%, -50%)' }}
+            >
+                <CardHeader title="Estatísticas" />
+                <CardContent>
+                    <Typography variant="body2"><strong>Seus jogos: </strong>{totalGames}</Typography>
+                    <Typography variant="body2"><strong>Acertos seguidos: </strong>{consecutiveDays}</Typography>
+                    <Typography variant="body2"><strong>Acertos:</strong></Typography>
+                    {
+                        accuracyByAnswers.correctGamesPercentage.map((accuracy, index) => {
+                            return (
+                                <Typography key={index} variant="body2" sx={{ ml: 1 }}><strong>{index} dicas: </strong>{accuracy}%</Typography>
+                            )
+                        })
+                    }
+                    <Typography variant="body2"><strong>% de acertos: </strong>{totalAccuracy}%</Typography>
+                    <Typography variant="body2"><strong>% de erros: </strong>{accuracyByAnswers.incorrectGamesPercentage}%</Typography>
+                </CardContent>
+                <CardActions sx={{ justifyContent: 'flex-end' }}>
+                    <IconButton onClick={handleClose}>
+                        <CloseIcon />
+                    </IconButton>
+                </CardActions>
             </Card>
         </Modal>
     )
@@ -163,14 +177,14 @@ const calculateAccuracyPercentageByAnswers = (history: GameHistoryLocalStorage[]
 
     // Calcula a porcentagem de jogos não acertados
     const totalGamesCount = history.length;
-    const incorrectGamesPercentage = Number((incorrectGamesCount / totalGamesCount) * 100).toFixed(1);
+    const incorrectGamesPercentage = parseFloat((incorrectGamesCount / totalGamesCount * 100).toFixed(1));
 
     const correctGamesPercentage: number[] = []
     correctGamesCount.forEach((count) => {
         correctGamesPercentage.push(Number((count / totalGamesCount * 100).toFixed(1)))
     });
 
-    console.log({ correctGamesCount }, { correctGamesPercentage })
+    //console.log({ correctGamesCount }, { correctGamesPercentage })
 
     return {
         incorrectGamesPercentage,

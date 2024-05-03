@@ -3,6 +3,7 @@ import { Box, Card, CardContent, Divider, Grid, Paper, Stack, Typography } from 
 import Tips from "@/components/tips";
 import { getCurrentDateFormatted } from "@/utils/get-date";
 import { Stats } from "@/components/stats";
+import { ShowStats } from "@/components/show-stats";
 
 //export const revalidate = 60 * 60 * 1;
 //export const dynamic = 'force-dynamic';
@@ -46,15 +47,11 @@ export default async function Home() {
                         {getCurrentDateFormatted()}
                     </Typography>
                 </Grid>
-                <Grid item xs={1} />
-
-
+                <Grid item xs={1} textAlign="center">
+                    <ShowStats />
+                </Grid>
             </Grid>
             <Divider />
-
-
-            <Stats />
-
             <Box sx={{ my: 2, p: 2 }}>
                 <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} />
             </Box>
