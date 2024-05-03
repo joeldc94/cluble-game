@@ -23,7 +23,7 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
 
         const userHistory = getUserGamesHistory()
         setTotalGames(userHistory.length)
-        setConsecutiveDays(countConsecutiveDaysPlayed(userHistory));
+        setConsecutiveDays(/*countConsecutiveDaysPlayed/* countConsecutiveDaysWithCorrectAnswers(userHistory));
         setTotalAccuracy(calculateAccuracyPercentage(userHistory));
 
         setAccuracyByAnswers(calculateAccuracyPercentageByAnswers(userHistory));
@@ -190,5 +190,36 @@ const calculateAccuracyPercentageByAnswers = (history: GameHistoryLocalStorage[]
         incorrectGamesPercentage,
         correctGamesPercentage
     };
+};
+
+
+
+const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage[]): number => {
+    if (!history || history.length === 0) {
+        return 0; // Se não houver histórico ou se estiver vazio, não houve dias jogados
+    }
+
+    let consecutiveDays = 0;
+
+    // Verifica se a primeira resposta é correta
+    if (history[0].rightAnswer) {
+        consecutiveDays++;
+    } else if (history[0].answers.length >= 5) {
+        // Se a primeira resposta for incorreta e o número de respostas for menor que 5, ignore este dia
+        return 0;
+    }
+
+    // Percorre o histórico de partidas a partir do segundo dia
+    for (let i = 1; i < history.length; i++) {
+        // Verifica se a resposta do dia é correta
+        if (!history[i].rightAnswer) {
+            // Se a resposta não for correta, retorna o contador acumulado
+            return consecutiveDays;
+        }
+        // Se a resposta for correta, incrementa o contador
+        consecutiveDays++;
+    }
+
+    return consecutiveDays;
 };
 
