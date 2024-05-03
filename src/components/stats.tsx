@@ -23,7 +23,7 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
 
         const userHistory = getUserGamesHistory()
         setTotalGames(userHistory.length)
-        setConsecutiveDays(/*countConsecutiveDaysPlayed/* countConsecutiveDaysWithCorrectAnswers(userHistory));
+        setConsecutiveDays(/*countConsecutiveDaysPlayed*/ countConsecutiveDaysWithCorrectAnswers(userHistory));
         setTotalAccuracy(calculateAccuracyPercentage(userHistory));
 
         setAccuracyByAnswers(calculateAccuracyPercentageByAnswers(userHistory));
