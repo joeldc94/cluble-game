@@ -28,7 +28,7 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
 
         setAccuracyByAnswers(calculateAccuracyPercentageByAnswers(userHistory));
 
-    }, [])
+    }, [open])
 
     useEffect(() => {
         setTotalAccuracy(Number(accuracyByAnswers.correctGamesPercentage.reduce((accumulator, currentValue) => accumulator + currentValue, 0).toFixed(1)))
