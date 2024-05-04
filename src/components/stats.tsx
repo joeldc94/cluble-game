@@ -3,6 +3,7 @@ import { getUserGamesHistory } from "@/utils/localStorage"
 import { Card, CardActions, CardContent, CardHeader, IconButton, Modal, Paper, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import CloseIcon from '@mui/icons-material/Close';
+import { getCurrentDay } from "@/utils/get-date";
 
 
 interface StatsProps {
@@ -194,7 +195,7 @@ const calculateAccuracyPercentageByAnswers = (history: GameHistoryLocalStorage[]
 
 
 
-const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage[]): number => {
+const _countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage[]): number => {
     if (!history || history.length === 0) {
         return 0; // Se não houver histórico ou se estiver vazio, não houve dias jogados
     }
@@ -218,6 +219,77 @@ const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage
         }
         // Se a resposta for correta, incrementa o contador
         consecutiveDays++;
+    }
+
+    return consecutiveDays;
+};
+
+
+/** Função para contar quantos dias seguidos com resposta correta a pessoa está jogando
+  Se um dia foi pulado o contador para 
+*/
+const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage[]): number => {
+    //const history = getUserGamesHistory();
+
+
+    if (!history || history.length === 0) {
+        return 0; // Se não houver histórico ou se estiver vazio, não houve dias jogados
+    }
+
+    // Ordena o histórico de partidas por data, do mais recente para o mais antigo
+    history.sort((a, b) => {
+        const dateA = parseBrazilianDate(a.date);
+        const dateB = parseBrazilianDate(b.date);
+        return dateB.getTime() - dateA.getTime();
+    });
+
+    console.log({ history })
+
+    let consecutiveDays = 0;
+    const currentDay = getCurrentDay(); // Obtém a data atual no formato brasileiro
+
+    // Verifica se a última resposta e do dia atual
+    if (history[0].date === currentDay) {
+        if (history[0].rightAnswer) { //se for correta incrementa o contador
+            consecutiveDays++;
+        }
+        else {
+            if (history[0].answers.length >= 5) { //se já tiver 5 respostas e não for correta, retorna resposta errada para o dia = 0
+                return 0;
+            }
+            else {
+                const currentDate = parseBrazilianDate(currentDay);
+                const prevDate = parseBrazilianDate(history[1].date);
+
+                // Calcula a diferença em milissegundos entre as datas
+                const diffTime = Math.abs(currentDate.getTime() - prevDate.getTime());
+                // Calcula a diferença em dias
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                // Se a diferença for maior do que 1 dia, teve dia perdido. retorna 0
+                if (diffDays > 1) {
+                    return 0
+                }
+            }
+        }
+    }
+
+    // Percorre o histórico de partidas a partir do segundo elemento
+    for (let i = 1; i < history.length; i++) {
+        const currentDate = parseBrazilianDate(history[i].date);
+        const prevDate = parseBrazilianDate(history[i - 1].date);
+
+        // Calcula a diferença em milissegundos entre as datas
+        const diffTime = Math.abs(currentDate.getTime() - prevDate.getTime());
+        // Calcula a diferença em dias
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        console.log({ currentDate }, { prevDate }, { diffDays })
+        // Se a diferença for de um dia, incrementa o contador de dias seguidos
+        if (diffDays === 1 && history[i].rightAnswer) {
+            consecutiveDays++;
+        } else {
+            break; // Se a diferença for maior do que um dia, para a contagem
+        }
     }
 
     return consecutiveDays;
