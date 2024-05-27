@@ -243,7 +243,7 @@ const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage
         return dateB.getTime() - dateA.getTime();
     });
 
-    console.log({ history })
+    //console.log({ history })
 
     let consecutiveDays = 0;
     const currentDay = getCurrentDay(); // Obtém a data atual no formato brasileiro
@@ -283,7 +283,7 @@ const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage
         const diffTime = Math.abs(currentDate.getTime() - prevDate.getTime());
         // Calcula a diferença em dias
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        console.log({ currentDate }, { prevDate }, { diffDays })
+        //console.log({ currentDate }, { prevDate }, { diffDays })
         // Se a diferença for de um dia, incrementa o contador de dias seguidos
         if (diffDays === 1 && history[i].rightAnswer) {
             consecutiveDays++;

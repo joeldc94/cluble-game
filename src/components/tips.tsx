@@ -5,22 +5,21 @@ import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import SportsSoccerTwoToneIcon from '@mui/icons-material/SportsSoccerTwoTone';
 import AnswerForm from "./answer-form";
 import { getGameAnswers, getLocalStorageRightAnswer, getUserGamesHistory } from "@/utils/localStorage";
+import { ShareCard } from "./share-card";
 
 interface TipsProps {
     club: ClubData;
     gameId: string;
     //initialState: number;
     clubsNamesList: string[];
+    gameEdition: number;
 }
 
-export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
-
-    const isMobileDevice = typeof navigator !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+export default function Tips({ club, gameId, clubsNamesList, gameEdition }: TipsProps) {
 
     const [state, setState] = useState<number>(0);
     const [answeredClubs, setAnsweredClubs] = useState<string[]>([]);
     const [rightAnswer, setRightAnswer] = useState<boolean>(false);
-
 
     useEffect(() => {
         const rightAnswered = getLocalStorageRightAnswer(gameId);
@@ -40,6 +39,7 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
     }, [state])
 
     // Função para gerar o link de compartilhamento
+    /*
     const handleCompartilharWhatsApp = () => {
         if (!isMobileDevice) return;
         const mensagemCodificada = encodeURIComponent(rightAnswer ? `Veja o clube de hoje no CLUBLE! Eu acertei com ${getGameAnswers(gameId).length} ${getGameAnswers(gameId).length > 1 ? 'dicas' : 'dica'}!` : `Não acertei o clube de hoje no CLUBLE. Você consegue?`);
@@ -49,6 +49,7 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
         const linkWhatsAppWithBreak = `whatsapp://send?text=${linkWithBreak}`;
         window.location.href = linkWhatsAppWithBreak;
     };
+    */
 
     return (
         <>
@@ -131,6 +132,7 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
                     clubsNamesList={clubsNamesList}
                 />
             ) : (
+                /* 
                 <Card>
                     <CardActionArea onClick={handleCompartilharWhatsApp}>
                         <CardContent>
@@ -149,7 +151,8 @@ export default function Tips({ club, gameId, clubsNamesList }: TipsProps) {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-
+                */
+                    <ShareCard rightAnswer={rightAnswer} tipsNeeded={getGameAnswers(gameId).length} gameEdition={gameEdition} />
             )
             }
         </>

@@ -52,10 +52,13 @@ export default async function Home() {
                 </Grid>
             </Grid>
             <Divider />
-            <Box sx={{ my: 2, p: 2 }}>
-                <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} />
+            <Box sx={{
+                my: { xs: 2 },
+                p: { xs: 0, sm: 2 }
+            }}
+            >
+                <Tips club={club} gameId={game.gameId} clubsNamesList={clubsList} gameEdition={game.id} />
             </Box>
-            <Divider />
         </>
     );
 }
