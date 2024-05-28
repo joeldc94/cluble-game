@@ -3,6 +3,7 @@
 import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import ShareIcon from '@mui/icons-material/Share';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 /* emojis
@@ -123,7 +124,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                         leaveDelay={50}
                     >
                         <IconButton onClick={copyToClipboard} >
-                            <ShareIcon sx={{ color: '#333' }} />
+                            <ContentCopyIcon sx={{ color: '#333' }} />
                         </IconButton>
                     </Tooltip>
 
