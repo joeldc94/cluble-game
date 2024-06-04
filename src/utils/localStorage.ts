@@ -12,7 +12,7 @@ export const getUserGamesHistory = () => {
     if (historyString.length > 0) {
         history = JSON.parse(historyString);
     }
-    //console.log({ history })
+    //console.log("Função getUserGamesHistory()", { history })
     return history
 }
 

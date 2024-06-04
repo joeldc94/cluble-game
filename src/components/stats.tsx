@@ -230,8 +230,6 @@ const _countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorag
 */
 const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage[]): number => {
     //const history = getUserGamesHistory();
-
-
     if (!history || history.length === 0) {
         return 0; // Se não houver histórico ou se estiver vazio, não houve dias jogados
     }
@@ -248,7 +246,7 @@ const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage
     let consecutiveDays = 0;
     const currentDay = getCurrentDay(); // Obtém a data atual no formato brasileiro
 
-    // Verifica se a última resposta e do dia atual
+    // Verifica se a última resposta é do dia atual
     if (history[0].date === currentDay) {
         if (history[0].rightAnswer) { //se for correta incrementa o contador
             consecutiveDays++;
@@ -258,17 +256,22 @@ const countConsecutiveDaysWithCorrectAnswers = (history: GameHistoryLocalStorage
                 return 0;
             }
             else {
-                const currentDate = parseBrazilianDate(currentDay);
-                const prevDate = parseBrazilianDate(history[1].date);
+                //se não existir o segundo jogo retorna 0
+                if (!history[1]) return 0;
+                else {
+                    //se existir o segundo jogo, verifica se é da data anterior
+                    const currentDate = parseBrazilianDate(currentDay);
+                    const prevDate = parseBrazilianDate(history[1].date);
 
-                // Calcula a diferença em milissegundos entre as datas
-                const diffTime = Math.abs(currentDate.getTime() - prevDate.getTime());
-                // Calcula a diferença em dias
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    // Calcula a diferença em milissegundos entre as datas
+                    const diffTime = Math.abs(currentDate.getTime() - prevDate.getTime());
+                    // Calcula a diferença em dias
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-                // Se a diferença for maior do que 1 dia, teve dia perdido. retorna 0
-                if (diffDays > 1) {
-                    return 0
+                    // Se a diferença for maior do que 1 dia, teve dia perdido. retorna 0
+                    if (diffDays > 1) {
+                        return 0
+                    }
                 }
             }
         }
