@@ -57,35 +57,7 @@ export default function Tips({ club, gameId, clubsNamesList, gameEdition }: Tips
                 {state >= 0 && (
                     <ListItem>
                         <Typography variant="body1" textAlign="center">
-                            1 - <strong>Estado: </strong> {club.state}
-                        </Typography>
-                    </ListItem>
-                )}
-                {state >= 1 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            2 - <strong>Ano de fundação: </strong>{club.foundationYear}
-                        </Typography>
-                    </ListItem>
-                )}
-                {state >= 2 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            3 - <strong>Mascote: </strong>{club.mascot}
-                        </Typography>
-                    </ListItem>
-                )}
-                {state >= 3 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            4 - <strong>Estádio: </strong>{club.stadium}
-                        </Typography>
-                    </ListItem>
-                )}
-                {state >= 4 && (
-                    <ListItem>
-                        <Typography variant="body1" textAlign="center">
-                            5 - <strong>Cores: </strong>
+                            1 - <strong>Cores: </strong>
                         </Typography>
                         <Card
                             component={Paper}
@@ -109,6 +81,34 @@ export default function Tips({ club, gameId, clubsNamesList, gameEdition }: Tips
                                 ))}
                             </Stack>
                         </Card>
+                    </ListItem>
+                )}
+                {state >= 1 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            2 - <strong>Mascote: </strong>{club.mascot}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 2 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            3 - <strong>Ano de fundação: </strong>{club.foundationYear}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 3 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            4 - <strong>Estádio: </strong>{club.stadium}
+                        </Typography>
+                    </ListItem>
+                )}
+                {state >= 4 && (
+                    <ListItem>
+                        <Typography variant="body1" textAlign="center">
+                            5 - <strong>Estado: </strong> {club.state}
+                        </Typography>
                     </ListItem>
                 )}
                 {(state >= 5 || rightAnswer) && (
@@ -152,7 +152,7 @@ export default function Tips({ club, gameId, clubsNamesList, gameEdition }: Tips
                     </CardActionArea>
                 </Card>
                 */
-                    <ShareCard rightAnswer={rightAnswer} tipsNeeded={getGameAnswers(gameId).length} gameEdition={gameEdition} />
+                <ShareCard rightAnswer={rightAnswer} tipsNeeded={getGameAnswers(gameId).length} gameEdition={gameEdition} />
             )
             }
         </>
