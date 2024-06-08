@@ -28,6 +28,7 @@ export default function Tips({ club, gameId, clubsNamesList, gameEdition }: Tips
         setAnsweredClubs(answersList)
         setRightAnswer(rightAnswered);
     }, [])
+    
     useEffect(() => {
         if (rightAnswer) {
             setState(5);
@@ -38,18 +39,6 @@ export default function Tips({ club, gameId, clubsNamesList, gameEdition }: Tips
         }
     }, [state])
 
-    // Função para gerar o link de compartilhamento
-    /*
-    const handleCompartilharWhatsApp = () => {
-        if (!isMobileDevice) return;
-        const mensagemCodificada = encodeURIComponent(rightAnswer ? `Veja o clube de hoje no CLUBLE! Eu acertei com ${getGameAnswers(gameId).length} ${getGameAnswers(gameId).length > 1 ? 'dicas' : 'dica'}!` : `Não acertei o clube de hoje no CLUBLE. Você consegue?`);
-        const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
-        const siteLink = "https://cluble-game.vercel.app";
-        const linkWithBreak = `${mensagemCodificada}%0A${siteLink}`;
-        const linkWhatsAppWithBreak = `whatsapp://send?text=${linkWithBreak}`;
-        window.location.href = linkWhatsAppWithBreak;
-    };
-    */
 
     return (
         <>

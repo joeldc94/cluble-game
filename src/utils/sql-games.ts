@@ -1,6 +1,28 @@
 "use server"
 import prisma from "./prisma";
 
+
+/** Retorna o id do clube a partir do id do game*/
+export async function getClubIdByGameId(gameId: string): Promise<number | null> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const game = await prisma.gamesHistory.findFirst({
+            where: {
+                gameId: gameId
+            }
+        });
+
+        if (game) {
+            return game.clubId;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Erro ao buscar o ID do clube:", error);
+        return null;
+    }
+}
+
 /** Retorna a ultima partida adicionada*/
 export async function getLastGame(): Promise<GameData | null> {
     //console.log("Coletar último id adicionado")
@@ -8,7 +30,7 @@ export async function getLastGame(): Promise<GameData | null> {
         const lastGame = await prisma.gamesHistory.findMany()
         const size = lastGame.length;
         if (size > 0)
-            return lastGame[size-1]
+            return lastGame[size - 1]
         return null
     }
     catch (error) {
