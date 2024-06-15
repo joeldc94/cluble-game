@@ -1,16 +1,20 @@
-
+import { checkAnswer } from "@/actions/check-answer";
 import { getClubById } from "@/utils/get-club";
 import { getClubIdByGameId } from "@/utils/sql-games";
 import { NextRequest } from "next/server";
 
 //export const dynamic = 'force-dynamic'
-export async function PUT(request: NextRequest) {
-    //tenho que receber o estado, o gameId e o palpite. Também pode receber o estado da resposta certa ou não
+export async function POST(request: NextRequest) {
+    //tenho que receber o gameId
+    // receber o array de respostas = estado
+    // 
 
     const body = await request.json();
-    const { gameId, state, answer, rightAnswer } = body;
+    const { gameId, /* state, */ answersArray, rightAnswer } = body;
+    console.log({ gameId }, { answersArray });
     const clubId = await getClubIdByGameId(gameId);
-    if(!clubId) return Response.json("Clube não encontrado");
+    console.log({ clubId });
+    if (!clubId) return Response.json("Clube não encontrado");
 
     const club = await getClubById(clubId);
 
@@ -37,8 +41,19 @@ export async function PUT(request: NextRequest) {
         },
     ]
 
-    tips.splice(state+1);
-    console.log({tips})
+    const state = answersArray.length;
 
-    return Response.json({tips});
+    let lastAnswer = ""
+    let right = false;
+    if (state > 0) {
+        lastAnswer = answersArray[length - 1]
+        const resp = await checkAnswer({ clubName: lastAnswer })
+        right = resp.rightAnswer;
+    }
+
+    if (!right)
+        tips.splice(state + 1);
+    console.log({ tips })
+
+    return Response.json({ tips });
 }
