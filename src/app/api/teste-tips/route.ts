@@ -42,11 +42,11 @@ export async function POST(request: NextRequest) {
     ]
 
     const state = answersArray.length;
-
+    console.log({state})
     let lastAnswer = ""
     let right = false;
     if (state > 0) {
-        lastAnswer = answersArray[length - 1]
+        lastAnswer = answersArray[state - 1]
         const resp = await checkAnswer({ clubName: lastAnswer })
         right = resp.rightAnswer;
     }
