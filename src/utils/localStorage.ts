@@ -2,7 +2,7 @@
 
 import { getCurrentDay } from "./get-date";
 
-const DEFAULT_GAMES_HISTORY_KEY = 'cluble-history';
+const DEFAULT_GAMES_HISTORY_KEY = 'cluble-history_2';
 
 /** Obtem o histórico de jogos do Local Storage */
 export const getUserGamesHistory = () => {
@@ -73,4 +73,23 @@ export const getLocalStorageRightAnswer = (gameId: string) => {
         }
     }
     return rightAnswer;
+}
+
+/** Insere novo jogo no registro */
+export const setLocalStorageNewGame = (gameId: string) => {
+    const history = getUserGamesHistory();
+    if (history) {
+        const gameIndex = history.findIndex((game: GameHistoryLocalStorage) => game.gameId === gameId);
+        console.log(gameIndex, history)
+        if (gameIndex == -1) {
+            history.push({
+                gameId,
+                answers: [],
+                rightAnswer: false,
+                date: getCurrentDay() 
+            });
+        }
+        console.log(history)
+        localStorage.setItem(DEFAULT_GAMES_HISTORY_KEY+'_2', JSON.stringify(history));
+    }
 }

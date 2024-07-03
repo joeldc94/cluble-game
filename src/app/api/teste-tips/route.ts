@@ -17,6 +17,9 @@ export async function POST(request: NextRequest) {
     if (!clubId) return Response.json("Clube não encontrado");
 
     const club = await getClubById(clubId);
+    if(!club){
+        return Response.json({ error: true });
+    }
 
     const tips = [
         {
