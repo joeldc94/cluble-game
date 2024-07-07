@@ -1,9 +1,14 @@
 "use client"
 
 import { getTips } from "@/actions/get-tips";
-import { getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer } from "@/utils/localStorage";
-import { Card, List, ListItem, Paper, Skeleton, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
+import { Autocomplete, Card, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { FormEvent, useEffect, useState, useTransition } from "react";
+import TipsList from "./tips-list";
+import { filterClubs } from "@/utils/string";
+import SendIcon from '@mui/icons-material/Send';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import { ShareCard } from "@/components/share-card";
 
 type NovoTipsProps = {
     game: GameData;
@@ -15,8 +20,18 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
     const [initialized, setInitialized] = useState<boolean>(false)
     const [gameState, setGameState] = useState<number | null>(null);
     const [gameRightAnswer, setGameRightAnswer] = useState<boolean>(false);
-    const [tips, setTips] = useState([]);
+    const [tips, setTips] = useState<Tip[]>([]);
 
+    const [finalAnswer, setFinalAnswer] = useState<ClubData | null>(null);
+
+
+    const [answer, setAnswer] = useState<string>('');
+    const [clubSuggestions, setClubSuggestions] = useState<string[]>([]);
+    const [isValidAnswer, setIsValidAnswer] = useState<boolean>(false); // Novo estado para rastrear se a resposta é válida
+    const [pendingNextTip, startTransitionNextTip] = useTransition();
+    const [pendingAnswer, startTransitionAnswer] = useTransition();
+
+    /**Inicializa/coleta histórico no localStorage */
     useEffect(() => {
         //verificar se o registro do jogo já existe
         const novoRegistro = setLocalStorageNewGame(game.gameId);
@@ -28,8 +43,9 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         setInitialized(true);
     }, [])
 
+    /**Consulta dicas para o estado atual */
     useEffect(() => {
-        const sendStateGetTips = async (gameId, state, rightAnswer) => {
+        const getInitialTips = async (gameId: string, state: number, rightAnswer: boolean) => {
             const response = await getTips({
                 gameId,
                 state,
@@ -40,13 +56,16 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         }
 
         if (gameState != null) {
-            sendStateGetTips(game.gameId, gameState, gameRightAnswer).then((data) => {
+            getInitialTips(game.gameId, gameState, gameRightAnswer).then((data) => {
                 if (data.success) {
                     setTips(data.tips);
-                    setGameState(data.tips?.length - 1)
-                    if (data.rightAnswer) {
+                    //setGameState(data.tips?.length - 1)
+                    if (data.rightAnswer && gameState >= 5) {
                         setLocalStorageRightAnswer(game.gameId, data.rightAnswer);
                         setGameRightAnswer(data.rightAnswer);
+                        if (data.clubData) {
+                            setFinalAnswer(data.clubData)
+                        }
                     }
                     console.log(data);
                 }
@@ -55,52 +74,154 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         }
     }, [initialized])
 
-    if(!initialized){
-        return(
-            <List sx={{ width: '100%'}}>
+    /** */
+    useEffect(() => {
+        // Verificar se a resposta é válida sempre que o valor de 'answer' mudar
+        setIsValidAnswer(clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
+    }, [answer]);
+
+    /** Skeleton para renderizar enquanto não estiver inicializado */
+    if (!initialized) {
+        return (
+            <List sx={{ width: '100%' }}>
                 <ListItem >
-                    <Skeleton width="100%"/>
+                    <Skeleton width="100%" />
                 </ListItem>
             </List>
-            
+
         )
     }
-    
-    return (
-        <List>
-            {
-                tips.map((tip, index) => (
-                    <ListItem key={tip.label}>
-                        <Typography variant="body1" textAlign="center">
-                            {index + 1} - <strong>{tip.label}: </strong>{tip.label != 'Cores' && tip.value}
-                        </Typography>
-                        {tip.label == 'Cores' &&
-                            < Card
-                                component={Paper}
-                                elevation={2}
-                                sx={{
-                                    mx: 1,
-                                    backgroundColor: tip.value.includes('#FFFFFF') ? '#DDD' : '#FFF',
-                                    border: "1px solid black",
-                                }}
-                            >
-                                <Stack direction="row" spacing={0}>
-                                    {tip.value.map((color: string, index: number) => (
-                                        <div
-                                            key={index}
-                                            style={{
-                                                backgroundColor: color,
-                                                width: "20px",
-                                                height: "20px",
-                                            }}
-                                        />
-                                    ))}
-                                </Stack>
-                            </Card>
-                        }
-                    </ListItem>
-                ))
+
+
+
+
+    const onSubmitNextTip = () => {
+        startTransitionNextTip(async () => {
+            const response = await getTips({
+                gameId: game.gameId,
+                state: gameState || 0,
+                answer: ""
+            })
+
+            // criar mais um campo para os dados do clube correto (separar do right Answer no local storage)
+
+            if (response.success) {
+                setNewAnswer(game.gameId, response.userAnswer ?? "");
+                setAnswer('');
+                setTips(response.tips);
+
+                setGameState((prev) => prev ? prev + 1 : 0);
             }
-        </List >
+
+
+            //e.preventDefault();
+            //console.log("submit")
+            //setNewAnswer(gameId, '');
+            //await checkAnswer({ clubName: '' });
+            //setAnswer('');
+            //setState(state + 1)
+        })
+    }
+
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!isValidAnswer)
+            return
+        startTransitionAnswer(async () => {
+
+            const response = await getTips({
+                gameId: game.gameId,
+                state: gameState || 0,
+                answer
+            })
+            console.log({ response })
+            if (response.success) {
+                setNewAnswer(game.gameId, response.userAnswer ?? "");
+                setAnswer('');
+                setTips(response.tips);
+                if (response.rightAnswer) {
+                    //console.log("RESPOSTA CERTA")
+                    setGameRightAnswer(true);
+                    setLocalStorageRightAnswer(game.gameId, true);
+                    if (response.clubData) {
+                        setFinalAnswer(response.clubData)
+                    }
+                }
+                setGameState((prev) => prev ? prev + 1 : 0);
+            }
+        })
+    }
+
+    return (
+        <>
+            {tips.length > 0 &&
+                <TipsList tipsArray={tips} />
+            }
+
+            {(gameState != null && gameState < 5 && !gameRightAnswer) && (
+                <form
+                    onSubmit={(e) => onSubmit(e)}
+                >
+                    <Grid container>
+                        <Grid item xs='auto'>
+                            <IconButton
+                                onClick={(e) => onSubmitNextTip()}
+                                disabled={pendingNextTip}
+                            >
+                                <ModelTrainingIcon color={
+                                    (pendingNextTip) ? "disabled" : "secondary"} />
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs>
+                            <Autocomplete
+                                freeSolo
+                                options={clubSuggestions} // Usar clubSuggestions em vez de clubs.map(club => club.name)
+                                inputValue={answer}
+                                onInputChange={(event, newInputValue) => {
+                                    setAnswer(newInputValue);
+                                    if (newInputValue.length >= 2) { // Verificar se há pelo menos dois caracteres
+                                        const suggestions = filterClubs(clubsNamesList, newInputValue); // Filtrar sugestões com base nos caracteres digitados
+                                        setClubSuggestions(suggestions); // Atualizar as sugestões do Autocomplete
+                                    } else {
+                                        setClubSuggestions([]); // Limpar sugestões se o comprimento da entrada for menor que 2
+                                    }
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        disabled={pendingNextTip || pendingAnswer}
+                                        label="Palpite"
+                                        variant="outlined"
+                                        size="small"
+                                    />
+                                )}
+                            />
+                        </Grid>
+
+                        <Grid item xs='auto'>
+                            <IconButton
+                                type="submit"
+                                disabled={!isValidAnswer || answer.length === 0 || pendingAnswer}
+                            >
+                                <SendIcon color={
+                                    (!isValidAnswer || answer.length === 0 || pendingAnswer) ? "disabled" : "primary"}
+                                />
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                </form>
+            )}
+            {gameState != null && (gameState >= 5 || gameRightAnswer) &&
+                <>
+                    {finalAnswer &&
+                        <Typography variant="h4">
+                            Resposta: {finalAnswer.name}
+                        </Typography>
+                    }
+                    <ShareCard rightAnswer={gameRightAnswer} tipsNeeded={getGameAnswers(game.gameId).length} gameEdition={gameEdition} />
+
+                </>
+            }
+        </>
     )
 }

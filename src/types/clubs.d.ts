@@ -39,3 +39,8 @@ type GameHistoryLocalStorage = {
     rightAnswer: boolean;
     date: string;
 }
+
+type Tip = {
+    label: string;
+    value: string | string[] | number | null;
+}
