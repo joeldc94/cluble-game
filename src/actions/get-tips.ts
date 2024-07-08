@@ -74,12 +74,12 @@ export async function getTips({
       tips,
     };
   }
-  if (answer && !checkRightResponse) {
+  if ((answer || answer=="")&& !checkRightResponse) {
     //divulga proxima dica
     tips.splice(state + 2);
     return {
       success: true,
-      message: "Resposta incorreta",
+      message: answer ? "Resposta incorreta" : "Próxima dica revelada",
       userAnswer: answer,
       rightAnswer: false,
       clubData: null,

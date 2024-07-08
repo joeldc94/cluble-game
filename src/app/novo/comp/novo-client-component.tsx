@@ -52,22 +52,21 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                 rightAnswer
             })
             return response
-
         }
 
         if (gameState != null) {
-            getInitialTips(game.gameId, gameState, gameRightAnswer).then((data) => {
-                if (data.success) {
-                    setTips(data.tips);
-                    //setGameState(data.tips?.length - 1)
-                    if (data.rightAnswer && gameState >= 5) {
-                        setLocalStorageRightAnswer(game.gameId, data.rightAnswer);
-                        setGameRightAnswer(data.rightAnswer);
-                        if (data.clubData) {
-                            setFinalAnswer(data.clubData)
-                        }
+            getInitialTips(game.gameId, gameState, gameRightAnswer).then((response) => {
+                if (response.success) {
+                    setTips(response.tips);
+                    //setGameState(response.tips?.length - 1)
+                    if (response.rightAnswer && gameState >= 5) {
+                        setLocalStorageRightAnswer(game.gameId, response.rightAnswer);
+                        setGameRightAnswer(response.rightAnswer);
                     }
-                    console.log(data);
+                    console.log(response);
+                    if (response.clubData) {
+                        setFinalAnswer(response.clubData)
+                    }
                 }
             }
             );
@@ -97,6 +96,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
     const onSubmitNextTip = () => {
         startTransitionNextTip(async () => {
+            console.log({ gameState })
             const response = await getTips({
                 gameId: game.gameId,
                 state: gameState || 0,
@@ -106,11 +106,15 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             // criar mais um campo para os dados do clube correto (separar do right Answer no local storage)
 
             if (response.success) {
+                console.log(response)
                 setNewAnswer(game.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
 
-                setGameState((prev) => prev ? prev + 1 : 0);
+                setGameState((prev)=>prev+1);
+                if (response.clubData) {
+                    setFinalAnswer(response.clubData)
+                }
             }
 
 
@@ -143,11 +147,12 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                     //console.log("RESPOSTA CERTA")
                     setGameRightAnswer(true);
                     setLocalStorageRightAnswer(game.gameId, true);
-                    if (response.clubData) {
-                        setFinalAnswer(response.clubData)
-                    }
+                    
                 }
-                setGameState((prev) => prev ? prev + 1 : 0);
+                setGameState((prev)=>prev+1);
+                if (response.clubData) {
+                    setFinalAnswer(response.clubData)
+                }
             }
         })
     }
