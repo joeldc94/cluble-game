@@ -2,7 +2,7 @@
 
 import { getTips } from "@/actions/get-tips";
 import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
-import { Autocomplete, Card, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, Card, CardContent, CardHeader, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
 import { FormEvent, useEffect, useState, useTransition } from "react";
 import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
@@ -18,7 +18,7 @@ type NovoTipsProps = {
 export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }: NovoTipsProps) {
 
     const [initialized, setInitialized] = useState<boolean>(false)
-    const [gameState, setGameState] = useState<number | null>(null);
+    const [gameState, setGameState] = useState<number>(0);
     const [gameRightAnswer, setGameRightAnswer] = useState<boolean>(false);
     const [tips, setTips] = useState<Tip[]>([]);
 
@@ -26,6 +26,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
 
     const [answer, setAnswer] = useState<string>('');
+    const [userAnswers, setUserAnswers] = useState<string[]>([]);
     const [clubSuggestions, setClubSuggestions] = useState<string[]>([]);
     const [isValidAnswer, setIsValidAnswer] = useState<boolean>(false); // Novo estado para rastrear se a resposta é válida
     const [pendingNextTip, startTransitionNextTip] = useTransition();
@@ -41,6 +42,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         }
         setGameState(novoRegistro);
         setInitialized(true);
+        setUserAnswers(getGameAnswers(game.gameId));
     }, [])
 
     /**Consulta dicas para o estado atual */
@@ -110,8 +112,8 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                 setNewAnswer(game.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
-
-                setGameState((prev)=>prev+1);
+                setUserAnswers(getGameAnswers(game.gameId));
+                setGameState((prev) => prev + 1);
                 if (response.clubData) {
                     setFinalAnswer(response.clubData)
                 }
@@ -143,13 +145,14 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                 setNewAnswer(game.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
+                setUserAnswers(getGameAnswers(game.gameId));
                 if (response.rightAnswer) {
                     //console.log("RESPOSTA CERTA")
                     setGameRightAnswer(true);
                     setLocalStorageRightAnswer(game.gameId, true);
-                    
+
                 }
-                setGameState((prev)=>prev+1);
+                setGameState((prev) => prev + 1);
                 if (response.clubData) {
                     setFinalAnswer(response.clubData)
                 }
@@ -160,14 +163,14 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
     return (
         <>
             {tips.length > 0 &&
-                <TipsList tipsArray={tips} />
+                <TipsList tipsArray={tips} userAnswers={userAnswers}/>
             }
 
             {(gameState != null && gameState < 5 && !gameRightAnswer) && (
                 <form
                     onSubmit={(e) => onSubmit(e)}
                 >
-                    <Grid container>
+                    <Grid container sx={{my:2}}>
                         <Grid item xs='auto'>
                             <IconButton
                                 onClick={(e) => onSubmitNextTip()}
@@ -219,9 +222,15 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             {gameState != null && (gameState >= 5 || gameRightAnswer) &&
                 <>
                     {finalAnswer &&
-                        <Typography variant="h4">
-                            Resposta: {finalAnswer.name}
-                        </Typography>
+                        <Card component={Paper} elevation={2} sx={{mb:2}}>
+                            <CardHeader title="Resposta" />
+                            <CardContent sx={{display:"flex", justifyContent:"center", textAlign:"center"}}>
+                                <Typography variant="h4">
+                                    <strong>{finalAnswer.name}</strong>
+                                </Typography>
+                            </CardContent>
+
+                        </Card>
                     }
                     <ShareCard rightAnswer={gameRightAnswer} tipsNeeded={getGameAnswers(game.gameId).length} gameEdition={gameEdition} />
 

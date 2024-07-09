@@ -1,6 +1,6 @@
 "use client"
 
-import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Snackbar, Tooltip, Typography } from "@mui/material";
+import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -99,7 +99,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
 
     return (
         <>
-            <Card>
+            <Card component={Paper} elevation={2}>
                 <CardHeader title="Compartilhe!" sx={{ textAlign: 'center' }} />
                 <Divider />
                 <CardContent /* ref={shareRef} */>
