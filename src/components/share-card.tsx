@@ -56,7 +56,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
 
     /* rightAnswer = false
     tipsNeeded = 5 */
-    const siteLink = "https://cluble-game.vercel.app";
+    const siteLink = "https://cluble.today";
     const shareText1 = `Veja o clube de hoje no CLUBLE! Edição #${gameEdition}!`;
     const shareText2 = rightAnswer ?
         `Eu acertei com ${tipsNeeded} ${tipsNeeded > 1 ? 'dicas' : 'dica'}!` :
@@ -74,7 +74,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
         //if (!isMobileDevice) return;
         const mensagemCodificada = encodeURIComponent(shareMessage);
         const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
-        //const siteLink = "https://cluble-game.vercel.app";
+        //const siteLink = "https://cluble.today";
         const linkWithBreak = `${mensagemCodificada}%0A${siteLink}`;
         const linkWhatsAppWithBreak = `whatsapp://send?text=${linkWithBreak}`;
         window.location.href = linkWhatsApp;

@@ -163,7 +163,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
     return (
         <>
             {tips.length > 0 &&
-                <TipsList tipsArray={tips} userAnswers={userAnswers}/>
+                <TipsList tipsArray={tips} userAnswers={userAnswers} rightAnswered={gameRightAnswer}/>
             }
 
             {(gameState != null && gameState < 5 && !gameRightAnswer) && (
@@ -232,7 +232,11 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
                         </Card>
                     }
-                    <ShareCard rightAnswer={gameRightAnswer} tipsNeeded={getGameAnswers(game.gameId).length} gameEdition={gameEdition} />
+                    <ShareCard 
+                        rightAnswer={gameRightAnswer} 
+                        tipsNeeded={getGameAnswers(game.gameId).length} 
+                        gameEdition={game.id} 
+                    />
 
                 </>
             }

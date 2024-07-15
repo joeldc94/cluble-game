@@ -54,7 +54,11 @@ export default async function PageNovo() {
                 p: { xs: 0, sm: 2 }
             }}
             >
-                <NovoTipsComponent game={game} clubsNamesList={clubsList} gameEdition={game.id} />
+                <NovoTipsComponent  
+                    game={game} 
+                    clubsNamesList={clubsList} 
+                    gameEdition={game.id} 
+                />
             </Box>
         </>
     )
