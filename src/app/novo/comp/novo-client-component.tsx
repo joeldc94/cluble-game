@@ -17,13 +17,13 @@ type NovoTipsProps = {
 }
 export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }: NovoTipsProps) {
 
+    const [historyInitialized, setHistoryInitialized] = useState<boolean>(false)
     const [initialized, setInitialized] = useState<boolean>(false)
     const [gameState, setGameState] = useState<number>(0);
     const [gameRightAnswer, setGameRightAnswer] = useState<boolean>(false);
     const [tips, setTips] = useState<Tip[]>([]);
 
     const [finalAnswer, setFinalAnswer] = useState<ClubData | null>(null);
-
 
     const [answer, setAnswer] = useState<string>('');
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
@@ -41,7 +41,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             setGameRightAnswer(right);
         }
         setGameState(novoRegistro);
-        setInitialized(true);
+        setHistoryInitialized(true);
         setUserAnswers(getGameAnswers(game.gameId));
     }, [])
 
@@ -56,7 +56,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             return response
         }
 
-        if (gameState != null) {
+        if (gameState != null && historyInitialized) {
             getInitialTips(game.gameId, gameState, gameRightAnswer).then((response) => {
                 if (response.success) {
                     setTips(response.tips);
@@ -65,15 +65,15 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                         setLocalStorageRightAnswer(game.gameId, response.rightAnswer);
                         setGameRightAnswer(response.rightAnswer);
                     }
-                    console.log(response);
+                    console.log("Get tips response:", response);
                     if (response.clubData) {
                         setFinalAnswer(response.clubData)
                     }
+                    setInitialized(true);
                 }
-            }
-            );
+            });
         }
-    }, [initialized])
+    }, [historyInitialized])
 
     /** */
     useEffect(() => {
@@ -93,15 +93,12 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         )
     }
 
-
-
-
     const onSubmitNextTip = () => {
         startTransitionNextTip(async () => {
             console.log({ gameState })
             const response = await getTips({
                 gameId: game.gameId,
-                state: gameState || 0,
+                state: gameState+1 || 0,
                 answer: ""
             })
 
@@ -137,7 +134,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
             const response = await getTips({
                 gameId: game.gameId,
-                state: gameState || 0,
+                state: gameState+1 || 0,
                 answer
             })
             console.log({ response })
@@ -162,10 +159,11 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
     return (
         <>
+            {/** Lista de dicas */}
             {tips.length > 0 &&
                 <TipsList tipsArray={tips} userAnswers={userAnswers} rightAnswered={gameRightAnswer}/>
             }
-
+            {/** Formulário de resposta */}
             {(gameState != null && gameState < 5 && !gameRightAnswer) && (
                 <form
                     onSubmit={(e) => onSubmit(e)}
@@ -219,6 +217,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                     </Grid>
                 </form>
             )}
+            {/** Resposta final e compartilhar */}
             {gameState != null && (gameState >= 5 || gameRightAnswer) &&
                 <>
                     {finalAnswer &&
@@ -229,7 +228,6 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                                     <strong>{finalAnswer.name}</strong>
                                 </Typography>
                             </CardContent>
-
                         </Card>
                     }
                     <ShareCard 
