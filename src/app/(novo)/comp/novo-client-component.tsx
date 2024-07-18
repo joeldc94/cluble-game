@@ -65,7 +65,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                         setLocalStorageRightAnswer(game.gameId, response.rightAnswer);
                         setGameRightAnswer(response.rightAnswer);
                     }
-                    console.log("Get tips response:", response);
+                    //console.log("Get tips response:", response);
                     if (response.clubData) {
                         setFinalAnswer(response.clubData)
                     }
@@ -95,7 +95,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
     const onSubmitNextTip = () => {
         startTransitionNextTip(async () => {
-            console.log({ gameState })
+            //console.log({ gameState })
             const response = await getTips({
                 gameId: game.gameId,
                 state: gameState+1 || 0,
@@ -105,7 +105,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             // criar mais um campo para os dados do clube correto (separar do right Answer no local storage)
 
             if (response.success) {
-                console.log(response)
+                //console.log(response)
                 setNewAnswer(game.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
@@ -137,7 +137,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                 state: gameState+1 || 0,
                 answer
             })
-            console.log({ response })
+            //console.log({ response })
             if (response.success) {
                 setNewAnswer(game.gameId, response.userAnswer ?? "");
                 setAnswer('');
@@ -181,9 +181,10 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                         <Grid item xs>
                             <Autocomplete
                                 freeSolo
-                                options={clubSuggestions} // Usar clubSuggestions em vez de clubs.map(club => club.name)
+                                options={clubSuggestions}
+                                getOptionDisabled={(option) => userAnswers.includes(option)}
                                 inputValue={answer}
-                                onInputChange={(event, newInputValue) => {
+                                onInputChange={(_, newInputValue) => {
                                     setAnswer(newInputValue);
                                     if (newInputValue.length >= 2) { // Verificar se há pelo menos dois caracteres
                                         const suggestions = filterClubs(clubsNamesList, newInputValue); // Filtrar sugestões com base nos caracteres digitados

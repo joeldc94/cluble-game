@@ -50,7 +50,7 @@ export default async function PageNovo() {
             </Grid>
             <Divider />
             <Box sx={{
-                my: { xs: 2 },
+                my: { xs: 0 },
                 p: { xs: 0, sm: 2 }
             }}
             >

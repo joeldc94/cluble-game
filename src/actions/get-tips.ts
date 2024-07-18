@@ -17,7 +17,7 @@ export async function getTips({
     answer,
     rightAnswer,
 }: checkAnswerProps) {
-    console.log("GetTips:", { gameId, state, answer, rightAnswer });
+    //console.log("GetTips:", { gameId, state, answer, rightAnswer });
     const clubId = await getClubIdByGameId(gameId);
     if (!clubId)
         return {
