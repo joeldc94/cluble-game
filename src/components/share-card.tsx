@@ -1,6 +1,6 @@
 "use client"
 
-import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Snackbar, Tooltip, Typography } from "@mui/material";
+import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -56,7 +56,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
 
     /* rightAnswer = false
     tipsNeeded = 5 */
-    const siteLink = "https://cluble-game.vercel.app";
+    const siteLink = "https://cluble.today";
     const shareText1 = `Veja o clube de hoje no CLUBLE! Edição #${gameEdition}!`;
     const shareText2 = rightAnswer ?
         `Eu acertei com ${tipsNeeded} ${tipsNeeded > 1 ? 'dicas' : 'dica'}!` :
@@ -74,7 +74,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
         //if (!isMobileDevice) return;
         const mensagemCodificada = encodeURIComponent(shareMessage);
         const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
-        //const siteLink = "https://cluble-game.vercel.app";
+        //const siteLink = "https://cluble.today";
         const linkWithBreak = `${mensagemCodificada}%0A${siteLink}`;
         const linkWhatsAppWithBreak = `whatsapp://send?text=${linkWithBreak}`;
         window.location.href = linkWhatsApp;
@@ -99,7 +99,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
 
     return (
         <>
-            <Card>
+            <Card component={Paper} elevation={2}>
                 <CardHeader title="Compartilhe!" sx={{ textAlign: 'center' }} />
                 <Divider />
                 <CardContent /* ref={shareRef} */>
