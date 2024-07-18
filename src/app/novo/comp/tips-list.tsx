@@ -45,7 +45,7 @@ export default function TipsList({ tipsArray, userAnswers, rightAnswered }: Novo
                             <Typography fontSize={20} fontWeight={400} ml={2}>
                                 {tip.label != 'Cores' && tip.value}
                             </Typography>
-                            {tip.label == 'Cores' &&
+                            {Array.isArray(tip.value) && tip.label == 'Cores' &&
                                 < Card
                                     component={Paper}
                                     elevation={2}
