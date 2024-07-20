@@ -2,7 +2,7 @@
 
 import { getCurrentDay } from "./get-date";
 
-const DEFAULT_GAMES_HISTORY_KEY = "cluble-history_2";
+const DEFAULT_GAMES_HISTORY_KEY = "cluble-history";
 
 /** Obtem o histórico de jogos do Local Storage */
 export const getUserGamesHistory = () => {
