@@ -2,7 +2,7 @@
 
 import { getTips } from "@/actions/get-tips";
 import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
-import { Autocomplete, Card, CardContent, CardHeader, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, Avatar, Card, CardContent, CardHeader, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
 import { FormEvent, useEffect, useState, useTransition } from "react";
 import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
@@ -226,16 +226,30 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                         <Card component={Paper} elevation={2} sx={{ mb: 2 }}>
                             <CardHeader title="Resposta" />
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
-                                <Stack direction="row">
-                                    {!!finalAnswer.logo &&
-                                        <Paper elevation={3}>
+                                <Stack direction="row" spacing={4} alignItems="center">
+                                    {!!finalAnswer.logo && <>
+                                        <Image
+                                                src={finalAnswer.logo}
+                                                alt={`${finalAnswer.name}_logo`}
+                                                width={150}
+                                                height={150}
+                                            />
+                                        {/* <Paper elevation={6}>
                                             <Image
                                                 src={finalAnswer.logo}
                                                 alt={`${finalAnswer.name}_logo`}
-                                                width={100}
-                                                height={100}
+                                                width={150}
+                                                height={150}
                                             />
-                                        </Paper>
+                                        </Paper> 
+                                        <Avatar
+                                            component={Paper} elevation={5}
+                                            alt={`${finalAnswer.name}_logo`}
+                                            src={finalAnswer.logo}
+                                            sx={{ width: 150, height: 150 }}
+                                        />
+                                        */}
+                                        </>
                                     }
                                     <Typography variant="h4">
                                         <strong>{finalAnswer.name}</strong>
