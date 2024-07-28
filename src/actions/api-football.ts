@@ -19,7 +19,7 @@ interface checkAnswerProps {
 export async function fetchApiFootballClubData({
     clubApiFootballId
 }: checkAnswerProps) {
-    console.log(clubApiFootballId);
+    //console.log(clubApiFootballId);
 
     try {
         const response = await fetch(`https://v3.football.api-sports.io/teams?id=${clubApiFootballId}`, {
@@ -27,11 +27,11 @@ export async function fetchApiFootballClubData({
                 'x-rapidapi-host': 'v3.football.api-sports.io',
                 'x-rapidapi-key': process.env.API_FOOTBALL_KEY as string,
             },
-            //cache: 'force-cache',
-            //next: { tags: ['api-football'] }
+            cache: 'force-cache',
+            next: { tags: ['api-football'] }
         });
         const clubData = await response.json();
-        console.log("fetch", clubData.response);
+        //console.log("fetch", clubData.response);
         if (!!clubData.response[0])
             return clubData.response[0];
         else
