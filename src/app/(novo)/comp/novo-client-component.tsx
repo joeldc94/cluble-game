@@ -3,7 +3,7 @@
 import { getTips } from "@/actions/get-tips";
 import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
 import { Autocomplete, Avatar, Card, CardContent, CardHeader, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
-import { FormEvent, useEffect, useState, useTransition } from "react";
+import { FormEvent, useEffect, useRef, useState, useTransition } from "react";
 import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
 import SendIcon from '@mui/icons-material/Send';
@@ -17,6 +17,9 @@ type NovoTipsProps = {
     gameEdition: number;
 }
 export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }: NovoTipsProps) {
+
+    const respostaCardRef = useRef<HTMLDivElement>(null);
+
 
     const [historyInitialized, setHistoryInitialized] = useState<boolean>(false)
     const [initialized, setInitialized] = useState<boolean>(false)
@@ -68,7 +71,10 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                     }
                     //console.log("Get tips response:", response);
                     if (response.clubData) {
-                        setFinalAnswer(response.clubData)
+                        setFinalAnswer(response.clubData);
+                        /* if (respostaCardRef.current) {
+                            respostaCardRef.current.scrollIntoView({ behavior: 'smooth' });
+                        } */
                     }
                     setInitialized(true);
                 }
@@ -81,6 +87,15 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         // Verificar se a resposta é válida sempre que o valor de 'answer' mudar
         setIsValidAnswer(clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
     }, [answer]);
+
+
+    useEffect(() => {
+        if (gameState != null && (gameState >= 5 || gameRightAnswer)) {
+          if (respostaCardRef.current) {
+            respostaCardRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, [finalAnswer]);
 
     /** Skeleton para renderizar enquanto não estiver inicializado */
     if (!initialized) {
@@ -223,7 +238,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             {gameState != null && (gameState >= 5 || gameRightAnswer) &&
                 <>
                     {finalAnswer &&
-                        <Card component={Paper} elevation={2} sx={{ mb: 2 }}>
+                        <Card ref={respostaCardRef} component={Paper} elevation={2} sx={{ mb: 2 }}>
                             <CardHeader title="Resposta" sx={{ textAlign: 'center' }} />
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
                                 <Stack
