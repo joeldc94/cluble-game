@@ -20,16 +20,24 @@ export async function fetchApiFootballClubData({
     clubApiFootballId
 }: checkAnswerProps) {
 
+    try {
+        const response = await fetch(`https://v3.football.api-sports.io/teams?id=${clubApiFootballId}`, {
+            headers: {
+                'x-rapidapi-host': 'v3.football.api-sports.io',
+                'x-rapidapi-key': process.env.API_FOOTBALL_KEY as string,
+            },
+            cache: 'force-cache',
+            next: { tags: ['api-football'] }
+        });
+        const clubData = await response.json();
+        console.log("fetch", clubData.response);
+        if (!!clubData.response[0])
+            return clubData.response[0];
+        else
+            return null
+    } catch (error) {
+        console.log("erro ao fazer fetch na api-football", error)
+        return null
+    }
 
-    const response = await fetch(`https://v3.football.api-sports.io/teams?id=${clubApiFootballId}`, {
-        headers: {
-            'x-rapidapi-host': 'v3.football.api-sports.io',
-            'x-rapidapi-key': process.env.API_FOOTBALL_KEY as string,
-        },
-        cache: 'force-cache',
-        next: { tags: ['api-football'] }
-    });
-    const clubData = await response.json();
-    //console.log(clubData.response);
-    return clubData.response[0];
 }
