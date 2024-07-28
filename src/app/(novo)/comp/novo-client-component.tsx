@@ -224,7 +224,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                 <>
                     {finalAnswer &&
                         <Card component={Paper} elevation={2} sx={{ mb: 2 }}>
-                            <CardHeader title="Resposta" />
+                            <CardHeader title="Resposta" sx={{ textAlign: 'center' }} />
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
                                 <Stack direction="row" spacing={4} alignItems="center">
                                     {!!finalAnswer.logo && <>
