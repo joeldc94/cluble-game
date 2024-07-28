@@ -26,8 +26,8 @@ export async function fetchApiFootballClubData({
                 'x-rapidapi-host': 'v3.football.api-sports.io',
                 'x-rapidapi-key': process.env.API_FOOTBALL_KEY as string,
             },
-            cache: 'force-cache',
-            next: { tags: ['api-football'] }
+            //cache: 'force-cache',
+            //next: { tags: ['api-football'] }
         });
         const clubData = await response.json();
         console.log("fetch", clubData.response);
