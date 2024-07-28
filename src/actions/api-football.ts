@@ -6,6 +6,7 @@ const cacheKey = 'my-data';
 const cacheTimeout = 86400; // 24 hours
 
 //"https://v3.football.api-sports.io/teams?name=sousa&country=brazil&league=76&season=2024"
+// leagueId: 
 // serieC = 71
 // serieC = 72
 // serieC = 75

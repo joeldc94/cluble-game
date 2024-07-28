@@ -9,6 +9,7 @@ import { filterClubs } from "@/utils/string";
 import SendIcon from '@mui/icons-material/Send';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { ShareCard } from "@/components/share-card";
+import Image from "next/image";
 
 type NovoTipsProps = {
     game: GameData;
@@ -47,7 +48,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
     /**Consulta dicas para o estado atual */
     useEffect(() => {
-        const getInitialTips = async (gameId: string, state: number, rightAnswer: boolean) => {
+        const getInitialTips: any = async (gameId: string, state: number, rightAnswer: boolean) => {
             const response = await getTips({
                 gameId,
                 state,
@@ -57,7 +58,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         }
 
         if (gameState != null && historyInitialized) {
-            getInitialTips(game.gameId, gameState, gameRightAnswer).then((response) => {
+            getInitialTips(game.gameId, gameState, gameRightAnswer).then((response: any) => {
                 if (response.success) {
                     setTips(response.tips);
                     //setGameState(response.tips?.length - 1)
@@ -98,7 +99,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             //console.log({ gameState })
             const response = await getTips({
                 gameId: game.gameId,
-                state: gameState+1 || 0,
+                state: gameState + 1 || 0,
                 answer: ""
             })
 
@@ -134,7 +135,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
 
             const response = await getTips({
                 gameId: game.gameId,
-                state: gameState+1 || 0,
+                state: gameState + 1 || 0,
                 answer
             })
             //console.log({ response })
@@ -161,14 +162,14 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
         <>
             {/** Lista de dicas */}
             {tips.length > 0 &&
-                <TipsList tipsArray={tips} userAnswers={userAnswers} rightAnswered={gameRightAnswer}/>
+                <TipsList tipsArray={tips} userAnswers={userAnswers} rightAnswered={gameRightAnswer} />
             }
             {/** Formulário de resposta */}
             {(gameState != null && gameState < 5 && !gameRightAnswer) && (
                 <form
                     onSubmit={(e) => onSubmit(e)}
                 >
-                    <Grid container sx={{my:2}}>
+                    <Grid container sx={{ my: 2 }}>
                         <Grid item xs='auto'>
                             <IconButton
                                 onClick={(e) => onSubmitNextTip()}
@@ -222,19 +223,32 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
             {gameState != null && (gameState >= 5 || gameRightAnswer) &&
                 <>
                     {finalAnswer &&
-                        <Card component={Paper} elevation={2} sx={{mb:2}}>
+                        <Card component={Paper} elevation={2} sx={{ mb: 2 }}>
                             <CardHeader title="Resposta" />
-                            <CardContent sx={{display:"flex", justifyContent:"center", textAlign:"center"}}>
-                                <Typography variant="h4">
-                                    <strong>{finalAnswer.name}</strong>
-                                </Typography>
+                            <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
+                                <Stack direction="row">
+                                    {!!finalAnswer.logo &&
+                                        <Paper elevation={3}>
+                                            <Image
+                                                src={finalAnswer.logo}
+                                                alt={`${finalAnswer.name}_logo`}
+                                                width={100}
+                                                height={100}
+                                            />
+                                        </Paper>
+                                    }
+                                    <Typography variant="h4">
+                                        <strong>{finalAnswer.name}</strong>
+                                    </Typography>
+                                </Stack>
+
                             </CardContent>
                         </Card>
                     }
-                    <ShareCard 
-                        rightAnswer={gameRightAnswer} 
-                        tipsNeeded={getGameAnswers(game.gameId).length} 
-                        gameEdition={game.id} 
+                    <ShareCard
+                        rightAnswer={gameRightAnswer}
+                        tipsNeeded={getGameAnswers(game.gameId).length}
+                        gameEdition={game.id}
                     />
 
                 </>

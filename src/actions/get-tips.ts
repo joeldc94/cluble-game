@@ -3,6 +3,7 @@ import "server-only";
 import { getClubById } from "@/utils/get-club";
 import { getClubIdByGameId } from "@/utils/sql-games";
 import { checkAnswer } from "./check-answer";
+import { fetchApiFootballClubData } from "./api-football";
 
 interface checkAnswerProps {
     gameId: string;
@@ -32,6 +33,10 @@ export async function getTips({
             message: "Não foi possível identificar o clube de hoje",
             tips: []
         };
+
+    const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
+    club.logo = apiData.team.logo;
+    //console.log(apiData)
     const tips: Tip[] = [
         {
             label: "Cores",

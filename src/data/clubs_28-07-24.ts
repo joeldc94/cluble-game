@@ -4,7 +4,7 @@ export type CurrentClub = {
     id: number[];
 }
 
-export const clubs: ClubData[] = [
+export const clubs: any[] = [
   {
     "id": 1,
     "name": "Athletico-PR",
