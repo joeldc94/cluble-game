@@ -226,14 +226,19 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                         <Card component={Paper} elevation={2} sx={{ mb: 2 }}>
                             <CardHeader title="Resposta" sx={{ textAlign: 'center' }} />
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
-                                <Stack direction="row" spacing={4} alignItems="center">
+                                <Stack
+                                    direction="row"
+                                    justifyContent="space-evenly"
+                                    alignItems="center"
+                                    spacing={2}
+                                >
                                     {!!finalAnswer.logo && <>
                                         <Image
-                                                src={finalAnswer.logo}
-                                                alt={`${finalAnswer.name}_logo`}
-                                                width={150}
-                                                height={150}
-                                            />
+                                            src={finalAnswer.logo}
+                                            alt={`${finalAnswer.name}_logo`}
+                                            width={150}
+                                            height={150}
+                                        />
                                         {/* <Paper elevation={6}>
                                             <Image
                                                 src={finalAnswer.logo}
@@ -249,7 +254,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                                             sx={{ width: 150, height: 150 }}
                                         />
                                         */}
-                                        </>
+                                    </>
                                     }
                                     <Typography variant="h4">
                                         <strong>{finalAnswer.name}</strong>
