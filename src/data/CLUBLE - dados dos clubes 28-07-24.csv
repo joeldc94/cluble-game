@@ -1,0 +1,125 @@
+﻿id;apiFootballId;name;fullName;city;state;country;stadium;stadiumFullName;division;colors;foundationYear;idol;mascot
+1;134;Athletico-PR;Club Athletico Paranaense;Curitiba;PR;Brasil;Arena da Baixada;Estádio Joaquim Américo Guimarães;Série A;['red', 'black'];1924;Sicupira;Furacão
+2;144;Atlético-GO;Atlético Clube Goianiense;Goiânia;GO;Brasil;Estádio Antônio Accioly;Estádio Antônio Accioly;Série A;['red', 'black'];1937;Lino Freitas;Dragão
+3;162;Atlético-MG;Clube Atlético Mineiro;Belo Horizonte;MG;Brasil;Arena MRV;Arena MRV;Série A;['black', 'white'];1908;Reinaldo;Galo
+4;118;Bahia;Esporte Clube Bahia;Salvador;BA;Brasil;Arena Fonte Nova;Itaipava Arena Fonte Nova;Série A;['blue', 'red', 'white'];1931;Bobô;Super-Homem
+5;120;Botafogo;Botafogo de Futebol e Regatas;Rio de Janeiro;RJ;Brasil;Estádio Nilton Santos (Engenhão);Estádio Nilton Santos;Série A;['black', 'white'];1904;Garrincha;Manequinho
+6;794;Red Bull Bragantino;Red Bull Bragantino Futebol Clube;Bragança Paulista;SP;Brasil;Estádio Nabi Abi Chedid;Estádio Nabi Abi Chedid;Série A;['white', 'red', 'blue'];1928;Mauro Silva;Touro
+7;131;Corinthians;Sport Club Corinthians Paulista;São Paulo;SP;Brasil;Neo Química Arena;Neo Química Arena;Série A;['white', 'black'];1910;Cássio;Mosqueteiro
+8;140;Criciúma;Criciúma Esporte Clube;Criciúma;SC;Brasil;Estádio Heriberto Hülse;Estádio Heriberto Hülse;Série A;['black', 'yellow', 'white'];1947;Roberto Cavalo;Tigre
+9;135;Cruzeiro;Cruzeiro Esporte Clube;Belo Horizonte;MG;Brasil;Mineirão;Estádio Governador Magalhães Pinto;Série A;['blue', 'white'];1921;Tostão;Raposa
+10;1.193;Cuiabá;Cuiabá Esporte Clube;Cuiabá;MT;Brasil;Arena Pantanal;Arena Pantanal;Série A;['green', 'yellow'];2001;Walter;Peixe
+11;127;Flamengo;Clube de Regatas do Flamengo;Rio de Janeiro;RJ;Brasil;Maracanã;Estádio Jornalista Mário Filho;Série A;['red', 'black'];1895;Zico;Urubu
+12;124;Fluminense;Fluminense Football Club;Rio de Janeiro;RJ;Brasil;Maracanã;Estádio Jornalista Mário Filho;Série A;['green', 'maroon', 'white'];1902;Castilho;Guerreiro
+13;154;Fortaleza;Fortaleza Esporte Clube;Fortaleza;CE;Brasil;Arena Castelão;Arena Castelão;Série A;['blue', 'red', 'white'];1918;Clodoaldo;Leão
+14;130;Grêmio;Grêmio Foot-Ball Porto Alegrense;Porto Alegre;RS;Brasil;Arena do Grêmio;Arena do Grêmio;Série A;['blue', 'black', 'white'];1903;Renato Portaluppi;Mosqueteiro
+15;119;Internacional;Sport Club Internacional;Porto Alegre;RS;Brasil;Estádio Beira-Rio;Estádio Beira-Rio;Série A;['red', 'white'];1909;Falcão;Saci
+16;152;Juventude;Esporte Clube Juventude;Caxias do Sul;RS;Brasil;Estádio Alfredo Jaconi;Estádio Alfredo Jaconi;Série A;['green', 'white'];1913;Valdomiro;Papagaio
+17;121;Palmeiras;Sociedade Esportiva Palmeiras;São Paulo;SP;Brasil;Allianz Parque;Allianz Parque;Série A;['green', 'white'];1914;Ademir da Guia;Porco
+18;126;São Paulo;São Paulo Futebol Clube;São Paulo;SP;Brasil;Estádio do Morumbi;Estádio Cícero Pompeu de Toledo;Série A;['white', 'red', 'black'];1930;Rogério Ceni;Santo
+19;133;Vasco da Gama;Club de Regatas Vasco da Gama;Rio de Janeiro;RJ;Brasil;São Januário;Estádio São Januário;Série A;['black', 'white'];1898;Roberto Dinamite;Almirante
+20;136;Vitória;Esporte Clube Vitória;Salvador;BA;Brasil;Barradão;Estádio Manoel Barradas;Série A;['red', 'black'];1899;Mário Sérgio;Leão
+21;10.862;Amazonas;Amazonas Futebol Clube;Manaus;AM;Brasil;Arena da Amazônia;Estádio Municipal Carlos Zamith;Série B;['yellow', 'black'];2019;Rafael Tavares;Onça pintada
+22;125;América-MG;América Futebol Clube;Belo Horizonte;MG;Brasil;Arena Independência;Estádio Raimundo Sampaio;Série B;['green', 'black'];1912;Jair Bala;Coelho
+23;145;Avaí;Avaí Futebol Clube;Florianópolis;SC;Brasil;Ressacada;Estádio Aderbal Ramos da Silva;Série B;['blue', 'white'];1923;Marquinhos;Leão
+24;2.618;Botafogo-SP;Botafogo Futebol Clube;Ribeirão Preto;SP;Brasil;Santa Cruz;Estádio Santa Cruz;Série B;['black','red', 'white'];1918;Sócrates;Pantera
+25;1.211;Brusque;Brusque Futebol Clube;Brusque;SC;Brasil;Augusto Bauer;Estádio Augusto Bauer;Série B;['yellow','red', 'green'];1987;Thiago Alagoano;Marreco
+26;129;Ceará;Ceará Sporting Club;Fortaleza;CE;Brasil;Castelão;Estádio Governador Plácido Castelo;Série B;['black', 'white'];1914;Gildo;Vovô
+27;132;Chapecoense;Associação Chapecoense de Futebol;Chapecó;SC;Brasil;Arena Condá;Arena Condá;Série B;['green', 'white'];1973;Danilo;Índio
+28;147;Coritiba;Coritiba Foot Ball Club;Curitiba;PR;Brasil;Couto Pereira;Estádio Major Antônio Couto Pereira;Série B;['green', 'white'];1909;Alex;Vovô
+29;146;CRB;Clube de Regatas Brasil;Maceió;AL;Brasil;Rei Pelé;Estádio Rei Pelé;Série B;['red', 'white'];1912;Zico;Galo de campina
+30;151;Goiás;Goiás Esporte Clube;Goiânia;GO;Brasil;Serrinha;Estádio Haile Pinheiro;Série B;['green', 'white'];1943;Túlio Maravilha;Periquito
+31;138;Guarani;Guarani Futebol Clube;Campinas;SP;Brasil;Brinco de Ouro;Estádio Brinco de Ouro da Princesa;Série B;['green', 'white'];1911;Careca;Índio
+32;7.779;Ituano;Ituano Futebol Clube;Itu;SP;Brasil;Novelli Júnior;Estádio Municipal Doutor Novelli Júnior;Série B;['black', 'red'];1947;Juninho Paulista;Galo
+33;7.848;Mirassol;Mirassol Futebol Clube;Mirassol;SP;Brasil;José Maria de Campos Maia;Estádio Municipal José Maria de Campos Maia;Série B;['yellow', 'green'];1925;Sérgio Manoel;Leão
+34;7.834;Novorizontino;Grêmio Novorizontino;Novo Horizonte;SP;Brasil;Jorge Ismael de Biasi;Estádio Doutor Jorge Ismael de Biasi;Série B;['yellow', 'black'];2010;Roberto Dinamite;Tigre
+35;1.223;Operário-PR;Operário Ferroviário Esporte Clube;Ponta Grossa;PR;Brasil;Germano Krüger;Estádio Germano Krüger;Série B;['black', 'white'];1912;Chicão;Fantasma
+36;149;Paysandu;Paysandu Sport Club;Belém;PA;Brasil;Curuzu;Estádio Leônidas Sodré de Castro;Série B;['blue', 'white'];1914;Vandick Lima;Bicho-papão
+37;139;Ponte Preta;Associação Atlética Ponte Preta;Campinas;SP;Brasil;Moisés Lucarelli;Estádio Moisés Lucarelli;Série B;['black', 'white'];1900;Dicá;Macaca
+38;128;Santos;Santos Futebol Clube;Santos;SP;Brasil;Vila Belmiro;Estádio Urbano Caldeira;Série B;['white', 'black'];1912;Pelé;Baleia
+39;123;Sport;Sport Club do Recife;Recife;PE;Brasil;Ilha do Retiro;Estádio Adelmar da Costa Carvalho;Série B;['black', 'red'];1905;Magrão;Leão
+40;142;Vila Nova;Vila Nova Futebol Clube;Goiânia;GO;Brasil;Onésio Brasileiro Alvarenga;Estádio Onésio Brasileiro Alvarenga;Série B;['red', 'white'];1943;Túlio Maravilha;Tigre
+41;754;ABC;ABC Futebol Clube;Natal;RN;Brasil;Frasqueirão;Estádio Maria Lamas Farache;Série C;['black', 'white'];1915;Alberi;Elefante
+42;1.202;Aparecidense;Associação Atlética Aparecidense;Aparecida de Goiânia;GO;Brasil;Anníbal Batista de Toledo;Estádio Anníbal Batista de Toledo;Série C;['blue', 'white'];1985;Nonato;Camaleão
+43;13.975;Athletic Club;Athletic Club;São João del-Rei;MG;Brasil;Arena Sicredi;Estádio João Guido;Série C;['black', 'white'];1933;Ninão;Guerreiro
+44;1.197;Botafogo-PB;Botafogo Futebol Clube;João Pessoa;PB;Brasil;Almeidão;Estádio José Américo de Almeida Filho;Série C;['black', 'white'];1931;Pedro Basílio;Xerife
+45;7.770;Caxias;Sociedade Esportiva e Recreativa Caxias do Sul;Caxias do Sul;RS;Brasil;Centenário;Estádio Francisco Stédile;Série C;['maroon','blue', 'white'];1935;Luiz Felipe Scolari;Falcão
+46;7.772;Confiança;Associação Desportiva Confiança;Aracaju;SE;Brasil;Sabino Ribeiro;Estádio Sabino Ribeiro;Série C;['blue', 'white'];1936;Cícero Ramalho;Taz
+47;150;CSA;Centro Sportivo Alagoano;Maceió;AL;Brasil;Rei Pelé;Estádio Rei Pelé;Série C;['blue', 'white'];1913;Dida;Azulão
+48;7.826;Ferroviária-SP;Associação Ferroviária de Esportes;Araraquara;SP;Brasil;Fonte Luminosa;Estádio Doutor Adhemar de Barros;Série C;['maroon', 'white'];1950;Dudu;Locomotiva
+49;1.195;Ferroviário-CE;Ferroviário Atlético Clube;Fortaleza;CE;Brasil;Elzir Cabral;Estádio Elzir Cabral;Série C;['red','white','black'];1933;Evaristo de Macedo;Tubarão
+50;137;Figueirense;Figueirense Futebol Clube;Florianópolis;SC;Brasil;Orlando Scarpelli;Estádio Orlando Scarpelli;Série C;['black', 'white'];1921;Fernandes;Furacão
+51;7.774;Floresta;Floresta Esporte Clube;Fortaleza;CE;Brasil;Domingão;Estádio Domingão;Série C;['green', 'white'];1954;Lula Pereira;Lobo
+52;148;Londrina;Londrina Esporte Clube;Londrina;PR;Brasil;Estádio do Café;Estádio do Café;Série C;['blue', 'white'];1956;Paulo Rink;Tubarão
+53;755;Náutico;Clube Náutico Capibaribe;Recife;PE;Brasil;Aflitos;Estádio Eládio de Barros Carvalho;Série C;['red', 'white'];1901;Kuki;Timbu
+54;1.198;Remo;Clube do Remo;Belém;PA;Brasil;Baenão;Estádio Evandro Almeida;Série C;['dark-blue', 'white'];1905;Quarentinha;Leão
+55;155;Sampaio Corrêa;Sampaio Corrêa Futebol Clube;São Luís;MA;Brasil;Castelão;Estádio Governador João Castelo;Série C;['green', 'yellow','red'];1923;Flávio Araújo;Tubarão
+56;7.865;São Bernardo;São Bernardo Futebol Clube;São Bernardo do Campo;SP;Brasil;Primeiro de Maio;Estádio Primeiro de Maio;Série C;['yellow', 'black'];2004;Brandãozinho;Tigre
+57;2.232;São José-RS;Esporte Clube São José;Porto Alegre;RS;Brasil;Passo D’Areia;Estádio Passo D’Areia;Série C;['blue', 'white'];1913;Everton;Santo
+58;2.227;Tombense;Tombense Futebol Clube;Tombos;MG;Brasil;Antônio Guimarães de Almeida;Estádio Antônio Guimarães de Almeida;Série C;['red', 'white'];1914;Marcelinho Carioca;Carcará
+59;7.814;Volta Redonda;Volta Redonda Futebol Clube;Volta Redonda;RJ;Brasil;Raulino de Oliveira;Estádio da Cidadania;Série C;['yellow', 'black'];1976;Dija Baiano;Jaguatirica
+60;1.221;Ypiranga;Ypiranga Futebol Clube;Erechim;RS;Brasil;Colosso da Lagoa;Estádio Colosso da Lagoa;Série C;['yellow','green'];1928;Rubens Minelli;Canário
+61;10.018;Água Santa;Esporte Clube Água Santa;Diadema;SP;Brasil;Distrital do Inamar;Estádio Municipal Distrital do Inamar;Série D;['blue', 'white'];1981;Pinho;Netuno
+62;7.879;Águia de Marabá;Águia de Marabá Futebol Clube;Marabá;PA;Brasil;Zinho Oliveira;Estádio Municipal Zinho Oliveira;Série D;['blue', 'white'];1982;Léo Goiano;Águia
+63;1.203;Altos;Associação Atlética de Altos;Altos;PI;Brasil;Felipão;Estádio Municipal Felipe Raulino;Série D;['green', 'white'];2013;Manoel;Jacaré
+64;2.223;América-RN;América Futebol Clube;Natal;RN;Brasil;Arena das Dunas;Estádio José Vasconcelos da Rocha;Série D;['red', 'white'];1915;Severino;Dragão
+65;7.852;Anápolis;Anápolis Futebol Clube;Anápolis;GO;Brasil;Jonas Duarte;Estádio Jonas Duarte;Série D;['red', 'black', 'white'];1949;Wando;Galo
+66;1.207;ASA;Agremiação Sportiva Arapiraquense;Arapiraca;AL;Brasil;Coaracy da Mata Fonseca;Estádio Coaracy da Mata Fonseca;Série D;['black', 'white'];1952;Leandro Kível;Fantasma
+67;2.229;Atlético-CE;Atlético Cearense;Fortaleza;CE;Brasil;Presidente Vargas;Estádio Presidente Vargas;Série D;['red', 'black'];1996;Mazinho Loyola;Águia
+68;13.107;Audax Rio;Grêmio Osasco Audax Esporte Clube;Rio de Janeiro;RJ;Brasil;Moça Bonita;Estádio Proletário Guilherme da Silveira Filho;Série D;['orange', 'blue'];1985;Ypiranga;Cachorro
+69;2.205;Avenida;Esporte Clube Avenida;Santa Cruz do Sul;RS;Brasil;Eucaliptos;Estádio dos Eucaliptos;Série D;['green', 'white'];1944;Baideck;Periquito
+70;18.271;Barra FC;Barra Futebol Clube;Balneário Camboriú;SC;Brasil;Camilo Mussi;Estádio Camilo Mussi;Série D;['blue', 'white'];2013;Marcelo Quilder;Pescador
+71;141;Brasil de Pelotas;Grêmio Esportivo Brasil;Pelotas;RS;Brasil;Bento Freitas;Estádio Bento Freitas;Série D;['red', 'black'];1911;Airton Ferreira;Índio
+72;2.208;Brasiliense;Brasiliense Futebol Clube;Taguatinga;DF;Brasil;Boca do Jacaré;Estádio Elmo Serejo Farias;Série D;['yellow', 'white'];2000;Lenílson;Jacaré
+73;20.723;Cametá;Cametá Esporte Clube;Cametá;PA;Brasil;Parque do Bacurau;Estádio Parque do Bacurau;Série D;['green', 'red'];2007;Lindomar;Mapará
+74;13.134;Capital;Capital Futebol Clube;Palmas;TO;Brasil;Nilton Santos;Estádio Nilton Santos;Série D;['red', 'black'];2012;Renatinho Potiguar;Onça parda
+75;1.194;Cianorte;Cianorte Futebol Clube;São João del-Rei;PR;Brasil;Albino Turbay;Estádio Albino Turbay;Série D;['blue', 'white'];2002;Leandrão;Leão
+76;12.300;Concórdia;Concórdia Atlético Clube;Concórdia;SC;Brasil;Domingos Machado de Lima;Estádio Domingos Machado de Lima;Série D;['green', 'red', 'white'];2005;Romário;Galo
+77;13.103;Costa Rica;Costa Rica Esporte Clube;Costa Rica;MS;Brasil;Laertão;Estádio Municipal Laerte Paes Coelho;Série D;['white', 'blue'];2004;Júlio César;Cobra
+78;10.671;CRAC;Clube Recreativo e Atlético Catalano;Catalão;GO;Brasil;Genervino da Fonseca;Estádio Genervino da Fonseca;Série D;['blue', 'white'];1931;Rômulo;Leão
+79;9.127;CSE;Clube Sociedade Esportiva;Palmeira dos Índios;AL;Brasil;Juca Sampaio;Estádio Juca Sampaio;Série D;['green', 'red', 'white'];1947;Rodrigo;Índio
+80;13.081;Democrata;Esporte Clube Democrata;Sete Lagoas;MG;Brasil;Arena do Jacaré;Estádio Joaquim Henrique Nogueira;Série D;['red', 'white'];1932;Toninho Almeida;Jacaré
+81;10.673;FC Cascavel;Futebol Clube Cascavel;Cascavel;PR;Brasil;Olímpico Regional;Estádio Olímpico Regional Arnaldo Busatto;Série D;['black', 'yellow'];2008;Rafael Gava;Cobra
+82;15.617;Fluminense-PI;Fluminense Esporte Clube;Teresina;PI;Brasil;Lindolfo Monteiro;Estádio Lindolfo Monteiro;Série D;['green', 'white', 'maroon'];1945;Toninho Baiano;Vaqueiro
+83;2.221;River;River Atlético Clube;Teresina;PI;Brasil;Albertão;Estádio Governador Alberto Tavares Silva;Série D;['red', 'white','black'];1948;Marcílio;Galo
+84;7.828;Hercílio Luz;Hercílio Luz Futebol Clube;Tubarão;SC;Brasil;Aníbal Costa;Estádio Aníbal Torres Costa;Série D;['red', 'white'];1918;Paulinho;Leão
+85;10.478;Humaitá;Humaitá Esporte Clube;Porto Acre;AC;Brasil;Arena do Juruá;Estádio Arena do Juruá;Série D;['green', 'white', 'red'];2011;Ricardo;Touro
+86;15.505;Iguatu;Associação Desportiva Recreativa Cultural Iguatu;Iguatu;CE;Brasil;Morenão;Estádio Antônio Moreno de Mello;Série D;['blue', 'white'];2002;Hércules;Azulão
+87;1.201;Inter de Limeira;Associação Atlética Internacional;Limeira;SP;Brasil;Major José Levy Sobrinho;Estádio Major José Levy Sobrinho;Série D;['black', 'white'];1913;Ismael;Leão
+88;12.277;Ipatinga;Ipatinga Futebol Clube;Ipatinga;MG;Brasil;Ipatingão;Estádio Municipal João Lamego Netto;Série D;['green', 'white'];1998;Gérson;Tigre
+89;7.829;Iporá;Iporá Esporte Clube;Iporá;GO;Brasil;Ferreirão;Estádio Francisco José Ferreira;Série D;['yellow', 'blue'];2000;Rodrigo Alves;Lobo
+90;2.204;Itabaiana;Associação Olímpica de Itabaiana;Itabaiana;SE;Brasil;Etelvino Mendonça;Estádio Etelvino Mendonça;Série D;['red', 'blue', 'white'];1938;Bita;Cebola
+91;18.831;Itabuna;Itabuna Esporte Clube;Itabuna;BA;Brasil;Luiz Viana Filho;Estádio Luiz Viana Filho;Série D;['blue', 'white'];1967;Paulo Roberto;Dragão
+92;7.831;Jacuipense;Esporte Clube Jacuipense;Riachão do Jacuípe;BA;Brasil;Eliel Martins;Estádio Eliel Martins;Série D;['maroon', 'white'];1965;Nino Paraíba;Leão
+93;1.224;Juazeirense;Associação Desportiva Juazeirense;Juazeiro;BA;Brasil;Adauto Moraes;Estádio Adauto Moraes;Série D;['red', 'yellow'];2006;Capone;Cancão
+94;18.308;Manauara;Manauara Esporte Clube;Manaus;AM;Brasil;Ismael Benigno;Estádio Ismael Benigno;Série D;['orange', 'black'];2018;Mariano;Robô
+95;2.214;Manaus;Manaus Futebol Clube;Manaus;AM;Brasil;Arena da Amazônia;Estádio Arena da Amazônia;Série D;['green', 'black'];2013;Anderson;Gavião
+96;13.089;Maracanã;Maracanã Esporte Clube;Fortaleza;CE;Brasil;Raimundo de Oliveira;Estádio Raimundo de Oliveira;Série D;['blue', 'white'];2010;Alysson;Maracanã (ave)
+97;7.832;Maranhão;Maranhão Atlético Clube;São Luís;MA;Brasil;Castelão;Estádio Governador João Castelo;Série D;['red', 'blue', 'white'];1932;Riba;Bode
+98;7.833;Maringá;Maringá Futebol Clube;Maringá;PR;Brasil;Willie Davids;Estádio Willie Davids;Série D;['green', 'black', 'white'];2010;Bruno Batata;Cachorro
+99;2.215;Mixto;Mixto Esporte Clube;Cuiabá;MT;Brasil;Arena Pantanal;Arena Pantanal;Série D;['black', 'white'];1934;Genilson;Tigre
+100;2.216;Moto Club;Moto Club de São Luís;São Luís;MA;Brasil;Castelão;Estádio Governador João Castelo;Série D;['red', 'black'];1937;Rubens;Papão
+101;7.782;Nova Iguaçu;Nova Iguaçu Futebol Clube;Nova Iguaçu;RJ;Brasil;Jânio Moraes;Estádio Jânio Moraes;Série D;['orange', 'white'];1990;Paulinho Guará;Pantera
+102;1.199;Novo Hamburgo;Esporte Clube Novo Hamburgo;Novo Hamburgo;RS;Brasil;Estádio do Vale;Estádio do Vale;Série D;['blue', 'white'];1911;Tiago Gaúcho;Sapato
+103;7.824;Patrocinense;Clube Atlético Patrocinense;Patrocínio;MG;Brasil;Pedro Nascimento;Estádio Pedro Alves do Nascimento;Série D;['maroon', 'white'];1954;Marcelo Oliveira;Águia
+104;12.299;Petrolina;Petrolina Social Futebol Clube;Petrolina;PE;Brasil;Paulo Coelho;Estádio Paulo de Souza Coelho;Série D;['green', 'red', 'yellow'];1998;Marcelo;Tigre
+105;12.946;Porto Velho;Porto Velho Esporte Clube;Porto Velho;RO;Brasil;Aluízio Ferreira;Estádio Aluízio Ferreira;Série D;['red', 'blue'];2018;Dourado;Locomotiva
+106;7.835;Portuguesa Carioca;Associação Atlética Portuguesa;Rio de Janeiro;RJ;Brasil;Luso-Brasileiro;Estádio Luso-Brasileiro;Série D;['red', 'green'];1924;Almir;Zebra
+107;7.861;Potiguar;Associação Cultural e Desportiva Potiguar;Mossoró;RN;Brasil;Nogueirão;Estádio Leonardo Nogueira;Série D;['red', 'white'];1945;Luciano Heleno;Príncipe
+108;13.084;Pouso Alegre;Pouso Alegre Futebol Clube;Pouso Alegre;MG;Brasil;Manduzão;Estádio Municipal Irmão Gino Maria Rossi;Série D;['red', 'black'];1913;Anderson Lessa;Dragão
+109;7.862;Princesa do Solimões;Princesa do Solimões Esporte Clube;Manacapuru;AM;Brasil;Gilbertão;Estádio Gilberto Mestrinho;Série D;['red', 'white'];1971;Washington;Tubarão
+110;12.925;Real Brasília;Real Brasília Futebol Clube;Brasília;DF;Brasil;Defelê;Estádio Ciro Machado do Espírito Santo;Série D;['blue', 'white'];1996;Edmar;Leão
+111;10.679;Real Noroeste;Real Noroeste Capixaba Futebol Clube;Águia Branca;ES;Brasil;José Olímpio da Rocha;Estádio José Olímpio da Rocha;Série D;['red', 'white'];2008;Zé Humberto;Águia
+112;13.098;Retrô;Retrô Futebol Clube Brasil;Camaragibe;PE;Brasil;Arena de Pernambuco;Estádio Arena de Pernambuco;Série D;['blue', 'yellow'];2016;Juninho;Fênix
+113;2.220;Rio Branco;Rio Branco Football Club;Rio Branco;AC;Brasil;Arena da Floresta;Estádio Arena da Floresta;Série D;['red', 'white'];1919;Juliano César;Estrela
+114;2.222;Santa Cruz-RN;Santa Cruz Futebol Clube;Natal;RN;Brasil;Frasqueirão;Estádio Maria Lamas Farache;Série D;['red', 'white','black'];1914;Jairo;Cardeal
+115;10.003;Santo André;Esporte Clube Santo André;Santo André;SP;Brasil;Bruno José Daniel;Estádio Bruno José Daniel;Série D;['white', 'blue'];1967;Fábio Santos;João Ramalho
+116;15.622;São José-SP;São José Esporte Clube;São José dos Campos;SP;Brasil;Martins Pereira;Estádio Martins Pereira;Série D;['blue', 'white'];1933;Ademir;Águia
+117;1.218;São Raimundo;São Raimundo Esporte Clube;Boa Vista;RR;Brasil;Canarinho;Estádio Flamarion Vasconcelos;Série D;['blue', 'white'];1918;Capone;Pássaro azul
+118;2.224;Sergipe;Club Sportivo Sergipe;Aracaju;SE;Brasil;João Hora;Estádio João Hora de Oliveira;Série D;['red', 'white'];1909;Nadélio;Diabo
+119;2.225;Serra;Serra Futebol Clube;Serra;ES;Brasil;Robertão;Estádio Roberto Siqueira Costa;Série D;['red', 'black', 'white'];1930;Fernandinho;Cobra Coral
+120;7.864;Sousa;Sousa Esporte Clube;Sousa;PB;Brasil;Marizão;Estádio Antônio Mariz;Série D;['green', 'white'];1991;Zé Carioca;Dinossauro
+121;7.878;Tocantinópolis;Tocantinópolis Esporte Clube;Tocantinópolis;TO;Brasil;Ribeirão;Estádio João Ribeiro;Série D;['green', 'white'];1989;Zeca;Papagaio
+122;7.868;Trem;Trem Desportivo Clube;Macapá;AP;Brasil;Zerão;Estádio Milton de Souza Corrêa;Série D;['red', 'black'];1947;Abel;Maquinista
+123;7.787;Treze;Treze Futebol Clube;Campina Grande;PB;Brasil;Amigão;Estádio Governador Ernani Sátyro;Série D;['black', 'white'];1925;Beto;Galo
+124;7.788;União Rondonópolis;União Esporte Clube;Rondonópolis;MT;Brasil;Luthero Lopes;Estádio Engenheiro Luthero Lopes;Série D;['red', 'white'];1973;Zé Roberto;Touro

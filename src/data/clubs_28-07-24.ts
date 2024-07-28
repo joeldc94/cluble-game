@@ -7,7 +7,6 @@ export type CurrentClub = {
 export const clubs: ClubData[] = [
   {
     "id": 1,
-    "apiFootballId": 134,
     "name": "Athletico-PR",
     "fullName": "Club Athletico Paranaense",
     "city": "Curitiba",
@@ -23,7 +22,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 2,
-    "apiFootballId": 144,
     "name": "Atlético-GO",
     "fullName": "Atlético Clube Goianiense",
     "city": "Goiânia",
@@ -39,7 +37,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 3,
-    "apiFootballId": 162,
     "name": "Atlético-MG",
     "fullName": "Clube Atlético Mineiro",
     "city": "Belo Horizonte",
@@ -55,7 +52,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 4,
-    "apiFootballId": 118,
     "name": "Bahia",
     "fullName": "Esporte Clube Bahia",
     "city": "Salvador",
@@ -71,7 +67,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 5,
-    "apiFootballId": 120,
     "name": "Botafogo",
     "fullName": "Botafogo de Futebol e Regatas",
     "city": "Rio de Janeiro",
@@ -87,7 +82,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 6,
-    "apiFootballId": 794,
     "name": "Red Bull Bragantino",
     "fullName": "Red Bull Bragantino Futebol Clube",
     "city": "Bragança Paulista",
@@ -103,7 +97,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 7,
-    "apiFootballId": 131,
     "name": "Corinthians",
     "fullName": "Sport Club Corinthians Paulista",
     "city": "São Paulo",
@@ -119,7 +112,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 8,
-    "apiFootballId": 140,
     "name": "Criciúma",
     "fullName": "Criciúma Esporte Clube",
     "city": "Criciúma",
@@ -135,7 +127,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 9,
-    "apiFootballId": 135,
     "name": "Cruzeiro",
     "fullName": "Cruzeiro Esporte Clube",
     "city": "Belo Horizonte",
@@ -151,7 +142,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 10,
-    "apiFootballId": 1.193,
     "name": "Cuiabá",
     "fullName": "Cuiabá Esporte Clube",
     "city": "Cuiabá",
@@ -167,7 +157,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 11,
-    "apiFootballId": 127,
     "name": "Flamengo",
     "fullName": "Clube de Regatas do Flamengo",
     "city": "Rio de Janeiro",
@@ -183,7 +172,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 12,
-    "apiFootballId": 124,
     "name": "Fluminense",
     "fullName": "Fluminense Football Club",
     "city": "Rio de Janeiro",
@@ -199,7 +187,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 13,
-    "apiFootballId": 154,
     "name": "Fortaleza",
     "fullName": "Fortaleza Esporte Clube",
     "city": "Fortaleza",
@@ -215,7 +202,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 14,
-    "apiFootballId": 130,
     "name": "Grêmio",
     "fullName": "Grêmio Foot-Ball Porto Alegrense",
     "city": "Porto Alegre",
@@ -231,7 +217,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 15,
-    "apiFootballId": 119,
     "name": "Internacional",
     "fullName": "Sport Club Internacional",
     "city": "Porto Alegre",
@@ -247,7 +232,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 16,
-    "apiFootballId": 152,
     "name": "Juventude",
     "fullName": "Esporte Clube Juventude",
     "city": "Caxias do Sul",
@@ -263,7 +247,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 17,
-    "apiFootballId": 121,
     "name": "Palmeiras",
     "fullName": "Sociedade Esportiva Palmeiras",
     "city": "São Paulo",
@@ -279,7 +262,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 18,
-    "apiFootballId": 126,
     "name": "São Paulo",
     "fullName": "São Paulo Futebol Clube",
     "city": "São Paulo",
@@ -295,7 +277,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 19,
-    "apiFootballId": 133,
     "name": "Vasco da Gama",
     "fullName": "Club de Regatas Vasco da Gama",
     "city": "Rio de Janeiro",
@@ -311,7 +292,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 20,
-    "apiFootballId": 136,
     "name": "Vitória",
     "fullName": "Esporte Clube Vitória",
     "city": "Salvador",
@@ -327,7 +307,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 21,
-    "apiFootballId": 10.862,
     "name": "Amazonas",
     "fullName": "Amazonas Futebol Clube",
     "city": "Manaus",
@@ -343,7 +322,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 22,
-    "apiFootballId": 125,
     "name": "América-MG",
     "fullName": "América Futebol Clube",
     "city": "Belo Horizonte",
@@ -359,7 +337,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 23,
-    "apiFootballId": 145,
     "name": "Avaí",
     "fullName": "Avaí Futebol Clube",
     "city": "Florianópolis",
@@ -375,7 +352,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 24,
-    "apiFootballId": 2.618,
     "name": "Botafogo-SP",
     "fullName": "Botafogo Futebol Clube",
     "city": "Ribeirão Preto",
@@ -391,7 +367,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 25,
-    "apiFootballId": 1.211,
     "name": "Brusque",
     "fullName": "Brusque Futebol Clube",
     "city": "Brusque",
@@ -407,7 +382,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 26,
-    "apiFootballId": 129,
     "name": "Ceará",
     "fullName": "Ceará Sporting Club",
     "city": "Fortaleza",
@@ -423,7 +397,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 27,
-    "apiFootballId": 132,
     "name": "Chapecoense",
     "fullName": "Associação Chapecoense de Futebol",
     "city": "Chapecó",
@@ -439,7 +412,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 28,
-    "apiFootballId": 147,
     "name": "Coritiba",
     "fullName": "Coritiba Foot Ball Club",
     "city": "Curitiba",
@@ -455,7 +427,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 29,
-    "apiFootballId": 146,
     "name": "CRB",
     "fullName": "Clube de Regatas Brasil",
     "city": "Maceió",
@@ -471,7 +442,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 30,
-    "apiFootballId": 151,
     "name": "Goiás",
     "fullName": "Goiás Esporte Clube",
     "city": "Goiânia",
@@ -487,7 +457,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 31,
-    "apiFootballId": 138,
     "name": "Guarani",
     "fullName": "Guarani Futebol Clube",
     "city": "Campinas",
@@ -503,7 +472,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 32,
-    "apiFootballId": 7.779,
     "name": "Ituano",
     "fullName": "Ituano Futebol Clube",
     "city": "Itu",
@@ -519,7 +487,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 33,
-    "apiFootballId": 7.848,
     "name": "Mirassol",
     "fullName": "Mirassol Futebol Clube",
     "city": "Mirassol",
@@ -535,7 +502,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 34,
-    "apiFootballId": 7.834,
     "name": "Novorizontino",
     "fullName": "Grêmio Novorizontino",
     "city": "Novo Horizonte",
@@ -551,7 +517,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 35,
-    "apiFootballId": 1.223,
     "name": "Operário-PR",
     "fullName": "Operário Ferroviário Esporte Clube",
     "city": "Ponta Grossa",
@@ -567,7 +532,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 36,
-    "apiFootballId": 149,
     "name": "Paysandu",
     "fullName": "Paysandu Sport Club",
     "city": "Belém",
@@ -583,7 +547,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 37,
-    "apiFootballId": 139,
     "name": "Ponte Preta",
     "fullName": "Associação Atlética Ponte Preta",
     "city": "Campinas",
@@ -599,7 +562,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 38,
-    "apiFootballId": 128,
     "name": "Santos",
     "fullName": "Santos Futebol Clube",
     "city": "Santos",
@@ -615,7 +577,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 39,
-    "apiFootballId": 123,
     "name": "Sport",
     "fullName": "Sport Club do Recife",
     "city": "Recife",
@@ -631,7 +592,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 40,
-    "apiFootballId": 142,
     "name": "Vila Nova",
     "fullName": "Vila Nova Futebol Clube",
     "city": "Goiânia",
@@ -647,7 +607,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 41,
-    "apiFootballId": 754,
     "name": "ABC",
     "fullName": "ABC Futebol Clube",
     "city": "Natal",
@@ -663,7 +622,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 42,
-    "apiFootballId": 1.202,
     "name": "Aparecidense",
     "fullName": "Associação Atlética Aparecidense",
     "city": "Aparecida de Goiânia",
@@ -679,7 +637,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 43,
-    "apiFootballId": 13.975,
     "name": "Athletic Club",
     "fullName": "Athletic Club",
     "city": "São João del-Rei",
@@ -695,7 +652,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 44,
-    "apiFootballId": 1.197,
     "name": "Botafogo-PB",
     "fullName": "Botafogo Futebol Clube",
     "city": "João Pessoa",
@@ -711,7 +667,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 45,
-    "apiFootballId": 7.77,
     "name": "Caxias",
     "fullName": "Sociedade Esportiva e Recreativa Caxias do Sul",
     "city": "Caxias do Sul",
@@ -727,7 +682,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 46,
-    "apiFootballId": 7.772,
     "name": "Confiança",
     "fullName": "Associação Desportiva Confiança",
     "city": "Aracaju",
@@ -743,7 +697,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 47,
-    "apiFootballId": 150,
     "name": "CSA",
     "fullName": "Centro Sportivo Alagoano",
     "city": "Maceió",
@@ -759,7 +712,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 48,
-    "apiFootballId": 7.826,
     "name": "Ferroviária-SP",
     "fullName": "Associação Ferroviária de Esportes",
     "city": "Araraquara",
@@ -775,7 +727,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 49,
-    "apiFootballId": 1.195,
     "name": "Ferroviário-CE",
     "fullName": "Ferroviário Atlético Clube",
     "city": "Fortaleza",
@@ -791,7 +742,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 50,
-    "apiFootballId": 137,
     "name": "Figueirense",
     "fullName": "Figueirense Futebol Clube",
     "city": "Florianópolis",
@@ -807,7 +757,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 51,
-    "apiFootballId": 7.774,
     "name": "Floresta",
     "fullName": "Floresta Esporte Clube",
     "city": "Fortaleza",
@@ -823,7 +772,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 52,
-    "apiFootballId": 148,
     "name": "Londrina",
     "fullName": "Londrina Esporte Clube",
     "city": "Londrina",
@@ -839,7 +787,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 53,
-    "apiFootballId": 755,
     "name": "Náutico",
     "fullName": "Clube Náutico Capibaribe",
     "city": "Recife",
@@ -855,7 +802,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 54,
-    "apiFootballId": 1.198,
     "name": "Remo",
     "fullName": "Clube do Remo",
     "city": "Belém",
@@ -871,7 +817,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 55,
-    "apiFootballId": 155,
     "name": "Sampaio Corrêa",
     "fullName": "Sampaio Corrêa Futebol Clube",
     "city": "São Luís",
@@ -887,7 +832,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 56,
-    "apiFootballId": 7.865,
     "name": "São Bernardo",
     "fullName": "São Bernardo Futebol Clube",
     "city": "São Bernardo do Campo",
@@ -903,7 +847,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 57,
-    "apiFootballId": 2.232,
     "name": "São José-RS",
     "fullName": "Esporte Clube São José",
     "city": "Porto Alegre",
@@ -919,7 +862,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 58,
-    "apiFootballId": 2.227,
     "name": "Tombense",
     "fullName": "Tombense Futebol Clube",
     "city": "Tombos",
@@ -935,7 +877,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 59,
-    "apiFootballId": 7.814,
     "name": "Volta Redonda",
     "fullName": "Volta Redonda Futebol Clube",
     "city": "Volta Redonda",
@@ -951,7 +892,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 60,
-    "apiFootballId": 1.221,
     "name": "Ypiranga",
     "fullName": "Ypiranga Futebol Clube",
     "city": "Erechim",
@@ -967,7 +907,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 61,
-    "apiFootballId": 10.018,
     "name": "Água Santa",
     "fullName": "Esporte Clube Água Santa",
     "city": "Diadema",
@@ -983,7 +922,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 62,
-    "apiFootballId": 7.879,
     "name": "Águia de Marabá",
     "fullName": "Águia de Marabá Futebol Clube",
     "city": "Marabá",
@@ -999,7 +937,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 63,
-    "apiFootballId": 1.203,
     "name": "Altos",
     "fullName": "Associação Atlética de Altos",
     "city": "Altos",
@@ -1015,7 +952,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 64,
-    "apiFootballId": 2.223,
     "name": "América-RN",
     "fullName": "América Futebol Clube",
     "city": "Natal",
@@ -1031,7 +967,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 65,
-    "apiFootballId": 7.852,
     "name": "Anápolis",
     "fullName": "Anápolis Futebol Clube",
     "city": "Anápolis",
@@ -1047,7 +982,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 66,
-    "apiFootballId": 1.207,
     "name": "ASA",
     "fullName": "Agremiação Sportiva Arapiraquense",
     "city": "Arapiraca",
@@ -1063,7 +997,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 67,
-    "apiFootballId": 2.229,
     "name": "Atlético-CE",
     "fullName": "Atlético Cearense",
     "city": "Fortaleza",
@@ -1079,7 +1012,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 68,
-    "apiFootballId": 13.107,
     "name": "Audax Rio",
     "fullName": "Grêmio Osasco Audax Esporte Clube",
     "city": "Rio de Janeiro",
@@ -1095,7 +1027,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 69,
-    "apiFootballId": 2.205,
     "name": "Avenida",
     "fullName": "Esporte Clube Avenida",
     "city": "Santa Cruz do Sul",
@@ -1111,7 +1042,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 70,
-    "apiFootballId": 18.271,
     "name": "Barra FC",
     "fullName": "Barra Futebol Clube",
     "city": "Balneário Camboriú",
@@ -1127,7 +1057,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 71,
-    "apiFootballId": 141,
     "name": "Brasil de Pelotas",
     "fullName": "Grêmio Esportivo Brasil",
     "city": "Pelotas",
@@ -1143,7 +1072,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 72,
-    "apiFootballId": 2.208,
     "name": "Brasiliense",
     "fullName": "Brasiliense Futebol Clube",
     "city": "Taguatinga",
@@ -1159,7 +1087,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 73,
-    "apiFootballId": 20.723,
     "name": "Cametá",
     "fullName": "Cametá Esporte Clube",
     "city": "Cametá",
@@ -1175,7 +1102,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 74,
-    "apiFootballId": 13.134,
     "name": "Capital",
     "fullName": "Capital Futebol Clube",
     "city": "Palmas",
@@ -1191,7 +1117,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 75,
-    "apiFootballId": 1.194,
     "name": "Cianorte",
     "fullName": "Cianorte Futebol Clube",
     "city": "São João del-Rei",
@@ -1207,7 +1132,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 76,
-    "apiFootballId": 12.3,
     "name": "Concórdia",
     "fullName": "Concórdia Atlético Clube",
     "city": "Concórdia",
@@ -1223,7 +1147,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 77,
-    "apiFootballId": 13.103,
     "name": "Costa Rica",
     "fullName": "Costa Rica Esporte Clube",
     "city": "Costa Rica",
@@ -1239,7 +1162,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 78,
-    "apiFootballId": 10.671,
     "name": "CRAC",
     "fullName": "Clube Recreativo e Atlético Catalano",
     "city": "Catalão",
@@ -1255,7 +1177,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 79,
-    "apiFootballId": 9.127,
     "name": "CSE",
     "fullName": "Clube Sociedade Esportiva",
     "city": "Palmeira dos Índios",
@@ -1271,7 +1192,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 80,
-    "apiFootballId": 13.081,
     "name": "Democrata",
     "fullName": "Esporte Clube Democrata",
     "city": "Sete Lagoas",
@@ -1287,7 +1207,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 81,
-    "apiFootballId": 10.673,
     "name": "FC Cascavel",
     "fullName": "Futebol Clube Cascavel",
     "city": "Cascavel",
@@ -1303,7 +1222,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 82,
-    "apiFootballId": 15.617,
     "name": "Fluminense-PI",
     "fullName": "Fluminense Esporte Clube",
     "city": "Teresina",
@@ -1319,7 +1237,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 83,
-    "apiFootballId": 2.221,
     "name": "River",
     "fullName": "River Atlético Clube",
     "city": "Teresina",
@@ -1335,7 +1252,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 84,
-    "apiFootballId": 7.828,
     "name": "Hercílio Luz",
     "fullName": "Hercílio Luz Futebol Clube",
     "city": "Tubarão",
@@ -1351,7 +1267,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 85,
-    "apiFootballId": 10.478,
     "name": "Humaitá",
     "fullName": "Humaitá Esporte Clube",
     "city": "Porto Acre",
@@ -1367,7 +1282,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 86,
-    "apiFootballId": 15.505,
     "name": "Iguatu",
     "fullName": "Associação Desportiva Recreativa Cultural Iguatu",
     "city": "Iguatu",
@@ -1383,7 +1297,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 87,
-    "apiFootballId": 1.201,
     "name": "Inter de Limeira",
     "fullName": "Associação Atlética Internacional",
     "city": "Limeira",
@@ -1399,7 +1312,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 88,
-    "apiFootballId": 12.277,
     "name": "Ipatinga",
     "fullName": "Ipatinga Futebol Clube",
     "city": "Ipatinga",
@@ -1415,7 +1327,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 89,
-    "apiFootballId": 7.829,
     "name": "Iporá",
     "fullName": "Iporá Esporte Clube",
     "city": "Iporá",
@@ -1431,7 +1342,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 90,
-    "apiFootballId": 2.204,
     "name": "Itabaiana",
     "fullName": "Associação Olímpica de Itabaiana",
     "city": "Itabaiana",
@@ -1447,7 +1357,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 91,
-    "apiFootballId": 18.831,
     "name": "Itabuna",
     "fullName": "Itabuna Esporte Clube",
     "city": "Itabuna",
@@ -1463,7 +1372,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 92,
-    "apiFootballId": 7.831,
     "name": "Jacuipense",
     "fullName": "Esporte Clube Jacuipense",
     "city": "Riachão do Jacuípe",
@@ -1479,7 +1387,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 93,
-    "apiFootballId": 1.224,
     "name": "Juazeirense",
     "fullName": "Associação Desportiva Juazeirense",
     "city": "Juazeiro",
@@ -1495,7 +1402,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 94,
-    "apiFootballId": 18.308,
     "name": "Manauara",
     "fullName": "Manauara Esporte Clube",
     "city": "Manaus",
@@ -1511,7 +1417,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 95,
-    "apiFootballId": 2.214,
     "name": "Manaus",
     "fullName": "Manaus Futebol Clube",
     "city": "Manaus",
@@ -1527,7 +1432,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 96,
-    "apiFootballId": 13.089,
     "name": "Maracanã",
     "fullName": "Maracanã Esporte Clube",
     "city": "Fortaleza",
@@ -1543,7 +1447,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 97,
-    "apiFootballId": 7.832,
     "name": "Maranhão",
     "fullName": "Maranhão Atlético Clube",
     "city": "São Luís",
@@ -1559,7 +1462,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 98,
-    "apiFootballId": 7.833,
     "name": "Maringá",
     "fullName": "Maringá Futebol Clube",
     "city": "Maringá",
@@ -1575,7 +1477,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 99,
-    "apiFootballId": 2.215,
     "name": "Mixto",
     "fullName": "Mixto Esporte Clube",
     "city": "Cuiabá",
@@ -1591,7 +1492,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 100,
-    "apiFootballId": 2.216,
     "name": "Moto Club",
     "fullName": "Moto Club de São Luís",
     "city": "São Luís",
@@ -1607,7 +1507,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 101,
-    "apiFootballId": 7.782,
     "name": "Nova Iguaçu",
     "fullName": "Nova Iguaçu Futebol Clube",
     "city": "Nova Iguaçu",
@@ -1623,7 +1522,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 102,
-    "apiFootballId": 1.199,
     "name": "Novo Hamburgo",
     "fullName": "Esporte Clube Novo Hamburgo",
     "city": "Novo Hamburgo",
@@ -1639,7 +1537,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 103,
-    "apiFootballId": 7.824,
     "name": "Patrocinense",
     "fullName": "Clube Atlético Patrocinense",
     "city": "Patrocínio",
@@ -1655,7 +1552,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 104,
-    "apiFootballId": 12.299,
     "name": "Petrolina",
     "fullName": "Petrolina Social Futebol Clube",
     "city": "Petrolina",
@@ -1671,7 +1567,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 105,
-    "apiFootballId": 12.946,
     "name": "Porto Velho",
     "fullName": "Porto Velho Esporte Clube",
     "city": "Porto Velho",
@@ -1687,7 +1582,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 106,
-    "apiFootballId": 7.835,
     "name": "Portuguesa Carioca",
     "fullName": "Associação Atlética Portuguesa",
     "city": "Rio de Janeiro",
@@ -1703,7 +1597,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 107,
-    "apiFootballId": 7.861,
     "name": "Potiguar",
     "fullName": "Associação Cultural e Desportiva Potiguar",
     "city": "Mossoró",
@@ -1719,7 +1612,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 108,
-    "apiFootballId": 13.084,
     "name": "Pouso Alegre",
     "fullName": "Pouso Alegre Futebol Clube",
     "city": "Pouso Alegre",
@@ -1735,7 +1627,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 109,
-    "apiFootballId": 7.862,
     "name": "Princesa do Solimões",
     "fullName": "Princesa do Solimões Esporte Clube",
     "city": "Manacapuru",
@@ -1751,7 +1642,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 110,
-    "apiFootballId": 12.925,
     "name": "Real Brasília",
     "fullName": "Real Brasília Futebol Clube",
     "city": "Brasília",
@@ -1767,7 +1657,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 111,
-    "apiFootballId": 10.679,
     "name": "Real Noroeste",
     "fullName": "Real Noroeste Capixaba Futebol Clube",
     "city": "Águia Branca",
@@ -1783,7 +1672,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 112,
-    "apiFootballId": 13.098,
     "name": "Retrô",
     "fullName": "Retrô Futebol Clube Brasil",
     "city": "Camaragibe",
@@ -1799,7 +1687,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 113,
-    "apiFootballId": 2.22,
     "name": "Rio Branco",
     "fullName": "Rio Branco Football Club",
     "city": "Rio Branco",
@@ -1815,7 +1702,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 114,
-    "apiFootballId": 2.222,
     "name": "Santa Cruz-RN",
     "fullName": "Santa Cruz Futebol Clube",
     "city": "Natal",
@@ -1831,7 +1717,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 115,
-    "apiFootballId": 10.003,
     "name": "Santo André",
     "fullName": "Esporte Clube Santo André",
     "city": "Santo André",
@@ -1847,7 +1732,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 116,
-    "apiFootballId": 15.622,
     "name": "São José-SP",
     "fullName": "São José Esporte Clube",
     "city": "São José dos Campos",
@@ -1863,7 +1747,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 117,
-    "apiFootballId": 1.218,
     "name": "São Raimundo",
     "fullName": "São Raimundo Esporte Clube",
     "city": "Boa Vista",
@@ -1879,7 +1762,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 118,
-    "apiFootballId": 2.224,
     "name": "Sergipe",
     "fullName": "Club Sportivo Sergipe",
     "city": "Aracaju",
@@ -1895,7 +1777,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 119,
-    "apiFootballId": 2.225,
     "name": "Serra",
     "fullName": "Serra Futebol Clube",
     "city": "Serra",
@@ -1911,7 +1792,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 120,
-    "apiFootballId": 7.864,
     "name": "Sousa",
     "fullName": "Sousa Esporte Clube",
     "city": "Sousa",
@@ -1927,7 +1807,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 121,
-    "apiFootballId": 7.878,
     "name": "Tocantinópolis",
     "fullName": "Tocantinópolis Esporte Clube",
     "city": "Tocantinópolis",
@@ -1943,7 +1822,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 122,
-    "apiFootballId": 7.868,
     "name": "Trem",
     "fullName": "Trem Desportivo Clube",
     "city": "Macapá",
@@ -1959,7 +1837,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 123,
-    "apiFootballId": 7.787,
     "name": "Treze",
     "fullName": "Treze Futebol Clube",
     "city": "Campina Grande",
@@ -1975,7 +1852,6 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 124,
-    "apiFootballId": 7.788,
     "name": "União Rondonópolis",
     "fullName": "União Esporte Clube",
     "city": "Rondonópolis",
@@ -1989,4 +1865,4 @@ export const clubs: ClubData[] = [
     "idol": "Zé Roberto",
     "mascot": "Touro"
   }
-]
+ ]

@@ -1,6 +1,7 @@
 /** Dados de cada clube */
 type ClubData = {
     id: number;
+    apiFootballId: number;
     name: string;
     fullName: string;
     city: string;
