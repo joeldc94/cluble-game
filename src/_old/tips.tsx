@@ -5,7 +5,7 @@ import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import SportsSoccerTwoToneIcon from '@mui/icons-material/SportsSoccerTwoTone';
 import AnswerForm from "./answer-form";
 import { getGameAnswers, getLocalStorageRightAnswer, getUserGamesHistory } from "@/utils/localStorage";
-import { ShareCard } from "./share-card";
+import { ShareCard } from "../components/share-card";
 
 interface TipsProps {
     club: ClubData;

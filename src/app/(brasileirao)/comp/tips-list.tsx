@@ -23,9 +23,9 @@ function getTipColor(tipIndex: number, answersLength: number, right: boolean) {
 export default function TipsList({ tipsArray, userAnswers, rightAnswered }: NovoTipsProps) {
 
     return (
-        <List>
+        <List disablePadding sx={{ mb:2 }}>
             {tipsArray.map((tip, index) => (
-                <ListItem key={tip.label}>
+                <ListItem key={tip.label} disablePadding>
                     <ListItemIcon>
                         <Avatar
                             sx={{

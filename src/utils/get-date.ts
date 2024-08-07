@@ -1,3 +1,9 @@
+/**
+ * Returns the current date formatted as a string in the 'pt-BR' locale,
+ * with the weekday, day, month, year, and time zone in the specified options.
+ *
+ * @return {string} The formatted current date.
+ */
 export function getCurrentDateFormatted() {
     const currentDate = new Date();
 
