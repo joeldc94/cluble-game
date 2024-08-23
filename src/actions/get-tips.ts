@@ -35,9 +35,9 @@ export async function getTips({
         };
 
     const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
-    //console.log("tips",apiData);
+    console.log("tips", apiData);
     club.logo = apiData ? apiData.team.logo : "";
-    
+
     const tips: Tip[] = [
         {
             label: "Cores",
@@ -61,7 +61,7 @@ export async function getTips({
         },
     ];
 
-    let checkRightResponse = !!rightAnswer ?? false;
+    let checkRightResponse = !!rightAnswer// ?? false;
     //console.log(checkRightResponse, answer, club.name)
 
     if (!!answer && !checkRightResponse) {
