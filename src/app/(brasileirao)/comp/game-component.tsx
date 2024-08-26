@@ -11,13 +11,12 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { ShareCard } from "@/components/share-card";
 import Image from "next/image";
 
-type NovoTipsProps = {
+type GameComponentProps = {
     game: GameData;
     clubsNamesList: string[];
     gameEdition: number;
 }
-export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }: NovoTipsProps) {
-
+export default function GameComponent({ game, clubsNamesList, gameEdition }: GameComponentProps) {
     const respostaCardRef = useRef<HTMLDivElement>(null);
 
 
@@ -243,7 +242,7 @@ export default function NovoTipsComponent({ game, clubsNamesList, gameEdition }:
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
                                 <Stack
                                     direction="row"
-                                    justifyContent="space-evenly"
+                                    justifyContent="space-around"
                                     alignItems="center"
                                     spacing={2}
                                 >

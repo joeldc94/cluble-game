@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-import { Container, CssBaseline, Skeleton } from "@mui/material";
-import { Suspense } from "react";
+import { Container, CssBaseline } from "@mui/material";
 
 export const metadata: Metadata = {
     title: "CLUBLE",
@@ -22,12 +21,8 @@ export default function RootLayout({
                 <SpeedInsights />
                 <CssBaseline />
                 <AppRouterCacheProvider>
-                    <Container maxWidth="sm" >
-                        <Suspense fallback={
-                            <Skeleton />
-                        }>
-                            {children}
-                        </Suspense>
+                    <Container maxWidth="sm" sx={{ minHeight: "100vh" }}>
+                        {children}
                     </Container>
                 </AppRouterCacheProvider>
             </body>

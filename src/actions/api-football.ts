@@ -19,7 +19,6 @@ interface checkAnswerProps {
 export async function fetchApiFootballClubData({
     clubApiFootballId
 }: checkAnswerProps) {
-    //console.log(clubApiFootballId);
 
     try {
         const response = await fetch(`https://v3.football.api-sports.io/teams?id=${clubApiFootballId}`, {
