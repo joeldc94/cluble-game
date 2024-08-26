@@ -8,7 +8,7 @@ type DateHeaderProps = {
 export const DateHeader = ({ gameEdition }: DateHeaderProps) => {
     return (
         <Grid container alignItems="center" justifyContent="space-between">
-            <Grid item xs={1} pl={1}>
+            <Grid item xs={1} pl={0}>
                 <Typography variant="subtitle1" textAlign="left">
                     #{String(gameEdition).padStart(3, '0')}
                 </Typography>

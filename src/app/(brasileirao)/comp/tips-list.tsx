@@ -25,7 +25,7 @@ export default function TipsList({ tipsArray, userAnswers, rightAnswered }: Novo
     return (
         <List disablePadding sx={{ mb:2 }}>
             {tipsArray.map((tip, index) => (
-                <ListItem key={tip.label} disablePadding>
+                <ListItem key={tip.label} >
                     <ListItemIcon>
                         <Avatar
                             sx={{

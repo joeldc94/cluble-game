@@ -30,7 +30,7 @@ export async function fetchApiFootballClubData({
             next: { tags: ['api-football'] }
         });
         const clubData = await response.json();
-        console.log("fetch", clubData.response);
+        //console.log("fetch", clubData.response);
         if (!!clubData.response[0])
             return clubData.response[0];
         else
