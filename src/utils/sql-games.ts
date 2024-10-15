@@ -27,7 +27,8 @@ export async function getClubIdByGameId(gameId: string): Promise<number | null> 
 export async function getLastGame(): Promise<GameData | null> {
     //console.log("Coletar último id adicionado")
     try {
-        const lastGame = await prisma.gamesHistory.findMany()
+        const lastGame = await prisma.gamesHistory.findMany({ orderBy: { id: 'desc' }, take: 1 })
+        //console.log({ lastGame })
         const size = lastGame.length;
         if (size > 0)
             return lastGame[size - 1]
