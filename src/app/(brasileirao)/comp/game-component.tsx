@@ -90,11 +90,11 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
 
     useEffect(() => {
         if (gameState != null && (gameState >= 5 || gameRightAnswer)) {
-          if (respostaCardRef.current) {
-            respostaCardRef.current.scrollIntoView({ behavior: 'smooth' });
-          }
+            if (respostaCardRef.current) {
+                respostaCardRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
         }
-      }, [finalAnswer]);
+    }, [finalAnswer]);
 
     /** Skeleton para renderizar enquanto não estiver inicializado */
     if (!initialized) {
@@ -242,32 +242,23 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
                             <CardContent sx={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
                                 <Stack
                                     direction="row"
-                                    justifyContent="space-around"
+                                    justifyContent="space-evenly"
                                     alignItems="center"
                                     spacing={2}
+                                    sx={{ width: '100%' }}
                                 >
                                     {!!finalAnswer.logo && <>
                                         <Image
                                             src={finalAnswer.logo}
                                             alt={`${finalAnswer.name}_logo`}
+                                            sizes="30vw"
+                                            style={{
+                                                width: 'auto',
+                                                height: '150px',
+                                            }}
                                             width={150}
                                             height={150}
                                         />
-                                        {/* <Paper elevation={6}>
-                                            <Image
-                                                src={finalAnswer.logo}
-                                                alt={`${finalAnswer.name}_logo`}
-                                                width={150}
-                                                height={150}
-                                            />
-                                        </Paper> 
-                                        <Avatar
-                                            component={Paper} elevation={5}
-                                            alt={`${finalAnswer.name}_logo`}
-                                            src={finalAnswer.logo}
-                                            sx={{ width: 150, height: 150 }}
-                                        />
-                                        */}
                                     </>
                                     }
                                     <Typography variant="h4">

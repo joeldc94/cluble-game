@@ -31,7 +31,8 @@ export default async function PageBrasileirao() {
             <Divider />
             <LeagueTitle />
             <Box sx={{
-                mx: { xs: 0, sm: 2 }
+                mx: { xs: 0, sm: 2 },
+                mb: 4
             }}>
                 <GameComponent
                     game={game}
