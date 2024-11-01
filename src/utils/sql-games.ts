@@ -1,7 +1,6 @@
 "use server"
 import prisma from "./prisma";
 
-
 /** Retorna o id do clube a partir do id do game*/
 export async function getClubIdByGameId(gameId: string): Promise<number | null> {
     //console.log("Coletar último id adicionado")
@@ -27,12 +26,9 @@ export async function getClubIdByGameId(gameId: string): Promise<number | null> 
 export async function getLastGame(): Promise<GameData | null> {
     //console.log("Coletar último id adicionado")
     try {
-        const lastGame = await prisma.gamesHistory.findMany({ orderBy: { id: 'desc' }, take: 1 })
+        const lastGame = await prisma.gamesHistory.findFirst({ orderBy: { id: 'desc' }})
         //console.log({ lastGame })
-        const size = lastGame.length;
-        if (size > 0)
-            return lastGame[size - 1]
-        return null
+        return lastGame
     }
     catch (error) {
         console.error({ error })
@@ -92,16 +88,34 @@ export async function getAllGameHistory(): Promise<GameData[] | undefined> {
     return;
 }
 
-/** Adiciona uma nova partida no final da tabela */
-export async function addNewGame(gameData: any): Promise<any | undefined> {
+/** Retorna as últimas partidas publicadas */
+export async function getLastGamesHistory(gamesCount: number): Promise<GameData[] | undefined> {
     try {
-        const idIndex = await prisma.gamesHistory.create({
+        //const gamesList = await prisma.gamesHistory.findMany();
+        const gamesList = await prisma.gamesHistory.findMany({
+            take: gamesCount,
+            orderBy: {
+                id: 'desc' // Ordena pelo ID, do mais alto para o mais baixo
+            }
+        });
+        //console.log("function", { gamesList })
+        return gamesList;
+    } catch (error) {
+        console.error({ error })
+    }
+    return;
+}
+
+/** Adiciona uma nova partida no final da tabela */
+export async function addNewGame(gameData: any): Promise<GameData | undefined> {
+    try {
+        const newGame = await prisma.gamesHistory.create({
             data: {
                 gameId: gameData.gameId,
                 clubId: gameData.clubId
             }
         })
-        return idIndex
+        return newGame
     } catch (error) {
         console.error({ error });
     }

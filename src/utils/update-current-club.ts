@@ -3,8 +3,8 @@ import "server-only";
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomClub } from '@/utils/get-club';
 import { clubs } from '@/data/clubs';
-import { addNewGame, deleteGamesList, getAllGameHistory } from "./sql-games";
-
+import { addNewGame, getLastGamesHistory } from "./sql-games";
+const GAMES_COUNT = 100;
 
 interface UpdateCurrentGameResult {
     success: boolean;
@@ -17,31 +17,33 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
     let message: string = '';
     try {
         // Ler a lista  de clues utilizados
-        const gamesListSaved = await getAllGameHistory();
-        //console.log("update", { gamesListSaved })
+        //const gamesListSaved = await getAllGameHistory();
+        const gamesListSaved = await getLastGamesHistory(GAMES_COUNT);
+        console.log("update", { gamesListSaved })
 
         let lastGame: GameData;
         let lastGameCounter: number = 0;
         let usedClubIds: number[] = [];
 
         if (gamesListSaved && gamesListSaved.length > 0) {
-            const lastGame = gamesListSaved[gamesListSaved.length - 1];
+            //pegar o primeiro id se estiver solicitando uma lista limitada em ordem descendente de id
+            lastGame = gamesListSaved[0];
+            //se estiver solicitando a lista completa, pega o ultimo
+            //lastGame = gamesListSaved[gamesListSaved.length - 1];
             lastGameCounter = lastGame.id || 0;
-            //console.log({ lastGameCounter });
-
             usedClubIds = gamesListSaved?.map((game) => game.clubId);
-            //console.log({ usedClubIds })
         }
         //const gC = await getGameCounter()
         //lastGameCounter = gC || 0;
 
         // verifica se a lista existe e se é maior do que a lista de clubes cadastrados
-        if (gamesListSaved && gamesListSaved.length >= clubs.length) {
+        // função desabilitada, pois serão retornados somente os ultimos X clubes do histórico
+        /* if (gamesListSaved && gamesListSaved.length >= clubs.length) {
             await deleteGamesList(); // Reiniciar currentClub
             //lastGameCounter = 0;
             usedClubIds = [];
             message = 'Lista reiniciada';
-        }
+        } */
 
         let randomClub: ClubData | null = null;
 
@@ -62,6 +64,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         }
         // Adicionar o nova partida
         const gameSet = await addNewGame(newGame);
+        
         //await setGameCounter(gameCounter);
         //console.log("Update index:", index)
         return {
