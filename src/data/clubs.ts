@@ -1799,7 +1799,7 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 113,
-    "apiFootballId": 222,
+    "apiFootballId": 2220,
     "name": "Rio Branco",
     "fullName": "Rio Branco Football Club",
     "city": "Rio Branco",
