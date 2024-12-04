@@ -1207,7 +1207,7 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 76,
-    "apiFootballId": 123,
+    "apiFootballId": 12300,
     "name": "Concórdia",
     "fullName": "Concórdia Atlético Clube",
     "city": "Concórdia",
