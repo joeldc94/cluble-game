@@ -10,16 +10,16 @@ datasource db {
 
 model Clubs {
   id              Int            @id(map: "clubs_pkey") @default(autoincrement())
-  name            String         @db.Char(32)
-  fullName        String         @db.Char(64)
-  city            String         @db.Char(32)
-  state           String?        @db.Char(32)
-  country         String         @db.Char(32)
-  stadium         String         @db.Char(32)
-  staduimFullName String         @db.Char(64)
+  name            String         @db.VarChar(32)
+  fullName        String         @db.VarChar(64)
+  city            String         @db.VarChar(32)
+  state           String?        @db.VarChar(32)
+  country         String         @db.VarChar(32)
+  stadium         String         @db.VarChar(32)
+  staduimFullName String         @db.VarChar(64)
   colors          String[]       @db.Char(32)
   foundationYear  Int
-  mascot          String?        @db.Char(32)
+  mascot          String?        @db.VarChar(32)
   apiFootballId   Int?
   GamesHistory    GamesHistory[]
 }
