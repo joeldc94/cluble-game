@@ -711,7 +711,7 @@ export const clubs: ClubData[] = [
   },
   {
     "id": 45,
-    "apiFootballId": 777,
+    "apiFootballId": 7770,
     "name": "Caxias",
     "fullName": "Sociedade Esportiva e Recreativa Caxias do Sul",
     "city": "Caxias do Sul",
