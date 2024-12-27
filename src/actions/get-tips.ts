@@ -1,7 +1,6 @@
 "use server";
 import "server-only";
-import { getClubById } from "@/utils/get-club";
-import { getClubIdByGameId } from "@/utils/sql-games";
+import { getClubDataByGameId, getClubIdByGameId } from "@/utils/sql-games";
 import { checkAnswer } from "./check-answer";
 import { fetchApiFootballClubData } from "./api-football";
 
@@ -19,14 +18,15 @@ export async function getTips({
     rightAnswer,
 }: checkAnswerProps) {
     //console.log("GetTips:", { gameId, state, answer, rightAnswer });
-    const clubId = await getClubIdByGameId(gameId);
+    const club = await getClubDataByGameId(gameId);
+    /* const clubId = await getClubIdByGameId(gameId);
     if (!clubId)
         return {
             success: false,
             message: "Não foi possível identificar o clube de hoje",
             tips: []
         };
-    const club = await getClubById(clubId);
+    const club = await getClubById(clubId); */
     if (!club)
         return {
             success: false,
@@ -34,6 +34,7 @@ export async function getTips({
             tips: []
         };
 
+    //console.log({ club })
     const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
     //console.log("tips", apiData);
     club.logo = apiData ? apiData.team.logo : "";

@@ -1,6 +1,6 @@
 "use server"
 import "server-only";
-import { getCurrentClubData, getCurrentGameData } from "@/utils/get-club";
+import { getLastGame } from "@/utils/sql-games";
 
 interface checkAnswerProps {
     clubName: string;
@@ -8,8 +8,9 @@ interface checkAnswerProps {
 
 export async function checkAnswer({ clubName }: checkAnswerProps) {
     //console.log("Checar a resposta: ", clubName);
-    const { club } = await getCurrentGameData()
-    //console.log({ club })
+    const response = await getLastGame()
+    const club = response?.Clubs
+    console.log({ club })
     if (clubName.toLowerCase() == club?.name.toLowerCase()) {
         //console.log("RESPOSTA CERTA")
         return {

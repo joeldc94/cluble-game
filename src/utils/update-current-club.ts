@@ -1,14 +1,12 @@
 "use server"
 import "server-only";
 import { v4 as uuidv4 } from 'uuid';
-import { getRandomClub } from '@/utils/get-club';
-import { clubs } from '@/data/clubs';
-import { addNewGame, getLastGamesHistory } from "./sql-games";
+import { addNewGame, getClubsIdsListSQL, getLastGamesHistory } from "./sql-games";
 const GAMES_COUNT = 100;
 
 interface UpdateCurrentGameResult {
     success: boolean;
-    club?: ClubData;
+    clubId?: number | null;
     game?: GameData;
     message?: string;
 }
@@ -31,7 +29,9 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             //se estiver solicitando a lista completa, pega o ultimo
             //lastGame = gamesListSaved[gamesListSaved.length - 1];
             lastGameCounter = lastGame.id || 0;
-            usedClubIds = gamesListSaved?.map((game) => game.clubId);
+            usedClubIds = gamesListSaved
+                .map((game) => game.clubId)
+                .filter((id): id is number => id !== undefined); // Filtra apenas números
         }
         //const gC = await getGameCounter()
         //lastGameCounter = gC || 0;
@@ -45,13 +45,18 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             message = 'Lista reiniciada';
         } */
 
-        let randomClub: ClubData | null = null;
+        const clubsIds = await getClubsIdsListSQL();
+        if (!clubsIds || clubsIds.length === 0) {
+            throw new Error("Não foi possível obter a lista de clubes");
+        }
+
+        let randomClubId: number | null = null;
 
         // Selecionar um clube aleatório cujo ID ainda não foi selecionado
-        while (!randomClub) {
-            const tempRandomClub = await getRandomClub();
-            if (!usedClubIds || !usedClubIds.includes(tempRandomClub.id)) {
-                randomClub = tempRandomClub;
+        while (!randomClubId) {
+            const tempRandomClubId = clubsIds[Math.floor(Math.random() * clubsIds.length)];
+            if (!usedClubIds || !usedClubIds.includes(tempRandomClubId)) {
+                randomClubId = tempRandomClubId;
             }
         }
 
@@ -59,17 +64,28 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         const newGame = {
             gameId: uuidv4(),
             //gameCounter: gameCounter,
-            clubId: randomClub.id,
+            clubId: randomClubId,
             //date
         }
+
+        console.log({ newGame })
+        return {
+            success: true,
+            clubId: randomClubId,
+            //game: gameSet,
+            ...(message && { message })
+        };
+
+
+
         // Adicionar o nova partida
         const gameSet = await addNewGame(newGame);
-        
+
         //await setGameCounter(gameCounter);
         //console.log("Update index:", index)
         return {
             success: true,
-            club: randomClub,
+            clubId: randomClubId,
             game: gameSet,
             ...(message && { message })
         };

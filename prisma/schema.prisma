@@ -16,7 +16,7 @@ model Clubs {
   state           String?        @db.VarChar(32)
   country         String         @db.VarChar(32)
   stadium         String         @db.VarChar(32)
-  staduimFullName String         @db.VarChar(64)
+  stadiumFullName String         @db.VarChar(64)
   colors          String[]       @db.Char(32)
   foundationYear  Int
   mascot          String?        @db.VarChar(32)

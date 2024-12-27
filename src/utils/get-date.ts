@@ -20,6 +20,12 @@ export function getCurrentDateFormatted() {
     return formattedDate;
 }
 
+/**
+ * Retorna a data atual formatada como uma string no fuso horário do Brasil,
+ * com o dia, m s e ano.
+ *
+ * @return {string} A data atual formatada.
+ */
 export function getCurrentDay() {
     const currentDate = new Date();
     const options: Intl.DateTimeFormatOptions = {
