@@ -62,6 +62,24 @@ export async function getLastGame(): Promise<LastGameResponse | null> {
     return null
 }
 
+export async function getYesterdayGame(): Promise<LastGameResponse | null> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const lastGames = await prisma.gamesHistory.findMany({
+            orderBy: { id: 'desc' },
+            include: { Clubs: true },
+            take: 2
+        })
+        if (!lastGames || lastGames.length === 0) return null;
+        //console.log({lastGame})
+        return lastGames[1]; // Retorna o objeto formatado
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
 /** Retorna o id da última partida */
 export async function getLastGameId(): Promise<string | undefined> {
     //console.log("Coletar último id adicionado")

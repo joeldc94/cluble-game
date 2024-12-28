@@ -20,6 +20,7 @@ model Clubs {
   colors          String[]       @db.Char(32)
   foundationYear  Int
   mascot          String?        @db.VarChar(32)
+  division        String?        @db.VarChar(32)
   apiFootballId   Int?
   GamesHistory    GamesHistory[]
 }

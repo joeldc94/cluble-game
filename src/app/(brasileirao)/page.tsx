@@ -1,5 +1,5 @@
 import GameComponent from "./comp/game-component";
-import { Typography, Card, CardContent, Divider, Grid, Box } from "@mui/material";
+import { Typography, Card, CardContent, Divider, Box } from "@mui/material";
 import { DateHeader } from "./comp/date-header";
 import { LeagueTitle } from "./comp/league-title";
 import { getClubsNamesListSQL, getLastGame } from "@/utils/sql-games";
