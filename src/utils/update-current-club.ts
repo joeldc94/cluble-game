@@ -17,7 +17,7 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         // Ler a lista  de clues utilizados
         //const gamesListSaved = await getAllGameHistory();
         const gamesListSaved = await getLastGamesHistory(GAMES_COUNT);
-        console.log("update", { gamesListSaved })
+        //console.log("update", { gamesListSaved })
 
         let lastGame: GameData;
         let lastGameCounter: number = 0;
@@ -68,13 +68,13 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             //date
         }
 
-        console.log({ newGame })
-        return {
+        /*console.log({ newGame })
+         return {
             success: true,
             clubId: randomClubId,
             //game: gameSet,
             ...(message && { message })
-        };
+        }; */
 
 
 
