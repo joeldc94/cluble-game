@@ -1,0 +1,16 @@
+{
+    "name": "Cluble",
+    "short_name": "Cluble",
+    "description": "Um jogo de palpites diários sobre clubes de futebol",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#D2D2C8",
+    "theme_color": "#3A3A3A",
+    "icons": [
+      {
+        "src": "/logo/icon3.png",
+        "sizes": "320x320",
+        "type": "image/png"
+      }
+    ]
+}

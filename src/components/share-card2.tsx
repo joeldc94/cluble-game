@@ -101,7 +101,8 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                     {/* Botão de Compartilhamento no WhatsApp */}
                     <WhatsappShareButton
                         url={siteLink}
-                        title={shareMessage}                        
+                        title={shareMessage}
+                                              
                         blankTarget
                     >
                         <Tooltip title="Compartilhar no WhatsApp" placement="top">
