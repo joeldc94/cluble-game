@@ -16,7 +16,12 @@ export async function GET(request: NextRequest) {
     const gameData = await getYesterdayGame();
     //console.log({ gameData })
     if(!gameData) return new Response('Nenhuma partida encontrada', { status: 404 });
-    const message = `Ontem, na edição #${gameData.id} do Cluble, tivemos o ${gameData.Clubs.fullName} como clube do dia. O clube da cidade de ${gameData.Clubs.city} - ${gameData.Clubs.state} joga a ${gameData.Clubs.division} do Brasileirão 2024!`
+    const message = `Ontem, na edição #${gameData.id} do Cluble, tivemos o ${gameData.Clubs.fullName} como clube do dia. O clube da cidade de ${gameData.Clubs.city} - ${gameData.Clubs.state} joga a ${gameData.Clubs.division} do Brasileirão 2024!
+
+    Com quantas dicas você acertou? 
+    https://cluble.today
+    #Cluble #clubletoday #Brasileirão2024
+    `
     
     //console.log({ club })
     const apiData = await fetchApiFootballClubData({ clubApiFootballId: gameData.Clubs.apiFootballId! });
