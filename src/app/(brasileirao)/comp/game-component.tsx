@@ -8,7 +8,7 @@ import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
 import SendIcon from '@mui/icons-material/Send';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import { ShareCard } from "@/components/share-card";
+import { ShareCard } from "@/components/share-card2";
 import Image from "next/image";
 
 type GameComponentProps = {

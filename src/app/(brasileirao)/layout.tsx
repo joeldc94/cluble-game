@@ -17,7 +17,7 @@ export default function Layout({
 }) {
     return (
         <>
-            <MainTitle/>
+            <MainTitle />
             {children}
         </>
     );
