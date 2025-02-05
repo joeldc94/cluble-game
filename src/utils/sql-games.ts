@@ -48,9 +48,9 @@ type LastGameResponse = GameData & {
 export async function getLastGame(): Promise<LastGameResponse | null> {
     //console.log("Coletar último id adicionado")
     try {
-        const lastGame = await prisma.gamesHistory.findFirst({ 
-            orderBy: { id: 'desc' }, 
-            include: { Clubs: true } 
+        const lastGame = await prisma.gamesHistory.findFirst({
+            orderBy: { id: 'desc' },
+            include: { Clubs: true }
         })
         if (!lastGame) return null;
         //console.log({lastGame})
@@ -133,10 +133,11 @@ export async function getAllGameHistory(): Promise<GameData[] | undefined> {
 }
 
 /** Retorna as últimas partidas publicadas */
-export async function getLastGamesHistory(gamesCount: number): Promise<GameData[] | undefined> {
+export async function getLastGamesHistory(gameInfoId: number, gamesCount: number): Promise<GameData[] | undefined> {
     try {
         //const gamesList = await prisma.gamesHistory.findMany();
         const gamesList = await prisma.gamesHistory.findMany({
+            where: { gameInfoId: gameInfoId },
             take: gamesCount,
             orderBy: {
                 id: 'desc' // Ordena pelo ID, do mais alto para o mais baixo
@@ -155,6 +156,7 @@ export async function addNewGame(gameData: any): Promise<GameData | undefined> {
     try {
         const newGame = await prisma.gamesHistory.create({
             data: {
+                gameInfoId: gameData.gameInfoId,
                 gameId: gameData.gameId,
                 clubId: gameData.clubId
             }
@@ -204,6 +206,95 @@ export async function getClubsIdsListSQL(): Promise<number[] | null> {
         const clubsList = dbResponse.map((club) => club.id);
         //console.log( clubsList )
         return clubsList
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
+
+
+
+/*****
+ *      COM GAME INFO E GAME CLUBS
+ */
+
+
+/** Retorna um array de strings com os nomes dos clubes do jogo solicitado */
+export async function getClubsNamesListSQLFromGameClubs(gameInfoId: number): Promise<string[] | null> {
+    //console.log("Coletar lista de times", gameInfoId)
+    try {
+        const dbResponse = await prisma.gameClubs.findMany({
+            where: { gameInfoId: gameInfoId },
+            include: {
+                Clubs: {
+                    select: { name: true }
+                }
+            },
+            orderBy: {
+                Clubs: {
+                    name: 'asc'
+                }
+            }
+        });
+        //console.log( dbResponse )
+        const clubsList = dbResponse.map((gameClub) => gameClub.Clubs.name);
+        //console.log(clubsList)
+        return clubsList
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
+/** Retorna um array de números com os ids dos clubes do jogo solicitado */
+export async function getClubsIdsListSQLFromGameClubs(gameInfoId: number): Promise<number[] | null> {
+    //console.log("Coletar lista de times", gameInfoId)
+    try {
+        const dbResponse = await prisma.gameClubs.findMany({
+            where: { gameInfoId: gameInfoId },
+            select: { clubId: true }
+        });
+        //console.log( dbResponse )
+        const clubsList = dbResponse.map((club) => club.clubId);
+        //console.log( clubsList )
+        return clubsList
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
+/** Retorna a ultima partida adicionada em um jogo especifico */
+export async function getLastGameData(gameInfoId: number): Promise<LastGameResponse | null> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const lastGame = await prisma.gamesHistory.findFirst({
+            where: { gameInfoId: gameInfoId },
+            orderBy: { id: 'desc' },
+            include: { Clubs: true }
+        })
+        if (!lastGame) return null;
+        //console.log({lastGame})
+        return lastGame; // Retorna o objeto formatado
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
+/** Retorna a informações do jogo desejado */
+export async function getGameInfos(gameInfoId: number): Promise<GameInfo | null> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const gameInfos = await prisma.gameInfo.findUnique({ where: { id: gameInfoId } })
+        if (!gameInfos) return null;
+        //console.log({lastGame})
+        return gameInfos; // Retorna o objeto formatado
     }
     catch (error) {
         console.error({ error })

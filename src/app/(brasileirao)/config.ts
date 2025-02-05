@@ -1,0 +1,1 @@
+export const LEAGUE_ID = 2; // brasileirão 2024

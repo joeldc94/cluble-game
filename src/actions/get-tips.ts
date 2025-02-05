@@ -36,6 +36,7 @@ export async function getTips({
 
     //console.log({ club })
     const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
+    //const apiData = { team: { logo: null }};
     //console.log("tips", apiData);
     club.logo = apiData ? apiData.team.logo : "";
 

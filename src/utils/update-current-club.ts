@@ -1,7 +1,7 @@
 "use server"
 import "server-only";
 import { v4 as uuidv4 } from 'uuid';
-import { addNewGame, getClubsIdsListSQL, getLastGamesHistory } from "./sql-games";
+import { addNewGame, getClubsIdsListSQL, getClubsIdsListSQLFromGameClubs, getLastGamesHistory } from "./sql-games";
 const GAMES_COUNT = 100;
 
 interface UpdateCurrentGameResult {
@@ -11,13 +11,19 @@ interface UpdateCurrentGameResult {
     message?: string;
 }
 /** Escreve um novo Id de clube na lista de clubes */
-export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
+export async function updateCurrentGame(leagueId: number): Promise<UpdateCurrentGameResult> {
     let message: string = '';
     try {
         // Ler a lista  de clues utilizados
         //const gamesListSaved = await getAllGameHistory();
-        const gamesListSaved = await getLastGamesHistory(GAMES_COUNT);
-        //console.log("update", { gamesListSaved })
+        const gamesListSaved = await getLastGamesHistory(leagueId, GAMES_COUNT);
+        console.log("update", { gamesListSaved })
+        /* return {
+            success: true,
+            game: null,
+            message: 'OK',
+            clubId: null
+        } */
 
         let lastGame: GameData;
         let lastGameCounter: number = 0;
@@ -45,10 +51,11 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
             message = 'Lista reiniciada';
         } */
 
-        const clubsIds = await getClubsIdsListSQL();
+        const clubsIds = await getClubsIdsListSQLFromGameClubs(leagueId);
         if (!clubsIds || clubsIds.length === 0) {
             throw new Error("Não foi possível obter a lista de clubes");
         }
+        //console.log("ids:", clubsIds.length )
 
         let randomClubId: number | null = null;
 
@@ -63,16 +70,15 @@ export async function updateCurrentGame(): Promise<UpdateCurrentGameResult> {
         //const date = new Date();
         const newGame = {
             gameId: uuidv4(),
-            //gameCounter: gameCounter,
             clubId: randomClubId,
-            //date
+            gameInfoId: leagueId,
         }
 
-        /*console.log({ newGame })
+        /* console.log({ newGame })
          return {
             success: true,
             clubId: randomClubId,
-            //game: gameSet,
+            game: newGame,
             ...(message && { message })
         }; */
 

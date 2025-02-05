@@ -11,14 +11,13 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { ShareCard } from "@/components/share-card2";
 import Image from "next/image";
 
-type GameComponentProps = {
-    game: GameData;
+interface GameComponentProps {
+    gameData: GameData;
     clubsNamesList: string[];
     gameEdition: number;
 }
-export default function GameComponent({ game, clubsNamesList, gameEdition }: GameComponentProps) {
+export default function GameComponent(props: GameComponentProps) {
     const respostaCardRef = useRef<HTMLDivElement>(null);
-
 
     const [historyInitialized, setHistoryInitialized] = useState<boolean>(false)
     const [initialized, setInitialized] = useState<boolean>(false)
@@ -38,14 +37,14 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
     /**Inicializa/coleta histórico no localStorage */
     useEffect(() => {
         //verificar se o registro do jogo já existe
-        const novoRegistro = setLocalStorageNewGame(game.gameId);
+        const novoRegistro = setLocalStorageNewGame(props.gameData.gameId);
         if (novoRegistro > 0) {
-            const right = getLocalStorageRightAnswer(game.gameId)
+            const right = getLocalStorageRightAnswer(props.gameData.gameId)
             setGameRightAnswer(right);
         }
         setGameState(novoRegistro);
         setHistoryInitialized(true);
-        setUserAnswers(getGameAnswers(game.gameId));
+        setUserAnswers(getGameAnswers(props.gameData.gameId));
     }, [])
 
     /**Consulta dicas para o estado atual */
@@ -60,12 +59,12 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
         }
 
         if (gameState != null && historyInitialized) {
-            getInitialTips(game.gameId, gameState, gameRightAnswer).then((response: any) => {
+            getInitialTips(props.gameData.gameId, gameState, gameRightAnswer).then((response: any) => {
                 if (response.success) {
                     setTips(response.tips);
                     //setGameState(response.tips?.length - 1)
                     if (response.rightAnswer && gameState >= 5) {
-                        setLocalStorageRightAnswer(game.gameId, response.rightAnswer);
+                        setLocalStorageRightAnswer(props.gameData.gameId, response.rightAnswer);
                         setGameRightAnswer(response.rightAnswer);
                     }
                     //console.log("Get tips response:", response);
@@ -84,7 +83,7 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
     /** */
     useEffect(() => {
         // Verificar se a resposta é válida sempre que o valor de 'answer' mudar
-        setIsValidAnswer(clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
+        setIsValidAnswer(props.clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
     }, [answer]);
 
 
@@ -112,7 +111,7 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
         startTransitionNextTip(async () => {
             //console.log({ gameState })
             const response = await getTips({
-                gameId: game.gameId,
+                gameId: props.gameData.gameId,
                 state: gameState + 1 || 0,
                 answer: ""
             })
@@ -121,10 +120,10 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
 
             if (response.success) {
                 //console.log(response)
-                setNewAnswer(game.gameId, response.userAnswer ?? "");
+                setNewAnswer(props.gameData.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
-                setUserAnswers(getGameAnswers(game.gameId));
+                setUserAnswers(getGameAnswers(props.gameData.gameId));
                 setGameState((prev) => prev + 1);
                 if (response.clubData) {
                     setFinalAnswer(response.clubData)
@@ -148,20 +147,20 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
         startTransitionAnswer(async () => {
 
             const response = await getTips({
-                gameId: game.gameId,
+                gameId: props.gameData.gameId,
                 state: gameState + 1 || 0,
                 answer
             })
             //console.log({ response })
             if (response.success) {
-                setNewAnswer(game.gameId, response.userAnswer ?? "");
+                setNewAnswer(props.gameData.gameId, response.userAnswer ?? "");
                 setAnswer('');
                 setTips(response.tips);
-                setUserAnswers(getGameAnswers(game.gameId));
+                setUserAnswers(getGameAnswers(props.gameData.gameId));
                 if (response.rightAnswer) {
                     //console.log("RESPOSTA CERTA")
                     setGameRightAnswer(true);
-                    setLocalStorageRightAnswer(game.gameId, true);
+                    setLocalStorageRightAnswer(props.gameData.gameId, true);
 
                 }
                 setGameState((prev) => prev + 1);
@@ -202,7 +201,7 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
                                 onInputChange={(_, newInputValue) => {
                                     setAnswer(newInputValue);
                                     if (newInputValue.length >= 2) { // Verificar se há pelo menos dois caracteres
-                                        const suggestions = filterClubs(clubsNamesList, newInputValue); // Filtrar sugestões com base nos caracteres digitados
+                                        const suggestions = filterClubs(props.clubsNamesList, newInputValue); // Filtrar sugestões com base nos caracteres digitados
                                         setClubSuggestions(suggestions); // Atualizar as sugestões do Autocomplete
                                     } else {
                                         setClubSuggestions([]); // Limpar sugestões se o comprimento da entrada for menor que 2
@@ -271,8 +270,8 @@ export default function GameComponent({ game, clubsNamesList, gameEdition }: Gam
                     }
                     <ShareCard
                         rightAnswer={gameRightAnswer}
-                        tipsNeeded={getGameAnswers(game.gameId).length}
-                        gameEdition={game.id}
+                        tipsNeeded={getGameAnswers(props.gameData.gameId).length}
+                        gameEdition={props.gameData.id}
                     />
 
                 </>

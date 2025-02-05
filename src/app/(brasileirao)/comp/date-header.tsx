@@ -1,16 +1,16 @@
 import { ShowStats } from "@/components/show-stats"
 import { getCurrentDateFormatted } from "@/utils/get-date"
-import { Divider, Grid, Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 
-type DateHeaderProps = {
+interface DateHeaderProps {
     gameEdition: number;
 }
-export const DateHeader = ({ gameEdition }: DateHeaderProps) => {
+export const DateHeader = (props: DateHeaderProps) => {
     return (
         <Grid container alignItems="center" justifyContent="space-between">
             <Grid item xs={1} pl={0}>
                 <Typography variant="subtitle1" textAlign="left">
-                    #{String(gameEdition).padStart(3, '0')}
+                    #{String(props.gameEdition).padStart(3, '0')}
                 </Typography>
             </Grid>
             <Grid item xs>

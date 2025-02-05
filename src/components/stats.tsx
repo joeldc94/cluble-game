@@ -10,7 +10,8 @@ interface StatsProps {
     open: boolean;
     handleClose: () => void;
 }
-export const Stats = ({ open, handleClose }: StatsProps) => {
+
+export const Stats = (props: StatsProps) => {
     const [totalGames, setTotalGames] = useState(0)
     const [consecutiveDays, setConsecutiveDays] = useState(0)
     const [totalAccuracy, setTotalAccuracy] = useState(0)
@@ -29,7 +30,7 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
 
         setAccuracyByAnswers(calculateAccuracyPercentageByAnswers(userHistory));
 
-    }, [open])
+    }, [props.open])
 
     useEffect(() => {
         setTotalAccuracy(Number(accuracyByAnswers.correctGamesPercentage.reduce((accumulator, currentValue) => accumulator + currentValue, 0).toFixed(1)))
@@ -42,8 +43,8 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
 
     return (
         <Modal
-            open={open}
-            onClose={handleClose}
+            open={props.open}
+            onClose={props.handleClose}
             aria-labelledby="confirmation-modal"
             aria-describedby="confirmation-modal-description"
         >
@@ -66,7 +67,7 @@ export const Stats = ({ open, handleClose }: StatsProps) => {
                     <Typography variant="body2"><strong>% de erros: </strong>{accuracyByAnswers.incorrectGamesPercentage}%</Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'flex-end' }}>
-                    <IconButton onClick={handleClose}>
+                    <IconButton onClick={props.handleClose}>
                         <CloseIcon />
                     </IconButton>
                 </CardActions>

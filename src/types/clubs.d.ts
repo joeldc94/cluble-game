@@ -9,7 +9,7 @@ type ClubData = {
     state: string | null;
     country: string;
     stadium: string | null;
-    stadiumFullName: string;
+    stadiumFullName?: string;
     division?: string |null; // Propriedade opcional
     colors: string[];
     foundationYear: number | null; // Permite que foundationYear seja null
@@ -19,17 +19,18 @@ type ClubData = {
 };
 
 
-/** Dados da partida no kv */
-/* type GameData = {
-    gameId: string;
-    gameCounter: number;
-    clubId: number;
-    date: Date;
-} */
+/** Dados da de um jogo */
+type GameInfo = {
+    id: number;
+    name: string;
+    fullName: string;
+    description?: string | null;
+}
 
 /** Dados da partida no kv */
 type GameData = {
     id: number;
+    gameInfoId: number;
     gameId: string;
     clubId?: number;
     createdAt: Date;

@@ -20,15 +20,34 @@ model Clubs {
   colors          String[]       @db.Char(32)
   foundationYear  Int
   mascot          String?        @db.VarChar(32)
-  division        String?        @db.VarChar(32)
   apiFootballId   Int?
+  division        String?        @db.VarChar(32)
+  GameClubs       GameClubs[]
   GamesHistory    GamesHistory[]
 }
 
 model GamesHistory {
   id        Int      @id(map: "gamesHistory_pkey") @default(autoincrement())
+  gameInfoId Int
   gameId    String
   clubId    Int
   createdAt DateTime @default(now())
   Clubs     Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_club")
+}
+
+model GameClubs {
+  id         Int      @id
+  gameInfoId Int
+  clubId     Int
+  division   String?  @db.VarChar(32)
+  Clubs      Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubId_fk")
+  GameInfo   GameInfo @relation(fields: [gameInfoId], references: [id], onDelete: Cascade, map: "gameInfoId_fk")
+}
+
+model GameInfo {
+  id          Int         @id
+  name        String      @db.VarChar(32)
+  fullName    String      @db.VarChar(128)
+  description String?     @db.VarChar(128)
+  GameClubs   GameClubs[]
 }

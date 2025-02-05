@@ -2,17 +2,21 @@ import GameComponent from "./comp/game-component";
 import { Typography, Card, CardContent, Divider, Box } from "@mui/material";
 import { DateHeader } from "./comp/date-header";
 import { LeagueTitle } from "./comp/league-title";
-import { getClubsNamesListSQL, getLastGame } from "@/utils/sql-games";
+import { getClubsNamesListSQLFromGameClubs, getLastGameData } from "@/utils/sql-games";
+import { LEAGUE_ID } from "./config";
+import { Suspense } from "react";
+
+const GAME_INFOS_ID = LEAGUE_ID;
 
 export default async function PageBrasileirao() {
-    const game = await getLastGame();
-    const clubsList = await getClubsNamesListSQL();
+    const lastGameData = await getLastGameData(GAME_INFOS_ID);
+    const clubsList = await getClubsNamesListSQLFromGameClubs(GAME_INFOS_ID);
     
-    if (!game || !clubsList) {
+    if (!lastGameData || !clubsList) {
         return (
             <>
                 <Divider />
-                <LeagueTitle />
+                <LeagueTitle leagueId={GAME_INFOS_ID} />
                 <Card sx={{ my: 2 }}>
                     <CardContent>
                         <Typography variant="subtitle1" textAlign="center">
@@ -27,17 +31,17 @@ export default async function PageBrasileirao() {
     return (
         <>
             <Divider />
-            <DateHeader gameEdition={game.id} />
+            <DateHeader gameEdition={lastGameData.id} />
             <Divider />
-            <LeagueTitle />
+            <LeagueTitle leagueId={GAME_INFOS_ID} />
             <Box sx={{
                 mx: { xs: 0, sm: 2 },
                 mb: 4
             }}>
                 <GameComponent
-                    game={game}
+                    gameData={lastGameData}
                     clubsNamesList={clubsList}
-                    gameEdition={game.id}
+                    gameEdition={lastGameData.id}
                 />
             </Box>
         </>
