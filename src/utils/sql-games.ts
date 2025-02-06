@@ -1,4 +1,5 @@
 "use server"
+import { GameClubs, GamesHistory } from "@prisma/client";
 import prisma from "./prisma";
 
 /** Retorna o id do clube a partir do id do game*/
@@ -45,7 +46,7 @@ type LastGameResponse = GameData & {
     Clubs: ClubData; // Dados do clube, se necessário
 };
 /** Retorna a ultima partida adicionada*/
-export async function getLastGame(): Promise<LastGameResponse | null> {
+export async function getLastGame(): Promise<GamesHistory | null> {
     //console.log("Coletar último id adicionado")
     try {
         const lastGame = await prisma.gamesHistory.findFirst({
@@ -62,6 +63,7 @@ export async function getLastGame(): Promise<LastGameResponse | null> {
     return null
 }
 
+/* retorna o penúltímo jogo */
 export async function getYesterdayGame(): Promise<LastGameResponse | null> {
     //console.log("Coletar último id adicionado")
     try {
@@ -73,6 +75,27 @@ export async function getYesterdayGame(): Promise<LastGameResponse | null> {
         if (!lastGames || lastGames.length === 0) return null;
         //console.log({lastGame})
         return lastGames[1]; // Retorna o objeto formatado
+    }
+    catch (error) {
+        console.error({ error })
+    }
+    return null
+}
+
+type GameClubInfoResponse = GameClubs & {
+    GameInfo: GameInfo;
+    Clubs: ClubData;
+};
+export async function getGameClubInfo(clubId: number, gameInfoId: number): Promise<GameClubInfoResponse | null> {
+    //console.log("Coletar último id adicionado")
+    try {
+        const gameClubsInfo = await prisma.gameClubs.findFirst({
+            where: { gameInfoId: gameInfoId, clubId: clubId },
+            include: { GameInfo: true, Clubs: true },
+        })
+        if (!gameClubsInfo) return null;
+        //console.log({lastGame})
+        return gameClubsInfo; // Retorna o objeto formatado
     }
     catch (error) {
         console.error({ error })

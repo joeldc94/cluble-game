@@ -115,9 +115,9 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                     {/* Botão de Compartilhamento no X */}
                     <TwitterShareButton
                         url={siteLink}
-                        title={shareMessage}
-                        hashtags={["Cluble", "clubletoday", "Brasileirão2024"]}
-                        related={["ClubleToday"]}                        
+                        title={"@ClubleToday\n" + shareMessage}
+                        hashtags={["Cluble", "clubletoday", "Brasileirão2025"]}
+                        related={["@ClubleToday"]}                        
                         blankTarget
                     >
                         <Tooltip title="Compartilhar no X" placement="top">
