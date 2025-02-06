@@ -46,7 +46,7 @@ type LastGameResponse = GameData & {
     Clubs: ClubData; // Dados do clube, se necessário
 };
 /** Retorna a ultima partida adicionada*/
-export async function getLastGame(): Promise<GamesHistory | null> {
+export async function getLastGame(): Promise<LastGameResponse | null> {
     //console.log("Coletar último id adicionado")
     try {
         const lastGame = await prisma.gamesHistory.findFirst({
