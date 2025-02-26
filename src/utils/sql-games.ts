@@ -33,6 +33,7 @@ export async function getClubDataByGameId(gameId: string): Promise<any | null> {
         });
 
         if (!!dbResponse && !!dbResponse.Clubs) {
+            //console.log("db", dbResponse.Clubs)
             return dbResponse.Clubs;
         }
     } catch (error) {

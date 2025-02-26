@@ -19,6 +19,7 @@ export async function getTips({
 }: checkAnswerProps) {
     //console.log("GetTips:", { gameId, state, answer, rightAnswer });
     const club = await getClubDataByGameId(gameId);
+    //console.log({ club })
     /* const clubId = await getClubIdByGameId(gameId);
     if (!clubId)
         return {
@@ -35,10 +36,8 @@ export async function getTips({
         };
 
     //console.log({ club })
-    const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
-    //const apiData = { team: { logo: null }};
-    //console.log("tips", apiData);
-    club.logo = apiData ? apiData.team.logo : "";
+    //const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
+    //club.logo = apiData ? apiData.team.logo : "";
 
     const tips: Tip[] = [
         {

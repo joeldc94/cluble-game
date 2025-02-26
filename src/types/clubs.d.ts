@@ -15,7 +15,7 @@ type ClubData = {
     foundationYear: number | null; // Permite que foundationYear seja null
     idol?: string | null; // Propriedade opcional
     mascot?: string | null; // Propriedade opcional
-    logo?: string; // Propriedade opcional
+    logo?: string | null; // Propriedade opcional
 };
 
 

@@ -22,6 +22,7 @@ model Clubs {
   mascot          String?        @db.VarChar(32)
   apiFootballId   Int?
   division        String?        @db.VarChar(32)
+  logo            String?        @db.VarChar(256)
   GameClubs       GameClubs[]
   GamesHistory    GamesHistory[]
 }
