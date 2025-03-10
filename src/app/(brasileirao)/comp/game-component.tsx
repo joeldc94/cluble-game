@@ -2,14 +2,15 @@
 
 import { getTips } from "@/actions/get-tips";
 import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
-import { Autocomplete, Avatar, Card, CardContent, CardHeader, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
-import { FormEvent, useEffect, useRef, useState, useTransition } from "react";
+import { Autocomplete, Avatar, Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { FormEvent, Suspense, useEffect, useRef, useState, useTransition } from "react";
 import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
 import SendIcon from '@mui/icons-material/Send';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { ShareCard } from "@/components/share-card2";
 import Image from "next/image";
+import LogoImage from "./logo-image";
 
 interface GameComponentProps {
     gameData: GameData;
@@ -246,8 +247,9 @@ export default function GameComponent(props: GameComponentProps) {
                                     spacing={2}
                                     sx={{ width: '100%' }}
                                 >
-                                    {!!finalAnswer.logo && <>
-                                        <Image
+                                    {!!finalAnswer.logo &&
+                                        <>
+                                            {/* <Image
                                             src={finalAnswer.logo}
                                             alt={`${finalAnswer.name}_logo`}
                                             sizes="30vw"
@@ -257,8 +259,21 @@ export default function GameComponent(props: GameComponentProps) {
                                             }}
                                             width={150}
                                             height={150}
-                                        />
-                                    </>
+                                        /> */}
+                                            <Suspense fallback={
+                                                <CircularProgress
+                                                    size={40}
+                                                    color="inherit"
+                                                />
+                                            }
+                                            >
+                                                <LogoImage
+                                                    src={"/" + finalAnswer.logo}
+                                                    width={150}
+                                                    height={150}
+                                                />
+                                            </Suspense>
+                                        </>
                                     }
                                     <Typography variant="h4">
                                         <strong>{finalAnswer.name}</strong>

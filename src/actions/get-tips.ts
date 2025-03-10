@@ -34,11 +34,9 @@ export async function getTips({
             tips: []
         };
 
-    //console.log({ club })
-    const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
-    //const apiData = { team: { logo: null }};
-    //console.log("tips", apiData);
-    club.logo = apiData ? apiData.team.logo : "";
+    //const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
+
+    //club.logo = apiData ? apiData.team.logo : "";
 
     const tips: Tip[] = [
         {

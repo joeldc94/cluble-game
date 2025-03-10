@@ -1,8 +1,9 @@
+import "server-only";
 import { fetchApiFootballClubData } from "@/actions/api-football";
 import { getGameClubInfo, getYesterdayGame } from "@/utils/sql-games";
 import { postTweet, uploadMedia } from "@/utils/twitterFunction";
 import { NextRequest, NextResponse } from "next/server";
-import "server-only";
+import { getCldImageUrl } from 'next-cloudinary';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,16 +50,35 @@ ${hashtags.map((hashtag) => `${hashtag}`).join(' ')}
         return NextResponse.json(message, {
             status: 200,
         }); */
+        const logo = gameClubsInfo.Clubs.logo;
+        const logoUrl = !!logo ?  
+        getCldImageUrl({
+            width: 500,
+            height: 500,
+            src: logo,
+            background: 'white'
+        }) : null
+
+
+        //console.log({logo, logoUrl})
+        //return NextResponse.json({ logo, logoUrl }, { status: 200 })
+
+
 
         //console.log({ club })
-        const apiData = await fetchApiFootballClubData({ clubApiFootballId: gameData.Clubs.apiFootballId! });
+        //const apiData = await fetchApiFootballClubData({ clubApiFootballId: gameData.Clubs.apiFootballId! });
         //console.log("tips", apiData);
-        const logoUrl = apiData.team.logo;
+
+        //const logoUrl = url;
         //console.log({logoUrl})
-        const mediaId = await uploadMedia(logoUrl);
+        let mediaId;
+        if(!!logoUrl){
+            mediaId = await uploadMedia(logoUrl);
+        }
         //console.log({mediaId})
         let xResponse;
-        if (!mediaId)
+
+        if (!logoUrl || !mediaId)
             xResponse = await postTweet({ text: message });
         else
             xResponse = await postTweet({ text: message, mediaId });
