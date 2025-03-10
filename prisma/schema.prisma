@@ -1,53 +1,54 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Clubs {
-  id              Int            @id(map: "clubs_pkey") @default(autoincrement())
-  name            String         @db.VarChar(32)
-  fullName        String         @db.VarChar(64)
-  city            String         @db.VarChar(32)
-  state           String?        @db.VarChar(32)
-  country         String         @db.VarChar(32)
-  stadium         String         @db.VarChar(32)
-  stadiumFullName String         @db.VarChar(64)
-  colors          String[]       @db.Char(32)
-  foundationYear  Int
-  mascot          String?        @db.VarChar(32)
-  apiFootballId   Int?
-  division        String?        @db.VarChar(32)
-  GameClubs       GameClubs[]
-  GamesHistory    GamesHistory[]
+    id              Int            @id(map: "clubs_pkey") @default(autoincrement())
+    name            String         @db.VarChar(32)
+    fullName        String         @db.VarChar(64)
+    city            String         @db.VarChar(32)
+    state           String?        @db.VarChar(32)
+    country         String         @db.VarChar(32)
+    stadium         String         @db.VarChar(32)
+    stadiumFullName String         @db.VarChar(64)
+    colors          String[]       @db.Char(32)
+    foundationYear  Int
+    mascot          String?        @db.VarChar(32)
+    apiFootballId   Int?
+    division        String?        @db.VarChar(32)
+    logo            String?        @db.VarChar(256)
+    GameClubs       GameClubs[]
+    GamesHistory    GamesHistory[]
 }
 
 model GamesHistory {
-  id        Int      @id(map: "gamesHistory_pkey") @default(autoincrement())
-  gameInfoId Int
-  gameId    String
-  clubId    Int
-  createdAt DateTime @default(now())
-  Clubs     Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_club")
+    id         Int      @id(map: "gamesHistory_pkey") @default(autoincrement())
+    gameInfoId Int
+    gameId     String
+    clubId     Int
+    createdAt  DateTime @default(now())
+    Clubs      Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_club")
 }
 
 model GameClubs {
-  id         Int      @id
-  gameInfoId Int
-  clubId     Int
-  division   String?  @db.VarChar(32)
-  Clubs      Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubId_fk")
-  GameInfo   GameInfo @relation(fields: [gameInfoId], references: [id], onDelete: Cascade, map: "gameInfoId_fk")
+    id         Int      @id
+    gameInfoId Int
+    clubId     Int
+    division   String?  @db.VarChar(32)
+    Clubs      Clubs    @relation(fields: [clubId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubId_fk")
+    GameInfo   GameInfo @relation(fields: [gameInfoId], references: [id], onDelete: Cascade, map: "gameInfoId_fk")
 }
 
 model GameInfo {
-  id          Int         @id
-  name        String      @db.VarChar(32)
-  fullName    String      @db.VarChar(128)
-  description String?     @db.VarChar(128)
-  GameClubs   GameClubs[]
+    id          Int         @id
+    name        String      @db.VarChar(32)
+    fullName    String      @db.VarChar(128)
+    description String?     @db.VarChar(128)
+    GameClubs   GameClubs[]
 }

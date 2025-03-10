@@ -10,7 +10,7 @@ export async function checkAnswer(props: checkAnswerProps) {
     //console.log("Checar a resposta: ", clubName);
     const response = await getLastGame()
     const club = response?.Clubs
-    console.log({ club })
+    //console.log({ club })
     if (props.clubName.toLowerCase() == club?.name.toLowerCase()) {
         //console.log("RESPOSTA CERTA")
         return {
