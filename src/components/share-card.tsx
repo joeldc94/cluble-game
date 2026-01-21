@@ -1,13 +1,9 @@
 "use client"
 
-import { Alert, Button, Card, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
+import { Alert, Card, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useState } from "react";
-import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-//import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-//import XIcon from '@mui/icons-material/X';
-//import FacebookIcon from '@mui/icons-material/Facebook';
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from 'next-share';
+import { TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from 'next-share';
 
 /* emojis
 😎😃😉😁🙂🤪🤫🤐🤓🤯😌🙄😓
@@ -125,21 +121,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                                 <TwitterIcon size={32} round />
                             </IconButton>
                         </Tooltip>
-                    </TwitterShareButton>
-
-                    {/* Botão de Compartilhamento no Facebook */}
-                    {/* <FacebookShareButton
-                        url={siteLink}
-                        quote={shareMessage}
-                        hashtag={`#Cluble #cluble.today #Brasileirão2024`}
-                        blankTarget
-                    >
-                        <Tooltip title="Compartilhar no Facebook" placement="top">
-                            <IconButton>
-                                <FacebookIcon size={32} round />
-                            </IconButton>
-                        </Tooltip>
-                    </FacebookShareButton>    */}              
+                    </TwitterShareButton>             
 
                 </CardActions>
             </Card>
