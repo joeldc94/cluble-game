@@ -1,7 +1,5 @@
 "use client"
-import { getGameAnswers } from "@/utils/localStorage";
-import { Avatar, Box, Card, Chip, Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Skeleton, Stack, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { Avatar, Box, Card, Chip, Grid, List, ListItem, ListItemIcon, Paper, Stack, Typography } from "@mui/material";
 
 type NovoTipsProps = {
     tipsArray: Tip[];
@@ -20,7 +18,7 @@ function getTipColor(tipIndex: number, answersLength: number, right: boolean) {
 }
 
 /** Componente que renderiza a lista de dicas */
-export default function TipsList({ tipsArray, userAnswers, rightAnswered }: NovoTipsProps) {
+export default function TipsList({ tipsArray, userAnswers, rightAnswered }: Readonly<NovoTipsProps>) {
 
     return (
         <List disablePadding sx={{ mb:2 }}>

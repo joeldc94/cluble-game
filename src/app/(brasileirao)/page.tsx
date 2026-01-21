@@ -4,7 +4,6 @@ import { DateHeader } from "./comp/date-header";
 import { LeagueTitle } from "./comp/league-title";
 import { getClubsNamesListSQLFromGameClubs, getLastGameData } from "@/utils/sql-games";
 import { LEAGUE_ID } from "./config";
-import { Suspense } from "react";
 
 const GAME_INFOS_ID = LEAGUE_ID;
 

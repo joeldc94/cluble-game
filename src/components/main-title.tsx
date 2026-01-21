@@ -1,4 +1,4 @@
-import { Divider, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 
 export const MainTitle = () => {
     return (

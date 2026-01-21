@@ -2,14 +2,13 @@
 
 import { getTips } from "@/actions/get-tips";
 import { getGameAnswers, getLocalStorageRightAnswer, setLocalStorageNewGame, setLocalStorageRightAnswer, setNewAnswer } from "@/utils/localStorage";
-import { Autocomplete, Avatar, Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { Autocomplete, Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, List, ListItem, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
 import { FormEvent, Suspense, useEffect, useRef, useState, useTransition } from "react";
 import TipsList from "./tips-list";
 import { filterClubs } from "@/utils/string";
 import SendIcon from '@mui/icons-material/Send';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { ShareCard } from "@/components/share-card2";
-import Image from "next/image";
 import LogoImage from "./logo-image";
 
 interface GameComponentProps {
@@ -17,7 +16,7 @@ interface GameComponentProps {
     clubsNamesList: string[];
     gameEdition: number;
 }
-export default function GameComponent(props: GameComponentProps) {
+export default function GameComponent(props: Readonly<GameComponentProps>) {
     const respostaCardRef = useRef<HTMLDivElement>(null);
 
     const [historyInitialized, setHistoryInitialized] = useState<boolean>(false)
@@ -68,12 +67,8 @@ export default function GameComponent(props: GameComponentProps) {
                         setLocalStorageRightAnswer(props.gameData.gameId, response.rightAnswer);
                         setGameRightAnswer(response.rightAnswer);
                     }
-                    //console.log("Get tips response:", response);
                     if (response.clubData) {
                         setFinalAnswer(response.clubData);
-                        /* if (respostaCardRef.current) {
-                            respostaCardRef.current.scrollIntoView({ behavior: 'smooth' });
-                        } */
                     }
                     setInitialized(true);
                 }
@@ -81,12 +76,10 @@ export default function GameComponent(props: GameComponentProps) {
         }
     }, [historyInitialized])
 
-    /** */
     useEffect(() => {
         // Verificar se a resposta é válida sempre que o valor de 'answer' mudar
         setIsValidAnswer(props.clubsNamesList.some(club => club.toLowerCase() === answer.toLowerCase()));
     }, [answer]);
-
 
     useEffect(() => {
         if (gameState != null && (gameState >= 5 || gameRightAnswer)) {
@@ -118,7 +111,6 @@ export default function GameComponent(props: GameComponentProps) {
             })
 
             // criar mais um campo para os dados do clube correto (separar do right Answer no local storage)
-
             if (response.success) {
                 //console.log(response)
                 setNewAnswer(props.gameData.gameId, response.userAnswer ?? "");
@@ -130,14 +122,6 @@ export default function GameComponent(props: GameComponentProps) {
                     setFinalAnswer(response.clubData)
                 }
             }
-
-
-            //e.preventDefault();
-            //console.log("submit")
-            //setNewAnswer(gameId, '');
-            //await checkAnswer({ clubName: '' });
-            //setAnswer('');
-            //setState(state + 1)
         })
     }
 

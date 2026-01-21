@@ -7,7 +7,7 @@ interface Props { src: string, width: number, height: number }
  * src, width, and height. The image is automatically cropped to a square
  * aspect ratio if the width and height are not equal.
  */
-export default function LogoImage(props: Props) {
+export default function LogoImage(props: Readonly<Props>) {
 
     return (
         <CldImage

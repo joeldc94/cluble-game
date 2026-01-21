@@ -1,5 +1,4 @@
 import "server-only";
-import { fetchApiFootballClubData } from "@/actions/api-football";
 import { getGameClubInfo, getYesterdayGame } from "@/utils/sql-games";
 import { postTweet, uploadMedia } from "@/utils/twitterFunction";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 function removeSpaces(str: string | null) {
     if (!str) return '';
-    return str.replace(/\s/g, '').toLowerCase();
+    return str.replaceAll(/\s/g, '').toLowerCase();
 }
 
 export async function GET(request: NextRequest) {
@@ -22,18 +21,14 @@ export async function GET(request: NextRequest) {
 
     try {
         const gameData = await getYesterdayGame();
-        //console.log({ gameData });
         if (!gameData) return NextResponse.json('Nenhuma partida encontrada', { status: 404 });
 
         const gameClubsInfo = await getGameClubInfo(gameData.clubId!, gameData.gameInfoId);
-        //console.log({ gameClubsInfo });
         if (!gameClubsInfo) return NextResponse.json('Nenhum gameClubsInfo encontrado', { status: 404 });
 
         const hashtags = [];
         hashtags.push(`#cluble`);
-        //hashtags.push(`#clubletoday`);
         hashtags.push(`#${removeSpaces(gameClubsInfo.GameInfo.name)}`);
-        //hashtags.push(`#${removeSpaces(gameClubsInfo.division)}`);
         hashtags.push(`#${removeSpaces(gameData.Clubs.name)}`);
         hashtags.push(`#${removeSpaces(gameData.Clubs.city)}`);
         hashtags.push(`#${removeSpaces(gameData.Clubs.state)}`);
@@ -45,13 +40,8 @@ https://cluble.today
 
 ${hashtags.map((hashtag) => `${hashtag}`).join(' ')}
 `
-
-        /* console.log("XXXXXX: ", message);
-        return NextResponse.json(message, {
-            status: 200,
-        }); */
         const logo = gameClubsInfo.Clubs.logo;
-        const logoUrl = !!logo ?  
+        const logoUrl = logo ?  
         getCldImageUrl({
             width: 500,
             height: 500,
@@ -59,23 +49,10 @@ ${hashtags.map((hashtag) => `${hashtag}`).join(' ')}
             background: 'white'
         }) : null
 
-
-        //console.log({logo, logoUrl})
-        //return NextResponse.json({ logo, logoUrl }, { status: 200 })
-
-
-
-        //console.log({ club })
-        //const apiData = await fetchApiFootballClubData({ clubApiFootballId: gameData.Clubs.apiFootballId! });
-        //console.log("tips", apiData);
-
-        //const logoUrl = url;
-        //console.log({logoUrl})
         let mediaId;
         if(!!logoUrl){
             mediaId = await uploadMedia(logoUrl);
         }
-        //console.log({mediaId})
         let xResponse;
 
         if (!logoUrl || !mediaId)

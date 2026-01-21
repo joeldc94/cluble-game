@@ -1,8 +1,7 @@
 "use client"
 
-import { Alert, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
-import { useRef, useState } from "react";
-import ShareIcon from '@mui/icons-material/Share';
+import { Alert, Card, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
+import { useState } from "react";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
