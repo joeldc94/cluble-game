@@ -1,9 +1,13 @@
 "use client"
 
-import { Alert, Card, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
+import { Alert, Button, Card, CardActions, CardContent, CardHeader, Divider, IconButton, Paper, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useState } from "react";
+import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+//import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+//import XIcon from '@mui/icons-material/X';
+//import FacebookIcon from '@mui/icons-material/Facebook';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from 'next-share';
 
 /* emojis
 😎😃😉😁🙂🤪🤫🤐🤓🤯😌🙄😓
@@ -35,8 +39,7 @@ const generateIconsForAttempts = (tipsNeeded: number, rightAnswer: boolean) => {
     const icons = [];
     if (!rightAnswer) {
         icons.push("❌❌❌❌❌");
-    }
-    else
+    } else {
         for (let i = 0; i < 5; i++) {
             if (i < tipsNeeded - 1) {
                 icons.push("🟥");
@@ -46,15 +49,13 @@ const generateIconsForAttempts = (tipsNeeded: number, rightAnswer: boolean) => {
                 icons.push("🟩");
             }
         }
+    }
     return icons.join("");
 };
-
 
 export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardProps) => {
     const [openAlert, setOpenAlert] = useState(false);
 
-    /* rightAnswer = false
-    tipsNeeded = 5 */
     const siteLink = "https://cluble.today";
     const shareText1 = `Veja o clube de hoje no CLUBLE! Edição #${gameEdition}!`;
     const shareText2 = rightAnswer ?
@@ -63,45 +64,20 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
 
     const shareIcons = generateIconsForAttempts(tipsNeeded, rightAnswer);
 
-    const shareMessage = `${shareText1}\n\n${shareText2} ${getEmojiForTips(tipsNeeded, rightAnswer)}\n${shareIcons}\n\n${siteLink}`;
-
-    //console.log(shareMessage)
-    //const isMobileDevice = typeof navigator !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // Função para gerar o link de compartilhamento no whatsapp
-    const handleCompartilharWhatsApp = () => {
-        //if (!isMobileDevice) return;
-        const mensagemCodificada = encodeURIComponent(shareMessage);
-        const linkWhatsApp = `whatsapp://send?text=${mensagemCodificada}`;
-        //const siteLink = "https://cluble.today";
-        const linkWithBreak = `${mensagemCodificada}%0A${siteLink}`;
-        const linkWhatsAppWithBreak = `whatsapp://send?text=${linkWithBreak}`;
-        window.location.href = linkWhatsApp;
-    };
-
-    //const shareRef = useRef<HTMLDivElement>(null); // Referência para o componente List
+    const shareMessage = `${shareText1}\n\n${shareText2} ${getEmojiForTips(tipsNeeded, rightAnswer)}\n${shareIcons}\n\n`;
 
     // Função para copiar o texto para a área de transferência
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(shareMessage);
+        navigator.clipboard.writeText(shareMessage + siteLink);
         setOpenAlert(true);
-        /*
-        if (shareRef.current) {
-            const textToCopy = shareRef.current.innerText; // Obtém o texto dentro do componente List
-            navigator.clipboard.writeText(shareMessage); // Copia o texto para a área de transferência
-            alert("Texto copiado");
-        }
-        */
     };
-
-    //console.log(shareText2)
 
     return (
         <>
             <Card component={Paper} elevation={2}>
                 <CardHeader title="Compartilhe!" sx={{ textAlign: 'center' }} />
                 <Divider />
-                <CardContent /* ref={shareRef} */>
+                <CardContent>
                     <Typography variant="subtitle1" textAlign='center' fontSize='1.8rem'>
                         {getEmojiForTips(tipsNeeded, rightAnswer)}
                     </Typography>
@@ -116,27 +92,55 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center' }}>
-                    <Tooltip
-                        title="Copiar resultado"
-                        placement="top"
-                        enterDelay={500}
-                        leaveDelay={50}
-                    >
-                        <IconButton onClick={copyToClipboard} >
+                    <Tooltip title="Copiar resultado" placement="top">
+                        <IconButton onClick={copyToClipboard}>
                             <ContentCopyIcon sx={{ color: '#333' }} />
                         </IconButton>
                     </Tooltip>
 
-                    <Tooltip
-                        title="Compartilhar no WhatsApp"
-                        placement="top"
-                        enterDelay={500}
-                        leaveDelay={50}
+                    {/* Botão de Compartilhamento no WhatsApp */}
+                    <WhatsappShareButton
+                        url={siteLink}
+                        title={shareMessage}
+                                              
+                        blankTarget
                     >
-                        <IconButton onClick={handleCompartilharWhatsApp} >
-                            <WhatsAppIcon sx={{ color: '#1A9B50' }} />
-                        </IconButton>
-                    </Tooltip>
+                        <Tooltip title="Compartilhar no WhatsApp" placement="top">
+                            <IconButton>
+                                <WhatsappIcon size={32} round />
+                            </IconButton>
+                        </Tooltip>
+                    </WhatsappShareButton>
+
+                    {/* Botão de Compartilhamento no X */}
+                    <TwitterShareButton
+                        url={siteLink}
+                        title={"@ClubleToday\n" + shareMessage}
+                        hashtags={["Cluble", "clubletoday", "Brasileirão2025"]}
+                        related={["@ClubleToday"]}                        
+                        blankTarget
+                    >
+                        <Tooltip title="Compartilhar no X" placement="top">
+                            <IconButton>
+                                <TwitterIcon size={32} round />
+                            </IconButton>
+                        </Tooltip>
+                    </TwitterShareButton>
+
+                    {/* Botão de Compartilhamento no Facebook */}
+                    {/* <FacebookShareButton
+                        url={siteLink}
+                        quote={shareMessage}
+                        hashtag={`#Cluble #cluble.today #Brasileirão2024`}
+                        blankTarget
+                    >
+                        <Tooltip title="Compartilhar no Facebook" placement="top">
+                            <IconButton>
+                                <FacebookIcon size={32} round />
+                            </IconButton>
+                        </Tooltip>
+                    </FacebookShareButton>    */}              
+
                 </CardActions>
             </Card>
             <Snackbar
@@ -145,12 +149,7 @@ export const ShareCard = ({ rightAnswer, tipsNeeded, gameEdition }: ShareCardPro
                 autoHideDuration={3000}
                 onClose={() => setOpenAlert(false)}
             >
-                <Alert
-                    severity="success"
-                    variant="outlined"
-                    icon={false}
-                    sx={{ backgroundColor: 'white' }}                    
-                >
+                <Alert severity="success" variant="outlined" icon={false} sx={{ backgroundColor: 'white' }}>
                     Texto copiado
                 </Alert>
             </Snackbar>
