@@ -1,1 +1,1 @@
-export const LEAGUE_ID = 2; // brasileirão 2024
+export const LEAGUE_ID = 3; // brasileirão 2026
