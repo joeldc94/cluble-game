@@ -13,13 +13,12 @@ export async function GET(request: NextRequest) {
 			status: 401,
 		});
 	}
-	const del = await deleteGamesList();
+	await deleteGamesList();
     const leagueIdParam = request.nextUrl.searchParams.get('leagueId');
-    const leagueId = parseInt(leagueIdParam!);
+    const leagueId = Number.parseInt(leagueIdParam!);
     if (!leagueIdParam || !leagueId) return new Response('Nenhum Id de jogo informado', { status: 400 });
     console.log("Atualizar jogo:", leagueId)
     const result = await updateCurrentGame(leagueId);
-    //console.log({result})
 	revalidatePath('/');
 	return Response.json(result)
 

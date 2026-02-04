@@ -1,6 +1,6 @@
 // Função para remover acentos de uma string
 export const removeAccents = (str: string) => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str.normalize("NFD").replaceAll(/[\u0300-\u036f]/g, "");
 };
 
 // Função para filtrar os clubes com base no valor de entrada

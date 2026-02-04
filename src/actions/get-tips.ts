@@ -1,10 +1,8 @@
 "use server";
 import "server-only";
-import { getClubDataByGameId, getClubIdByGameId } from "@/utils/sql-games";
-import { checkAnswer } from "./check-answer";
-import { fetchApiFootballClubData } from "./api-football";
+import { getClubDataByGameId } from "@/utils/sql-games";
 
-interface checkAnswerProps {
+interface GetTipsProps {
     gameId: string;
     state: number;
     answer?: string;
@@ -16,27 +14,15 @@ export async function getTips({
     state,
     answer,
     rightAnswer,
-}: checkAnswerProps) {
-    //console.log("GetTips:", { gameId, state, answer, rightAnswer });
+}: GetTipsProps) {
     const club = await getClubDataByGameId(gameId);
-    /* const clubId = await getClubIdByGameId(gameId);
-    if (!clubId)
-        return {
-            success: false,
-            message: "Não foi possível identificar o clube de hoje",
-            tips: []
-        };
-    const club = await getClubById(clubId); */
+
     if (!club)
         return {
             success: false,
             message: "Não foi possível identificar o clube de hoje",
             tips: []
         };
-
-    //const apiData = await fetchApiFootballClubData({ clubApiFootballId: club.apiFootballId });
-
-    //club.logo = apiData ? apiData.team.logo : "";
 
     const tips: Tip[] = [
         {
@@ -61,8 +47,7 @@ export async function getTips({
         },
     ];
 
-    let checkRightResponse = !!rightAnswer// ?? false;
-    //console.log(checkRightResponse, answer, club.name)
+    let checkRightResponse = !!rightAnswer
 
     if (!!answer && !checkRightResponse) {
         if (answer.toLowerCase() == club?.name.toLowerCase()) {

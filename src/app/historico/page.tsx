@@ -1,7 +1,7 @@
 "use client"
 import { getCurrentDateFormatted } from "@/utils/get-date"
 import { getUserGamesHistory } from "@/utils/localStorage"
-import { Typography, Divider, Grid, List, ListItem, ListItemText, Button } from "@mui/material"
+import { Typography, Divider, Grid, List, Button } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 
 

@@ -12,13 +12,13 @@ const cacheTimeout = 86400; // 24 hours
 // serieC = 75
 // serieD = 76
 
-interface checkAnswerProps {
+interface FetchApiFootballClubDataProps {
     clubApiFootballId: number;
 }
 
 export async function fetchApiFootballClubData({
     clubApiFootballId
-}: checkAnswerProps) {
+}: FetchApiFootballClubDataProps) {
 
     try {
         const response = await fetch(`https://v3.football.api-sports.io/teams?id=${clubApiFootballId}`, {
@@ -30,8 +30,7 @@ export async function fetchApiFootballClubData({
             next: { tags: ['api-football'] }
         });
         const clubData = await response.json();
-        //console.log("fetch", clubData.response);
-        if (!!clubData.response[0])
+        if (clubData.response[0])
             return clubData.response[0];
         else
             return null

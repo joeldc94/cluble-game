@@ -1,13 +1,11 @@
 import { getGameInfos } from "@/utils/sql-games"
-import { Box, Divider, Skeleton, Typography } from "@mui/material"
-import { Suspense } from "react";
+import { Box, Skeleton, Typography } from "@mui/material"
 
 interface LeagueTitleProps {
     leagueId: number
 }
-const LeagueTitleContent = async (props: LeagueTitleProps) => {
+const LeagueTitleContent = async (props: Readonly<LeagueTitleProps>) => {
     const gameInfos = await getGameInfos(props.leagueId);
-    //const gameInfos = undefined;
     return (
         <Box mt={3} mb={2} sx={{
             display: 'flex',          // Define um layout flexível
@@ -19,7 +17,7 @@ const LeagueTitleContent = async (props: LeagueTitleProps) => {
                 {(!gameInfos || !gameInfos.name) ? <Skeleton width='75%' /> : gameInfos.name}
             </Typography>
             <Typography variant="h3" fontSize="1.0rem" fontWeight="500" textAlign="center">
-                {(!gameInfos) ? <Skeleton width='50%' /> : gameInfos.description}
+                {(gameInfos) ? gameInfos.description : <Skeleton width='50%' />}
             </Typography>
         </Box>
     )

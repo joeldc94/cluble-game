@@ -119,7 +119,7 @@ const countConsecutiveDaysPlayed = (history: GameHistoryLocalStorage[]): number 
 const parseBrazilianDate = (dateString: string): Date => {
     const [day, month, year] = dateString.split('/');
     // O mês é indexado em 0 no construtor Date, por isso subtraímos 1 do mês
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    return new Date(Number.parseInt(year), Number.parseInt(month) - 1, Number.parseInt(day));
 };
 
 
@@ -179,7 +179,7 @@ const calculateAccuracyPercentageByAnswers = (history: GameHistoryLocalStorage[]
 
     // Calcula a porcentagem de jogos não acertados
     const totalGamesCount = history.length;
-    const incorrectGamesPercentage = parseFloat((incorrectGamesCount / totalGamesCount * 100).toFixed(1));
+    const incorrectGamesPercentage = Number.parseFloat((incorrectGamesCount / totalGamesCount * 100).toFixed(1));
 
     const correctGamesPercentage: number[] = []
     correctGamesCount.forEach((count) => {
